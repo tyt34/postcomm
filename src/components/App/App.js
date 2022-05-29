@@ -1,4 +1,6 @@
 import Reg from '../Auth/Reg/Reg'
+import Log from '../Auth/Log/Log'
+import Profile from '../Profile/Profile'
 import { HashRouter, Routes, Route} from 'react-router-dom'
 const BASENAME = process.env.REACT_APP_BASENAME
 let base
@@ -20,6 +22,16 @@ function App() {
           <Route path="/reg" element={
             <>
               <Reg/>
+            </>
+          } />
+          <Route path="/log" element={
+            <>
+              <Log/>
+            </>
+          } />
+          <Route path="/profile" element={
+            <>
+              <Profile/>
             </>
           } />
         </Routes>

@@ -1,0 +1,32 @@
+.field {
+  display: flex;
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.field-top {
+  width: 315px;
+}
+
+.field__name {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 13px;
+  margin-top: 5px;
+  margin-bottom: 0;
+}
+
+.field__input {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 13px;
+  text-align: right;
+  border: 0;
+}

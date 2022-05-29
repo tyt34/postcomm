@@ -1,0 +1,58 @@
+.post-form {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.post-form__input {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 13px;
+  text-align: left;
+}
+
+.post-form__but {
+  width: 300px;
+  height: 46px;
+  background-color: black;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0;
+  margin-top: 20px;
+  border: 0;
+  border-radius: 10px;
+  font-size: 14px;
+  line-height: 17px;
+  color: white;
+}
+
+.post-form__but:hover {
+  cursor: pointer;
+}
+
+.post-form__area {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  height: 80px;
+  font-size: 18px;
+  line-height: 13px;
+  text-align: left;
+  margin-top: 20px;
+}
+
+.post-form__status {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 13px;
+  margin-left: auto;
+  margin-right: auto;
+  color: red;
+  height: 20px;
+}

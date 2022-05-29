@@ -1,0 +1,15 @@
+.reg {
+  display: flex;
+  flex-direction: column;
+}
+
+.reg__err {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 13px;
+  color: red;
+  margin-left: auto;
+  margin-right: auto;
+}
