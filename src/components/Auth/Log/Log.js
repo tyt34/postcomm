@@ -22,7 +22,7 @@ function Loggin() {
     setPass(e.target.value)
   }
 
-  React.useEffect( () => {
+  useEffect( () => {
     if ( (name === '') || (pass === '') ) {
       setButton(false)
       console.log(' but close ')

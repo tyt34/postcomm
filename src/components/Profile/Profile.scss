@@ -6,6 +6,11 @@
 .profile__title {
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 20px;
+}
+
+.profile__title:first-child {
+  margin-top: 20px;
 }
 
 .profile__top {
@@ -60,4 +65,29 @@
   margin-right: auto;
   color: red;
   height: 20px;
+}
+
+.profile__info {
+  background-color: #d1f5e6;
+  padding: 20px;
+  width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+
+.profile__link {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 13px;
+  text-decoration: none;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+  background-color: rgba(#798fde, 0.66);
+  padding: 7px;
+  border-radius: 5px;
 }

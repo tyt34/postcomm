@@ -73,7 +73,6 @@ export const getUser = () => {
   )
 }
 
-
 export const updateUser = (name, surname, email, phone, company, jobpost, avatar) => {
   console.log(' n/a ', name, '/', avatar)
   return fetch(url+'updateUser', {
@@ -126,7 +125,7 @@ export const createPost = (header, text) => {
   )
   let dateText = new Date(dateUTC);
   console.log(' -> ', dateUTC)
-  console.log(' --> ', dateText)
+  console.log(' --> ', dateText.toString())
 
   return fetch(url+'createMes', {
     method: 'POST',
@@ -137,13 +136,47 @@ export const createPost = (header, text) => {
     body: JSON.stringify({
       header,
       text,
-      dateText,
+      dateText: dateText.toString(),
       dateUTC
     })
   })
   .then(
     (res) => {
       return res.json()
+    }
+  )
+}
+
+export const getMesForProfile = () => {
+  return fetch(url+'getmesprof', {
+    method: 'GET',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      authorization: 'Bearer '+localStorage.jwt,
+    }
+  })
+  .then(
+    (res) => {
+      return getResponseData(res)
+    }
+  )
+}
+
+
+export const getAvaForPrevPost = (owner) => {
+  //console.log(' - o: ', owner)
+  return fetch(url+'getava/'+owner, {
+    method: 'GET',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      authorization: 'Bearer '+localStorage.jwt,
+    },
+  })
+  .then(
+    (res) => {
+      return getResponseData(res)
     }
   )
 }

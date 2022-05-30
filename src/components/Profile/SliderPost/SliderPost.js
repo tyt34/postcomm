@@ -1,55 +1,127 @@
 import './SliderPost.scss'
 import React, { useEffect, useState } from 'react'
-import disableScroll from 'disable-scroll';
+import disableScroll from 'disable-scroll'
+import PrewPost from '../../PrewPost/PrewPost'
+import arrow from "../../../images/arrow.png"
 
-function SliderPost() {
-  const [imgLeft, setImgLeft] = useState(0)
-  const [imgMid, setImgMid] = useState(1)
-  const [imgRig, setImgRig] = useState(2)
+function SliderPost({messageForProfile, avatarProfile}) {
+  const [mainNum, setMainNum] = useState(0)
+  const [maxNum, setMaxNum] = useState(null)
+  const [messTop, setMessTop] = useState(null)
+  const [messMid, setMessMid] = useState(null)
+  const [messBot, setMessBot] = useState(null)
 
-  const [items, setItems] = useState([
+  const [items, setItems] = useState([])
 
-  ])
+  useEffect( () => {
+    setItems(messageForProfile)
+    if (messageForProfile.length === 1) {
+      setMessTop(messageForProfile[0])
+    } else if (messageForProfile.length === 2) {
+      setMessTop(messageForProfile[0])
+      setMessMid(messageForProfile[1])
+    } else if (messageForProfile.length !== 0) {
+      setMessTop(messageForProfile[mainNum])
+      setMessMid(messageForProfile[mainNum+1])
+      setMessBot(messageForProfile[mainNum+2])
 
-  function nextNum(num) {
-    let newNum = num + 1
-    if (newNum > items.length-1) {
-      return 0
+      setMaxNum(messageForProfile.length)
+    }
+
+  }, [messageForProfile])
+
+  useEffect( ()=> {
+    setMessTop(messageForProfile[mainNum])
+    setMessMid(messageForProfile[mainNum+1])
+    setMessBot(messageForProfile[mainNum+2])
+  }, [mainNum, maxNum])
+
+  function prevNum() {
+    if (mainNum === 0) {
+      setMainNum(maxNum-3)
     } else {
-      return newNum
+      setMainNum(mainNum-1)
     }
   }
 
-  function prevNum(num) {
-    let newNum = num - 1
-    if (newNum === -1) {
-      return items.length-1
+  function nextNum() {
+    if (mainNum+3 === maxNum) {
+      setMainNum(0)
     } else {
-      return newNum
+      setMainNum(mainNum+1)
     }
   }
 
   const handleWheel = (e) => {
     if (e.deltaY > 0) {
-      setImgLeft(prevNum(imgLeft))
-      setImgMid(prevNum(imgMid))
-      setImgRig(prevNum(imgRig))
+      nextNum()
     } else {
-      setImgLeft(nextNum(imgLeft))
-      setImgMid(nextNum(imgMid))
-      setImgRig(nextNum(imgRig))
+      prevNum()
     }
   }
 
   return (
-    <section
-      className="carusel"
+    <section className="carusel__set"
       tabIndex="0"
       onWheel={handleWheel}
       onMouseEnter={(e) => {disableScroll.on()}} // чтобы страница не прокручивалась при наведение на компонент карусель
       onMouseLeave={(e) => {disableScroll.off()}} // чтобы страница не прокручивалась при наведение на компонент карусель
     >
-
+    {
+      items.length === 0 ?
+      <section className="carusel-small">
+        <p className="carusel__text">Постов нет.</p>
+      </section>
+      :
+      items.length === 1 ?
+        <>
+          <section className="carusel carusel-one">
+            <PrewPost
+              info={messTop}
+              avatarProfile={avatarProfile}
+            />
+          </section>
+        </>
+        :
+        items.length === 2 ?
+        <section className="carusel">
+          <PrewPost
+            info={messTop}
+            avatarProfile={avatarProfile}
+          />
+          <PrewPost
+            info={messMid}
+            avatarProfile={avatarProfile}
+          />
+        </section>
+        :
+        <section className="carusel">
+          <button
+            className="carusel__but carusel__but-top"
+            onClick={prevNum}
+          >
+            <img className="carusel__but-img" src={arrow}/>
+          </button>
+          <PrewPost
+            info={messTop}
+            avatarProfile={avatarProfile}
+          />
+          <PrewPost
+            info={messMid}
+            avatarProfile={avatarProfile}
+          />
+          <PrewPost
+            info={messBot}
+            avatarProfile={avatarProfile}
+          />
+          <button
+            className="carusel__but carusel__but-bot"
+            onClick={nextNum}
+          >
+            <img className="carusel__but-img carusel__but-img-bot" src={arrow}/>
+          </button>
+        </section>
+    }
     </section>
   )
 }

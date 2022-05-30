@@ -2,12 +2,31 @@
 
 .carusel {
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  @include size(600px, 149px);
+  width: 400px;
   margin: 0 auto;
   overflow-x: scroll;
   background-color: #d1ccec;
   margin-bottom: 20px;
+  border-radius: 15px;
+}
+
+.carusel__set {
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.carusel-big {
+  height: 410px;
+  border-radius: 20px;
+}
+
+.carusel-small {
+  display: flex;
+  height: 30px;
+  border-radius: 5px;
 }
 
 .carusel__img {
@@ -17,4 +36,43 @@
 .carusel::-webkit-scrollbar {
   height: 0;
   background: transparent;
+}
+
+.carusel__text {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 13px;
+  margin-top: 9px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.carusel__but {
+  background-color: #d1ccec;
+  width: 30px;
+  height: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.carusel__but:hover {
+  cursor: pointer;
+}
+
+.carusel__but-img {
+  height: 30px;
+  width: 30px;
+}
+
+.carusel__but-img-bot {
+  transform: rotate(180deg);
+}
+
+.carusel-one {
+  height: 100px;
+  border-radius: 10px;
 }

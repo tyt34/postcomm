@@ -1,0 +1,78 @@
+.prew {
+  display: flex;
+  flex-direction: column;
+  height: 80px;
+  width: 320px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: #ebe7b6;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 5px;
+}
+
+.prew:hover {
+  cursor: pointer;
+}
+
+.prew__top {
+  display: flex;
+}
+
+.prew__bot {
+  display: flex;
+}
+
+.prew__ava {
+  width: 40px;
+  height: 40px;
+  border-radius: 40px;
+  object-fit: cover;
+  margin-left: 5px;
+  margin-top: 5px;
+}
+
+.prew__head {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 17px;
+  line-height: 13px;
+  margin-left: 30px;
+  margin-top: 5px;
+  text-overflow: ellipsis;
+  width: 220px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-decoration: underline;
+}
+
+.prew__time {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 13px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  width: 45px;
+}
+
+.prew__clock {
+  margin-left: 8px;
+}
+
+.prew__text {
+  margin-left: 10px;
+  text-overflow: ellipsis;
+  white-space: wrap;
+  overflow: hidden;
+  width: 250px;
+  height: 46px;
+  margin-top: -15px;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 17px;
+  line-height: 15px;
+}

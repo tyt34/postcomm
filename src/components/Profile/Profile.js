@@ -4,10 +4,14 @@ import PopupAva from './PopupAva/PopupAva'
 import CreatePost from './CreatePost/CreatePost'
 import SliderPost from './SliderPost/SliderPost'
 import Avatar from './Avatar/Avatar'
+import { useNavigate} from 'react-router-dom'
 import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import * as api from '../../utils/api.js'
 
 function Profile() {
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
   const [nameProfile, setNameProfile] = useState('')
   const [surnameProfile, setSurnameProfile] = useState('')
   const [emailProfile, setEmailProfile] = useState('')
@@ -17,12 +21,14 @@ function Profile() {
   const [avatarProfile, setAvatarProfile] = useState('')
   const [popupOpen, setPopupOpen] = useState(false)
   const [statusFetch, setStatusFetch] = useState('')
+  const [messageForProfile, setMessageForProfile] = useState('')
+  const [ownerID, setOwnerID] = useState('')
 
   useEffect( () => {
     api.getUser()
     .then(
       (arg) => {
-        console.log(arg)
+        //console.log(arg)
         let {name, surname, email, phone, company, jobpost, avatar} = arg
         setNameProfile(name)
         setSurnameProfile(surname)
@@ -31,6 +37,26 @@ function Profile() {
         setCompanyProfile(company)
         setJobPostProfile(jobpost)
         setAvatarProfile(avatar)
+      }
+    )
+    .catch( (err) => {
+      console.log('Err#1 ',err)
+    })
+
+    api.getMesForProfile()
+    .then(
+      (arg) => {
+        //console.log(arg)
+        if (arg.status) {
+          if (arg.status === 'ok') {
+            //console.log(arg.data[0])
+            setOwnerID(arg.data[0].owner)
+            setMessageForProfile(arg.data)
+            //setMessageForProfile([arg.data[0]])
+            //setMessageForProfile([arg.data[0],arg.data[1]])
+            //setMessageForProfile([arg.data[0],arg.data[1],arg.data[1]])
+          }
+        }
       }
     )
     .catch( (err) => {
@@ -83,10 +109,6 @@ function Profile() {
         } else {
           setStatusFetch('Данные изменены')
           setTimeout(clearStatusFetch, 4000)
-          //setButtonError('')
-          //setTestSuccess('Данные изменены')
-          //setTimeout(textSuccess, 4000)
-          //setName(arg.name)
         }
       }
     )
@@ -105,68 +127,70 @@ function Profile() {
     setStatusFetch('')
   }
 
+  function handelLinkAllPosts(e) {
+    e.preventDefault()
+    dispatch({ type: 'CREATE_PAGE_ALL_POSTS', payload: nameProfile})
+    dispatch({ type: 'SAVE_ID_USER', payload: ownerID})
+    navigate('/allposts/'+nameProfile)
+  }
+
   return (
       <section className="profile">
-        <h1 className="profile__title"> Профиль пользователя</h1>
-        <section className="profile__top">
-          <Avatar
-            setPopupOpen={setPopupOpen}
-            avatarLink={avatarProfile}
-            setAvatarProfile={setAvatarProfile}
-          />
-          <section className="profile__top-fields">
-            <Field
-              name='Имя'
-              value={nameProfile}
-              setValue={setNameProfile}
-              onChange={handleChangeName}
-              placeHolder={'Имя пользователя'}
-              mixClass="top"
+        <h2 className="profile__title"> Профиль пользователя</h2>
+        <section className="profile__info">
+          <section className="profile__top">
+            <Avatar
+              setPopupOpen={setPopupOpen}
+              avatarLink={avatarProfile}
+              setAvatarProfile={setAvatarProfile}
             />
-            <Field
-              name='Псевдоним'
-              value={surnameProfile}
-              setValue={setSurnameProfile}
-              onChange={handleChangeSurname}
-              placeHolder={'Псевдоним пользователя'}
-              mixClass="top"
-            />
+            <section className="profile__top-fields">
+              <Field
+                name='Имя'
+                value={nameProfile}
+                setValue={setNameProfile}
+                onChange={handleChangeName}
+                placeHolder={'Имя пользователя'}
+                mixClass="top"
+              />
+              <Field
+                name='Псевдоним'
+                value={surnameProfile}
+                setValue={setSurnameProfile}
+                onChange={handleChangeSurname}
+                placeHolder={'Псевдоним пользователя'}
+                mixClass="top"
+              />
+            </section>
           </section>
-        </section>
-        <Field
-          name='Email'
-          value={emailProfile}
-          setValue={setEmailProfile}
-          onChange={handleChangeEmail}
-          placeHolder={'Email пользователя'}
-        />
-        <Field
-          name='Телефонный номер'
-          value={phoneProfile}
-          setValue={setPhoneProfile}
-          onChange={handleChangePhone}
-          placeHolder={'Номер пользователя'}
-        />
-        <Field
-          name='Компания'
-          value={companyProfile}
-          setValue={setCompanyProfile}
-          onChange={handleChangeСompany}
-          placeHolder={'Компания пользователя'}
-        />
-        <Field
-          name='Должность'
-          value={jobPostProfile}
-          setValue={setJobPostProfile}
-          onChange={handleChangePost}
-          placeHolder={'Должность пользователя'}
-        />
-
-      <PopupAva
-        isOpen={popupOpen}
-        setPopupOpen={setPopupOpen}
-        setAvatarProfile={setAvatarProfile}
-      />
+          <Field
+            name='Email'
+            value={emailProfile}
+            setValue={setEmailProfile}
+            onChange={handleChangeEmail}
+            placeHolder={'Email пользователя'}
+          />
+          <Field
+            name='Телефонный номер'
+            value={phoneProfile}
+            setValue={setPhoneProfile}
+            onChange={handleChangePhone}
+            placeHolder={'Номер пользователя'}
+          />
+          <Field
+            name='Компания'
+            value={companyProfile}
+            setValue={setCompanyProfile}
+            onChange={handleChangeСompany}
+            placeHolder={'Компания пользователя'}
+          />
+          <Field
+            name='Должность'
+            value={jobPostProfile}
+            setValue={setJobPostProfile}
+            onChange={handleChangePost}
+            placeHolder={'Должность пользователя'}
+          />
       <button
         className="profile__but-save"
         type="submit"
@@ -179,8 +203,27 @@ function Profile() {
       <p className="profile__status">
         {statusFetch}
       </p>
-      <SliderPost/>
+      </section>
+
+      <h2 className="profile__title">
+        Слайдер последних постов
+      </h2>
+
+      <a className="profile__link" href={"#/allposts/"+nameProfile} onClick={handelLinkAllPosts}>
+        Перейти на страницу всех постов
+      </a>
+
+      <SliderPost
+        messageForProfile={messageForProfile}
+        avatarProfile={avatarProfile}
+      />
+      <h2 className="profile__title"> Форма для создания нового поста</h2>
       <CreatePost/>
+      <PopupAva
+        isOpen={popupOpen}
+        setPopupOpen={setPopupOpen}
+        setAvatarProfile={setAvatarProfile}
+      />
     </section>
   )
 }

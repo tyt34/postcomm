@@ -17,7 +17,7 @@ function CreatePost() {
         console.log(arg.status)
         if (arg.status) {
           if (arg.status === 'ok') {
-            setStatusCreateMess('Данные изменены')
+            setStatusCreateMess('Данные отправлены')
             setTimeout(clearStatusFetch, 4000)
           } else {
             setStatusCreateMess('Скорее всего, вы не заполнили одно из полей')
@@ -27,7 +27,7 @@ function CreatePost() {
       }
     )
     .catch( (err) => {
-      console.log('Err#1 ',err)
+      console.log('Err#1 ', err)
     })
   }
 
@@ -72,7 +72,6 @@ function CreatePost() {
         {statusCreateMess}
       </p>
     </form>
-
   )
 }
 
