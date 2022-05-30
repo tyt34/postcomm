@@ -5,9 +5,11 @@ import React, { useEffect, useState } from 'react'
 import './Log.scss'
 import * as api from '../../../utils/api.js'
 import { useNavigate} from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 
 function Loggin() {
   const navigate = useNavigate()
+  const dispatch = useDispatch()
   const [name, setName] = useState('') // плохо, что такое же название как в компоненте рег
   const [nameErr, setNameErr] = useState('')
   const [pass, setPass] = useState('')
@@ -40,6 +42,9 @@ function Loggin() {
         throw data
       } else {
         console.log(' norm ', data)
+        dispatch({ type: 'SAVE_ID_USER', payload: data.userId})
+        localStorage.setItem('jwt', data.token)
+        navigate('/profile')
       }
     })
     .catch(

@@ -4,9 +4,12 @@ import React, { useEffect, useState } from 'react'
 
 function Avatar({setPopupOpen, avatarLink, setAvatarProfile}) {
   useEffect( () => {
+    console.log(avatarLink)
+    setAvatarProfile(avatarLink)
+    /*
     if (!avatarLink.includes('http')) {
-      setAvatarProfile(def_ava)
     }
+    */
   }, [avatarLink])
 
   function handleEditAvatarClick() {

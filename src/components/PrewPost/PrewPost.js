@@ -9,6 +9,8 @@ function PrewPost({info, avatarProfile}) {
   const [timeDay, setTimeDay] = useState(null)
   const [timeClock, setTimeClock] = useState(null)
 
+  //console.log(avatarProfile)
+
   useEffect(() => {
     const d = dateText.split(' ')
     //console.log(d)
@@ -17,7 +19,9 @@ function PrewPost({info, avatarProfile}) {
   }, [info])
 
   useEffect(() => {
-    setAvatar(avatarProfile)
+    if (avatarProfile !== 'default') {
+      setAvatar(avatarProfile)
+    }
   },[avatarProfile])
 
   function handleLinkPost() {

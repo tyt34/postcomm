@@ -10,3 +10,12 @@
   margin-top: 20px;
   margin-bottom: 30px;
 }
+
+.all__users {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-row-gap: 25px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 500px;
+}

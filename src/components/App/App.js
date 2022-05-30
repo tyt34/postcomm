@@ -2,7 +2,10 @@ import Reg from '../Auth/Reg/Reg'
 import Log from '../Auth/Log/Log'
 import Profile from '../Profile/Profile'
 import AllPosts from '../AllPosts/AllPosts'
-import { HashRouter, Routes, Route, Navigate} from 'react-router-dom'
+import AllUsers from '../AllUsers/AllUsers'
+import Post from '../Post/Post'
+import Nav from '../Nav/Nav'
+import { HashRouter, Routes, Route, Navigate, useParams} from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 const BASENAME = process.env.REACT_APP_BASENAME
 let base
@@ -14,6 +17,7 @@ if (BASENAME === undefined) {
 //const nowPageFromStore = 'a'
 
 function App() {
+
   const nowPageFromStore = useSelector( store => store.allPostsIdUser)
 
   return (
@@ -26,22 +30,36 @@ function App() {
           } />
           <Route path="/reg" element={
             <>
-              <Reg/>
+              <Reg />
             </>
           } />
           <Route path="/log" element={
             <>
-              <Log/>
+              <Log />
             </>
           } />
           <Route path="/profile" element={
             <>
-              <Profile/>
+              <Nav />
+              <Profile />
             </>
           } />
-          <Route path={"/allposts/"+nowPageFromStore} element={
+          <Route path="/allusers" element={
             <>
-              <AllPosts/>
+              <Nav />
+              <AllUsers />
+            </>
+          } />
+          <Route path={"/allposts/:nameUser"} element={
+            <>
+              <Nav />
+              <AllPosts />
+            </>
+          } />
+          <Route path={"/allposts/:idPost"} element={
+            <>
+              <Nav />
+              <Post />
             </>
           } />
           <Route path="/*" element={<Navigate replace to="/log" />} />
@@ -51,3 +69,10 @@ function App() {
 }
 
 export default App;
+/*
+<Route path={"/allposts/"+nowPageFromStore} element={
+  <>
+    <AllPosts/>
+  </>
+} />
+*/

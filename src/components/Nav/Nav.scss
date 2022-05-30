@@ -1,0 +1,35 @@
+.nav {
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+}
+
+.nav__link {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 13px;
+  text-decoration: none;
+  margin-bottom: 20px;
+  background-color: rgba(#798fde, 0.66);
+  padding: 7px;
+  border-radius: 5px;
+}
+
+.nav__link:first-child {
+  margin-right: 20px;
+}
+
+.nav__title {
+  margin-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.nav__footer {
+  margin-left: auto;
+  margin-right: auto;
+}

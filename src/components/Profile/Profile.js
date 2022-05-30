@@ -36,6 +36,7 @@ function Profile() {
         setPhoneProfile(phone)
         setCompanyProfile(company)
         setJobPostProfile(jobpost)
+        console.log(avatar)
         setAvatarProfile(avatar)
       }
     )
@@ -50,7 +51,7 @@ function Profile() {
         if (arg.status) {
           if (arg.status === 'ok') {
             //console.log(arg.data[0])
-            setOwnerID(arg.data[0].owner)
+            //setOwnerID(arg.data[0].owner)
             setMessageForProfile(arg.data)
             //setMessageForProfile([arg.data[0]])
             //setMessageForProfile([arg.data[0],arg.data[1]])
@@ -209,7 +210,11 @@ function Profile() {
         Слайдер последних постов
       </h2>
 
-      <a className="profile__link" href={"#/allposts/"+nameProfile} onClick={handelLinkAllPosts}>
+      <a
+        className="profile__link"
+        href={"#/allposts/"+nameProfile}
+        onClick={handelLinkAllPosts}
+      >
         Перейти на страницу всех постов
       </a>
 

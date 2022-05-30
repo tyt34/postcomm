@@ -1,0 +1,44 @@
+.user {
+  display: flex;
+  width: 180px;
+  height: 55px;
+  background-color: rgba(#dba9dd, 0.76);
+  border-radius: 15px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.user:hover {
+  cursor: pointer;
+}
+
+.user__ava {
+  width: 40px;
+  height: 40px;
+  border-radius: 40px;
+  object-fit: cover;
+  margin-left: 5px;
+  margin-top: 5px;
+}
+
+.user__right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 35px;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.user__text {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 17px;
+  line-height: 13px;
+  height: 25px;
+  width: 110px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}

@@ -163,10 +163,43 @@ export const getMesForProfile = () => {
   )
 }
 
+export const getMesUser = (nameUser) => {
+  console.log(url+'getMesUser/'+nameUser)
+  return fetch(url+'getMesUser/'+nameUser, {
+    method: 'GET',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      authorization: 'Bearer '+localStorage.jwt,
+    }
+  })
+  .then(
+    (res) => {
+      return getResponseData(res)
+    }
+  )
+}
+
 
 export const getAvaForPrevPost = (owner) => {
-  //console.log(' - o: ', owner)
+  console.log('link ', url+'getava/'+owner)
   return fetch(url+'getava/'+owner, {
+    method: 'GET',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      authorization: 'Bearer '+localStorage.jwt,
+    },
+  })
+  .then(
+    (res) => {
+      return getResponseData(res)
+    }
+  )
+}
+
+export const getAllUsers = () => {
+  return fetch(url+'getallusers', {
     method: 'GET',
     headers: {
       'Accept': 'application/json',
