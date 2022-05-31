@@ -21,7 +21,7 @@ function Profile() {
   const [avatarProfile, setAvatarProfile] = useState('')
   const [popupOpen, setPopupOpen] = useState(false)
   const [statusFetch, setStatusFetch] = useState('')
-  const [messageForProfile, setMessageForProfile] = useState('')
+  //const [messageForProfile, setMessageForProfile] = useState('')
   const [ownerID, setOwnerID] = useState('')
 
   useEffect( () => {
@@ -36,32 +36,29 @@ function Profile() {
         setPhoneProfile(phone)
         setCompanyProfile(company)
         setJobPostProfile(jobpost)
-        console.log(avatar)
+        //console.log(avatar)
+        localStorage.setItem('avatar', avatar)
         setAvatarProfile(avatar)
       }
     )
     .catch( (err) => {
-      console.log('Err#1 ',err)
+      console.log('Err#11 ',err)
     })
 
     api.getMesForProfile()
     .then(
       (arg) => {
-        //console.log(arg)
         if (arg.status) {
           if (arg.status === 'ok') {
-            //console.log(arg.data[0])
-            //setOwnerID(arg.data[0].owner)
-            setMessageForProfile(arg.data)
-            //setMessageForProfile([arg.data[0]])
-            //setMessageForProfile([arg.data[0],arg.data[1]])
-            //setMessageForProfile([arg.data[0],arg.data[1],arg.data[1]])
+            //console.log(' push ', arg.data)
+            //setMessageForProfile(arg.data)
+            dispatch({ type: 'CREATE_ARR_POST', payload: arg.data})
           }
         }
       }
     )
     .catch( (err) => {
-      console.log('Err#1 ',err)
+      console.log('Err#12 ',err)
     })
   }, [])
 
@@ -110,12 +107,14 @@ function Profile() {
         } else {
           setStatusFetch('Данные изменены')
           setTimeout(clearStatusFetch, 4000)
+          localStorage.setItem('name', nameProfile)
+          localStorage.setItem('surname', surnameProfile)
         }
       }
     )
     .catch(
       (err) => {
-        console.log('Err#10 ', err)
+        console.log('Err#13 ', err)
         if (err.message) {
           setStatusFetch(err.message)
           setTimeout(clearStatusFetch, 4000)
@@ -219,7 +218,6 @@ function Profile() {
       </a>
 
       <SliderPost
-        messageForProfile={messageForProfile}
         avatarProfile={avatarProfile}
       />
       <h2 className="profile__title"> Форма для создания нового поста</h2>

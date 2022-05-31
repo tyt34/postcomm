@@ -11,8 +11,13 @@
   border-radius: 5px;
 }
 
-.prew:hover {
+.prew-link:hover {
   cursor: pointer;
+}
+
+.prew-comment {
+  width: 500px;
+  background-color: rgba(#c1e4d7, 0.6);
 }
 
 .prew__top {
@@ -75,4 +80,27 @@
   font-weight: normal;
   font-size: 17px;
   line-height: 15px;
+}
+
+.prew__full-text {
+  margin-left: 10px;
+  width: 430px;
+  margin-top: -15px;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 17px;
+  line-height: 15px;
+  word-wrap: break-word;
+}
+
+.prew__user {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 17px;
+  line-height: 15px;
+  margin-top: 10px;
+  margin-left: 10px;
+  text-decoration: underline;
 }

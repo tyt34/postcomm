@@ -44,6 +44,8 @@ function Loggin() {
         console.log(' norm ', data)
         dispatch({ type: 'SAVE_ID_USER', payload: data.userId})
         localStorage.setItem('jwt', data.token)
+        localStorage.setItem('name', data.user.name)
+        localStorage.setItem('surname', data.user.surname)
         navigate('/profile')
       }
     })

@@ -11,7 +11,12 @@ function Nav() {
 
   function handelLinkExit(e) {
     e.preventDefault()
-    navigate('/exit')
+    navigate('/log')
+  }
+
+  function handelLinkProfile(e) {
+    e.preventDefault()
+    navigate('/profile')
   }
 
   return (
@@ -22,6 +27,9 @@ function Nav() {
       <section className="nav__footer">
         <a className="nav__link" href={"#/allusers"} onClick={handelLinkAllUsers}>
           Все пользователи
+        </a>
+        <a className="nav__link" href={"#/profile"} onClick={handelLinkProfile}>
+          Профиль
         </a>
         <a className="nav__link" href={"#/exit"} onClick={handelLinkExit}>
           Выход

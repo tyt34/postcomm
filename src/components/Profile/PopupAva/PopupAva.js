@@ -4,29 +4,35 @@ import * as api from '../../../utils/api.js'
 
 function PopupAva({isOpen, setPopupOpen, setAvatarProfile}) {
   const [avatar, setAvatar] = useState('')
+  const [button, setButton] = useState(false)
+
+  useEffect( () => {
+    console.log(avatar)
+    if (avatar === '') {
+      setButton(false)
+    } else {
+      setButton(true)
+    }
+  }, [avatar])
 
   function handleClosePopup() {
     console.log('try close popup')
     setPopupOpen(false)
   }
 
-  function handeUpdateAvatar() {
+  function handeUpdateAvatar(e) {
+    e.preventDefault()
     console.log(' up ava ', avatar)
+
     api.updateAvatar(
       avatar,
     )
     .then(
       (arg) => {
-        console.log(arg)
+        console.log(' ===> ', arg)
         setPopupOpen(false)
-        setAvatarProfile(arg.avatar)
-        if (arg.status === 'bad') {
-          throw arg
-        } else if (arg.error) {
-          throw arg
-        } else {
-
-        }
+        setAvatarProfile(avatar)
+        setAvatar('')
       }
     )
     .catch(
@@ -34,9 +40,12 @@ function PopupAva({isOpen, setPopupOpen, setAvatarProfile}) {
         console.log('Err#10 ', err)
       }
     )
+
   }
 
   function handleChangeURLAva(e) {
+    //console.log(' ==> ')
+    //e.preventDefault()
     setAvatar(e.target.value)
   }
 
@@ -67,14 +76,18 @@ function PopupAva({isOpen, setPopupOpen, setAvatarProfile}) {
             name="link"
             type="url"
             placeholder="Ссылка на картинку"
+            value={avatar}
             onChange={handleChangeURLAva}
             required
           />
+
           <button
             id="popup__save"
-            className="popup__save"
-            type="submit"
+            className={
+              button ? "popup__save" : "popup__save button__close"
+            }
             onClick={handeUpdateAvatar}
+            disabled={ button ? '' : 'disabled'}
           >
             Сохранить
           </button>

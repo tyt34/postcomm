@@ -1,7 +1,7 @@
 import './AllUsers.scss'
 import React, { useEffect, useState } from 'react'
 import * as api from '../../utils/api.js'
-import { useDispatch, useSelector } from 'react-redux'
+//import { useDispatch, useSelector } from 'react-redux'
 import PrewUser from './PrewUser/PrewUser'
 
 function AllUsers() {
@@ -19,7 +19,7 @@ function AllUsers() {
       }
     )
     .catch( (err) => {
-      console.log('Err#1 ',err)
+      console.log('Err#3 ',err)
     })
   }, [])
 

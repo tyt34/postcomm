@@ -39,6 +39,7 @@ function Reg() {
   }, [name, surname, pass])
 
   function handleReg(e) {
+    console.log(' reg: ', name)
     e.preventDefault()
     api.reg(name, surname, pass)
     .then( (data) => {
@@ -47,6 +48,8 @@ function Reg() {
       } else {
         console.log(' norm ', data)
         localStorage.setItem('jwt', data.token)
+        localStorage.setItem('name', data.name)
+        localStorage.setItem('surname', data.surname)
         // тут необходимо получить разрешение на переходы на остальные ссылки
         navigate('/profile')
       }

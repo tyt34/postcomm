@@ -2,8 +2,10 @@ import './PrewPost.scss'
 import def_ava from "../../images/def_avatar.png"
 import React, { useEffect, useState } from 'react'
 import * as api from '../../utils/api.js'
+import { useNavigate} from 'react-router-dom'
 
 function PrewPost({info, avatarProfile}) {
+  const navigate = useNavigate()
   const {header, text, dateText} = info
   const [avatar, setAvatar] = useState(def_ava)
   const [timeDay, setTimeDay] = useState(null)
@@ -26,12 +28,13 @@ function PrewPost({info, avatarProfile}) {
 
   function handleLinkPost() {
     console.log(' open post ', info._id)
+    navigate('/post/'+info._id)
   }
 
   return (
     <>
       <section
-        className="prew"
+        className="prew prew-link"
         onClick={handleLinkPost}
       >
         <section className="prew__top">

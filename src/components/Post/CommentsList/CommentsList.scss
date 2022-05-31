@@ -1,0 +1,20 @@
+.comments {
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+  width: 500px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.comments__text {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 22px;
+  line-height: 18px;
+}

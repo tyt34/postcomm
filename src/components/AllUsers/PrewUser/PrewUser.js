@@ -16,7 +16,7 @@ function PrewUser({user}) {
   //console.log(name, avatar)
 
   function handleAllPostUser() {
-    console.log(' oopen user')
+    //console.log(' oopen user')
     navigate('/allposts/'+name)
   }
 

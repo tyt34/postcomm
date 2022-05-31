@@ -4,8 +4,12 @@ import React, { useEffect, useState } from 'react'
 
 function Avatar({setPopupOpen, avatarLink, setAvatarProfile}) {
   useEffect( () => {
-    console.log(avatarLink)
-    setAvatarProfile(avatarLink)
+    //console.log(avatarLink)
+    if (avatarLink === 'default') {
+      setAvatarProfile(def_ava)
+    } else {
+      setAvatarProfile(avatarLink)
+    }
     /*
     if (!avatarLink.includes('http')) {
     }
@@ -13,7 +17,7 @@ function Avatar({setPopupOpen, avatarLink, setAvatarProfile}) {
   }, [avatarLink])
 
   function handleEditAvatarClick() {
-    console.log(' click but pop ava ')
+    //console.log(' click but pop ava ')
     setPopupOpen(true)
     window.addEventListener('keydown', closeOnEsc)
   }

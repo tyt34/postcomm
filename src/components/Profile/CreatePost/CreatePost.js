@@ -1,8 +1,10 @@
 import './CreatePost.scss'
 import React, { useEffect, useState } from 'react'
 import * as api from '../../../utils/api.js'
+import { useDispatch, useSelector } from 'react-redux'
 
 function CreatePost() {
+  const dispatch = useDispatch()
   const [header, setHeader] = useState('')
   const [text, setText] = useState('')
   const [statusCreateMess, setStatusCreateMess] = useState('')
@@ -18,6 +20,8 @@ function CreatePost() {
         if (arg.status) {
           if (arg.status === 'ok') {
             setStatusCreateMess('Данные отправлены')
+            console.log(' M E S: ', arg.data.user)
+            dispatch({ type: 'CREATE_NEW_POST', payload: arg.data.user})
             setTimeout(clearStatusFetch, 4000)
           } else {
             setStatusCreateMess('Скорее всего, вы не заполнили одно из полей')
@@ -27,7 +31,7 @@ function CreatePost() {
       }
     )
     .catch( (err) => {
-      console.log('Err#1 ', err)
+      console.log('Err#9 ', err)
     })
   }
 

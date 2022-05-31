@@ -3,37 +3,38 @@ import React, { useEffect, useState } from 'react'
 import disableScroll from 'disable-scroll'
 import PrewPost from '../../PrewPost/PrewPost'
 import arrow from "../../../images/arrow.png"
+import { useDispatch, useSelector } from 'react-redux'
 
-function SliderPost({messageForProfile, avatarProfile}) {
+function SliderPost({avatarProfile}) {
+  const storePosts = useSelector( store => store.postForSlider)
   const [mainNum, setMainNum] = useState(0)
   const [maxNum, setMaxNum] = useState(null)
   const [messTop, setMessTop] = useState(null)
   const [messMid, setMessMid] = useState(null)
   const [messBot, setMessBot] = useState(null)
-
   const [items, setItems] = useState([])
 
   useEffect( () => {
-    setItems(messageForProfile)
-    if (messageForProfile.length === 1) {
-      setMessTop(messageForProfile[0])
-    } else if (messageForProfile.length === 2) {
-      setMessTop(messageForProfile[0])
-      setMessMid(messageForProfile[1])
-    } else if (messageForProfile.length !== 0) {
-      setMessTop(messageForProfile[mainNum])
-      setMessMid(messageForProfile[mainNum+1])
-      setMessBot(messageForProfile[mainNum+2])
+    setItems(storePosts)
+    if (storePosts.length === 1) {
+      setMessTop(storePosts[0])
+    } else if (storePosts.length === 2) {
+      setMessTop(storePosts[0])
+      setMessMid(storePosts[1])
+    } else if (storePosts.length !== 0) {
+      setMessTop(storePosts[mainNum])
+      setMessMid(storePosts[mainNum+1])
+      setMessBot(storePosts[mainNum+2])
 
-      setMaxNum(messageForProfile.length)
+      setMaxNum(storePosts.length)
     }
 
-  }, [messageForProfile])
+  }, [storePosts, storePosts])
 
   useEffect( ()=> {
-    setMessTop(messageForProfile[mainNum])
-    setMessMid(messageForProfile[mainNum+1])
-    setMessBot(messageForProfile[mainNum+2])
+    setMessTop(storePosts[mainNum])
+    setMessMid(storePosts[mainNum+1])
+    setMessBot(storePosts[mainNum+2])
   }, [mainNum, maxNum])
 
   function prevNum() {
@@ -66,6 +67,7 @@ function SliderPost({messageForProfile, avatarProfile}) {
       onWheel={handleWheel}
       onMouseEnter={(e) => {disableScroll.on()}} // чтобы страница не прокручивалась при наведение на компонент карусель
       onMouseLeave={(e) => {disableScroll.off()}} // чтобы страница не прокручивалась при наведение на компонент карусель
+      onClick={(e) => {disableScroll.off()}} // чтобы при клике на сообщение в слайдере не отключалась колесо мыши
     >
     {
       items.length === 0 ?

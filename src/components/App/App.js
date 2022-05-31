@@ -6,7 +6,7 @@ import AllUsers from '../AllUsers/AllUsers'
 import Post from '../Post/Post'
 import Nav from '../Nav/Nav'
 import { HashRouter, Routes, Route, Navigate, useParams} from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
+//import { useDispatch, useSelector } from 'react-redux'
 const BASENAME = process.env.REACT_APP_BASENAME
 let base
 if (BASENAME === undefined) {
@@ -18,7 +18,7 @@ if (BASENAME === undefined) {
 
 function App() {
 
-  const nowPageFromStore = useSelector( store => store.allPostsIdUser)
+  //const nowPageFromStore = useSelector( store => store.allPostsIdUser)
 
   return (
     <HashRouter basename={base}>
@@ -56,19 +56,21 @@ function App() {
               <AllPosts />
             </>
           } />
-          <Route path={"/allposts/:idPost"} element={
+          <Route path={"/post/:idPost"} element={
             <>
               <Nav />
               <Post />
             </>
           } />
-          <Route path="/*" element={<Navigate replace to="/log" />} />
         </Routes>
     </HashRouter>
   );
 }
 
 export default App;
+
+//          <Route path="/*" element={<Navigate replace to="/log" />} />
+
 /*
 <Route path={"/allposts/"+nowPageFromStore} element={
   <>

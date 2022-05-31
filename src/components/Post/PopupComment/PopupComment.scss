@@ -1,4 +1,4 @@
-.popup {
+.popup-comment {
   position: fixed;
   align-items: center;
   justify-content: center;
@@ -15,15 +15,15 @@
   transition-delay: 0s, 1.666s;
 }
 
-.popup_open {
+.popup-comment_open {
   visibility: visible;
   opacity: 1;
   transition-property: opacity, visibility;
   transition-delay: 0s, 0s;
 }
 
-.popup__container {
-  max-width: 430px;
+.popup-comment__container {
+  width: 430px;
   background-color: #fff;
   padding: 25px 22px 25px;
   display: flex;
@@ -34,7 +34,7 @@
   box-sizing: border-box;
 }
 
-.popup__close {
+.popup-comment__close {
   display: block;
   position: absolute;
   background: url("../../../images/close.svg") 100% 100% no-repeat;
@@ -49,11 +49,11 @@
   cursor: pointer;
 }
 
-.popup__close:hover {
+.popup-comment__close:hover {
   opacity: 0.6;
 }
 
-.popup__title {
+.popup-comment__title {
   color: black;
   min-width: 238px;
   margin: 0;
@@ -63,7 +63,7 @@
   line-height: 29px;
 }
 
-.popup__form {
+.popup-comment__form {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -71,7 +71,7 @@
   height: 100%;
 }
 
-.popup__save {
+.popup-comment__save {
   display: block;
   width: 100%;
   height: 46px;
@@ -87,27 +87,60 @@
   color: white;
 }
 
-.button__close {
-  background-color: #958884;
-}
-
-.popup__save:hover {
+.popup-comment__save:hover {
   opacity: 0.8;
 }
 @media screen and (min-width: 780px) {
-  .popup__save {
+  .popup-comment__save {
     font-size: 18px;
     line-height: 22px;
   }
 }
 
-.popup__input {
-  display: block;
-  width: 100%;
-  padding: 0;
-  border: 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  font-size: 14px;
-  line-height: 17px;
-  margin-bottom: 25px;
+.popup-comment__area {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 18px;
+  height: 85px;
+  text-align: left;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.popup-comment__ava {
+  width: 60px;
+  border-radius: 30px;
+}
+
+.popup-comment__profile {
+  display: flex;
+  margin-top: 10px;
+}
+
+.popup-comment__text {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 18px;
+}
+
+.popup-comment__prof-text {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 18px;
+  margin-top: 15px;
+  margin-left: 10px;
+}
+
+.popup-comment__save:hover {
+  cursor: pointer;
+}
+
+.popup-comment__save-close {
+  background-color: #958884;
 }

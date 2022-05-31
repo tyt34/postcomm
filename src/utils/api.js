@@ -164,7 +164,7 @@ export const getMesForProfile = () => {
 }
 
 export const getMesUser = (nameUser) => {
-  console.log(url+'getMesUser/'+nameUser)
+  //console.log(url+'getMesUser/'+nameUser)
   return fetch(url+'getMesUser/'+nameUser, {
     method: 'GET',
     headers: {
@@ -182,8 +182,25 @@ export const getMesUser = (nameUser) => {
 
 
 export const getAvaForPrevPost = (owner) => {
-  console.log('link ', url+'getava/'+owner)
+  //console.log('link ', url+'getava/'+owner)
   return fetch(url+'getava/'+owner, {
+    method: 'GET',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      authorization: 'Bearer '+localStorage.jwt,
+    },
+  })
+  .then(
+    (res) => {
+      return getResponseData(res)
+    }
+  )
+}
+
+export const getPost = (idPost) => {
+  //console.log('link ', url+'getpost/'+idPost)
+  return fetch(url+'getpost/'+idPost, {
     method: 'GET',
     headers: {
       'Accept': 'application/json',
@@ -200,6 +217,58 @@ export const getAvaForPrevPost = (owner) => {
 
 export const getAllUsers = () => {
   return fetch(url+'getallusers', {
+    method: 'GET',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      authorization: 'Bearer '+localStorage.jwt,
+    },
+  })
+  .then(
+    (res) => {
+      return getResponseData(res)
+    }
+  )
+}
+
+export const createComment = (comment, idPost) => {
+  console.log(' ---> send: ', comment, idPost)
+  let date = new Date();
+  let dateUTC =  Date.UTC(
+    date.getUTCFullYear(),
+    date.getUTCMonth(),
+    date.getUTCDate(),
+    date.getUTCHours(),
+    date.getUTCMinutes(),
+    date.getUTCSeconds()
+  )
+  let dateText = new Date(dateUTC);
+  //console.log(' -> ', dateUTC)
+  //console.log(' --> ', dateText.toString())
+
+  return fetch(url+'createComment', {
+    method: 'POST',
+    headers: {
+      authorization: 'Bearer '+localStorage.jwt,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      idPost,
+      comment,
+      dateText: dateText.toString(),
+      dateUTC
+    })
+  })
+  .then(
+    (res) => {
+      return res.json()
+    }
+  )
+}
+
+export const getComments = (idPost) => {
+  //console.log('link ', url+'getpost/'+idPost)
+  return fetch(url+'getcomments/'+idPost, {
     method: 'GET',
     headers: {
       'Accept': 'application/json',

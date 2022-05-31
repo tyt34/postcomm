@@ -14,6 +14,15 @@ const reducer = (store, {type, payload}) => {
     case "SAVE_ID_USER":
       return {...store, idUser: payload}
 
+    case "CREATE_NEW_POST":
+      return {...store, postForSlider: [...store.postForSlider, payload]}
+
+    case "CREATE_ARR_POST":
+      return {...store, postForSlider: payload}
+
+    case "CHANGE_INFO_NEW_COM":
+      return {...store, infoAboutNewComment: !store.infoAboutNewComment}
+
     default:
       return store
   }
@@ -22,6 +31,8 @@ const reducer = (store, {type, payload}) => {
 const store = createStore(reducer, {
   allPostsIdUser: '', //
   idUser: '', //
+  postForSlider: [],
+  infoAboutNewComment: true
 })
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
