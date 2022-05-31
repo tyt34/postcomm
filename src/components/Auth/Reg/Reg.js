@@ -71,6 +71,11 @@ function Reg() {
 
   return (
     <section className="reg">
+      <p className="reg__title">
+        Это социальная сеть, где можно создавать посты,
+        комментировать. Но удалить их нельзя. Это не баг,
+        а фича.
+      </p>
       <form
         name={'reg'}
         className="reg"

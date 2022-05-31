@@ -6,6 +6,7 @@ import { useNavigate} from 'react-router-dom'
 
 function PrewPost({info, avatarProfile}) {
   const navigate = useNavigate()
+  //console.log(info)
   const {header, text, dateText} = info
   const [avatar, setAvatar] = useState(def_ava)
   const [timeDay, setTimeDay] = useState(null)

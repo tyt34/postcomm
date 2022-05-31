@@ -7,6 +7,30 @@
 .all__title {
   margin-left: auto;
   margin-right: auto;
+  //margin-top: 20px;
+  //margin-bottom: 30px;
+}
+
+.all__text-profile {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 13px;
+  text-align: center;
+  margin-top: 15px;
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 3px;
+}
+
+.all__profile {
+  background-color: rgba(#ac9e75, 0.47);
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 20px;
   margin-top: 20px;
-  margin-bottom: 30px;
+  padding: 20px;
 }

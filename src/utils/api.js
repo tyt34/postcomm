@@ -74,7 +74,7 @@ export const getUser = () => {
 }
 
 export const updateUser = (name, surname, email, phone, company, jobpost, avatar) => {
-  console.log(' n/a ', name, '/', avatar)
+  //console.log(' n/a ', name, '/', avatar)
   return fetch(url+'updateUser', {
     method: 'PATCH',
     headers: {

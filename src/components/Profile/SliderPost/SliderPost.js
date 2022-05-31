@@ -54,10 +54,12 @@ function SliderPost({avatarProfile}) {
   }
 
   const handleWheel = (e) => {
-    if (e.deltaY > 0) {
-      nextNum()
-    } else {
-      prevNum()
+    if (storePosts.length > 3) {
+      if (e.deltaY > 0) {
+        nextNum()
+      } else {
+        prevNum()
+      }
     }
   }
 

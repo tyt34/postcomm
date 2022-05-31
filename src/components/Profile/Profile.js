@@ -106,7 +106,7 @@ function Profile() {
           throw arg
         } else {
           setStatusFetch('Данные изменены')
-          setTimeout(clearStatusFetch, 4000)
+          setTimeout(clearStatusFetch, 5000)
           localStorage.setItem('name', nameProfile)
           localStorage.setItem('surname', surnameProfile)
         }
@@ -117,7 +117,7 @@ function Profile() {
         console.log('Err#13 ', err)
         if (err.message) {
           setStatusFetch(err.message)
-          setTimeout(clearStatusFetch, 4000)
+          setTimeout(clearStatusFetch, 5000)
         }
       }
     )
@@ -136,7 +136,12 @@ function Profile() {
 
   return (
       <section className="profile">
-        <h2 className="profile__title"> Профиль пользователя</h2>
+        <h2 className="profile__title">
+          Профиль пользователя.
+        </h2>
+        <h2 className="profile__title">
+          Ниже список: слева атрибуты, справа поля для редактирования.
+        </h2>
         <section className="profile__info">
           <section className="profile__top">
             <Avatar
@@ -145,6 +150,7 @@ function Profile() {
               setAvatarProfile={setAvatarProfile}
             />
             <section className="profile__top-fields">
+
               <Field
                 name='Имя'
                 value={nameProfile}

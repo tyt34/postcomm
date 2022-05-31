@@ -23,6 +23,8 @@ function CreatePost() {
             console.log(' M E S: ', arg.data.user)
             dispatch({ type: 'CREATE_NEW_POST', payload: arg.data.user})
             setTimeout(clearStatusFetch, 4000)
+            setText('')
+            setHeader('')
           } else {
             setStatusCreateMess('Скорее всего, вы не заполнили одно из полей')
             setTimeout(clearStatusFetch, 4000)
@@ -52,6 +54,7 @@ function CreatePost() {
         }}
         name="link"
         type="text"
+        value={header}
         placeholder="Заголовок поста"
         required
       />
@@ -59,6 +62,7 @@ function CreatePost() {
         className='post-form__area'
         name="inputText"
         placeholder="Поле для ввода текста"
+        value={text}
         onChange={e => {
           setText(e.target.value)
         }}
