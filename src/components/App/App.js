@@ -10,7 +10,7 @@ import Reg from '../Auth/Reg/Reg'
 const BASENAME = process.env.REACT_APP_BASENAME
 let base
 if (BASENAME === undefined) {
-  base = '/' // тут должно будет быть правильное имя
+  base = '/social-network-postcomm'
 } else {
   base = BASENAME
 }
