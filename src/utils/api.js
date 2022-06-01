@@ -4,7 +4,8 @@ import {
 
 let url
 if (process.env.REACT_APP_ENV === undefined) {
-  url = 'http://localhost:3001/'
+  //url = 'http://localhost:3001/'
+  url = 'http://51.250.27.86:3001/'
 } else {
   url = process.env.REACT_APP_ENV
 }

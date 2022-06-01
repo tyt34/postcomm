@@ -119,6 +119,7 @@ function Reg() {
         textIntro="Уже зарегистрированы? Тогда"
         handleLink={handleLinkLog}
         textEnter="войдите"
+        href={"/log"}
       />
     </section>
   )
