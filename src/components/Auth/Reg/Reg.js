@@ -1,20 +1,22 @@
+import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import AuthField from '../AuthField/AuthField'
 import AuthBut from '../AuthBut/AuthBut'
 import Footer from '../Footer/Footer'
-import React, { useEffect, useState } from 'react'
+import { reg } from '../../../utils/api.js'
+import {
+  textAuthIntro,
+  textAuthDescr,
+  timeForShowErr
+}  from '../../../utils/consts.js'
 import './Reg.scss'
-import * as api from '../../../utils/api.js'
-import { useNavigate} from 'react-router-dom'
 
 function Reg() {
   const navigate = useNavigate()
   const [messageErr, setMessageErr] = useState('')
   const [name, setName] = useState('')
-  const [nameErr, setNameErr] = useState('')
   const [surname, setSurname] = useState('')
-  const [surnameErr, setSurnameErr] = useState('')
   const [pass, setPass] = useState('')
-  const [passErr, setPassErr] = useState('')
   const [button, setButton] = React.useState(false)
 
   function handleChangeName(e) {
@@ -29,8 +31,11 @@ function Reg() {
     setPass(e.target.value)
   }
 
-  React.useEffect( () => {
-    //console.log(' -> ', name, surname, pass)
+  function clearStatusFetch() {
+    setMessageErr('')
+  }
+
+  useEffect( () => {
     if ( (name === '') || (surname === '') || (pass === '') ) {
       setButton(false)
     } else {
@@ -39,26 +44,24 @@ function Reg() {
   }, [name, surname, pass])
 
   function handleReg(e) {
-    console.log(' reg: ', name)
     e.preventDefault()
-    api.reg(name, surname, pass)
+    reg(name, surname, pass)
     .then( (data) => {
       if (data.status !== 'ok') {
         throw data
       } else {
-        console.log(' norm ', data)
+        localStorage.clear()
         localStorage.setItem('jwt', data.token)
         localStorage.setItem('name', data.name)
         localStorage.setItem('surname', data.surname)
-        // тут необходимо получить разрешение на переходы на остальные ссылки
         navigate('/profile')
       }
     })
     .catch(
       (err) => {
-        console.log(' reg er: ', err)
         if (err.message) {
           setMessageErr(err.message)
+          setTimeout(clearStatusFetch, timeForShowErr)
         }
       }
     )
@@ -70,11 +73,12 @@ function Reg() {
   }
 
   return (
-    <section className="reg">
+    <section className="log">
       <p className="reg__title">
-        Это социальная сеть, где можно создавать посты,
-        комментировать. Но удалить их нельзя. Это не баг,
-        а фича.
+        {textAuthIntro}
+      </p>
+      <p className="reg__title">
+        {textAuthDescr}
       </p>
       <form
         name={'reg'}
@@ -86,7 +90,6 @@ function Reg() {
           typeInput="name"
           value={name}
           onChange={handleChangeName}
-          textInputErr={nameErr}
         />
         <AuthField
           name="Псевдоним"
@@ -94,7 +97,6 @@ function Reg() {
           typeInput="surname"
           value={surname}
           onChange={handleChangeSurname}
-          textInputErr={surnameErr}
         />
         <AuthField
           name="Пароль"
@@ -102,7 +104,6 @@ function Reg() {
           typeInput="password"
           value={pass}
           onChange={handleChangePass}
-          textInputErr={passErr}
         />
       </form>
 
@@ -124,32 +125,3 @@ function Reg() {
 }
 
 export default Reg
-/*
-if (data.error) {
-  throw data
-} else if (data.message) {
-  console.log(' dat.mes: ', data.message)
-} else if (data.status === 'ok') {
-  api.reg(name, surname, pass)
-  .then( (data) => {
-    if (data.status === 'ok') {
-      console.log(data)
-      //localStorage.clear()
-      //localStorage.setItem('jwt', data.token)
-      //props.setLoggedIn(true)
-      props.setUser({
-        name: name,
-        email: email,
-      })
-      //navigate('/movies')
-    } else {
-      throw data
-    }
-  })
-  .catch(
-    (err) => {
-      console.log('Err#3 ',err)
-    }
-  )
-}
-*/

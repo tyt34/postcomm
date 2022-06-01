@@ -1,14 +1,12 @@
-import './AllPosts.scss'
 import React, { useEffect, useState } from 'react'
 import { useParams } from "react-router-dom";
-import * as api from '../../utils/api.js'
-import PrewPost from '../PrewPost/PrewPost'
+import {getMesUser, getAvaForPrevPost} from '../../utils/api.js'
 import def_ava from "../../images/def_avatar.png"
-//import { useDispatch, useSelector } from 'react-redux'
+import PrewPost from '../PrewPost/PrewPost'
+import './AllPosts.scss'
 
 function AllPosts() {
   let { nameUser } = useParams();
-  //console.log(' nameUser: ', nameUser)
   const [messageForProfile, setMessageForProfile] = useState('')
   const [avatarProfile, setAvatarProfile] = useState(def_ava)
   const [surnameProfile, setSurnameProfile] = useState('')
@@ -16,41 +14,38 @@ function AllPosts() {
   const [phoneProfile, setPhoneProfile] = useState('')
   const [companyProfile, setCompanyProfile] = useState('')
   const [jobpostProfile, setJobpostProfile] = useState('')
-  //const ownerID = useSelector( store => store.idUser)
 
   useEffect(() => {
-    api.getMesUser(nameUser)
+    getMesUser(nameUser)
     .then(
-      (arg) => {
-        if (arg.status) {
-          if (arg.status === 'ok') {
-            //console.log(arg)
-            setMessageForProfile(arg.data)
+      (data) => {
+        if (data.status) {
+          if (data.status === 'ok') {
+            setMessageForProfile(data.data)
           }
         }
       }
     )
     .catch( (err) => {
-      console.log('Err#1 ',err)
+      console.log('Err#1 ', err)
     })
   }, [])
 
   useEffect(() => {
     if (messageForProfile[0]) {
-      api.getAvaForPrevPost(messageForProfile[0].owner)
+      getAvaForPrevPost(messageForProfile[0].owner)
       .then(
-        (arg) => {
-          console.log(arg)
-          setAvatarProfile(arg.avatar)
-          setSurnameProfile(arg.surname)
-          setEmailProfile(arg.email)
-          setPhoneProfile(arg.phone)
-          setCompanyProfile(arg.company)
-          setJobpostProfile(arg.jobpost)
+        (user) => {
+          setAvatarProfile(user.avatar)
+          setSurnameProfile(user.surname)
+          setEmailProfile(user.email)
+          setPhoneProfile(user.phone)
+          setCompanyProfile(user.company)
+          setJobpostProfile(user.jobpost)
         }
       )
       .catch( (err) => {
-        console.log('Err#2 ',err)
+        console.log('Err#2 ', err)
       })
     }
   }, [messageForProfile])
@@ -58,7 +53,7 @@ function AllPosts() {
   return (
     <section className="all">
       <section className="all__profile">
-        <h2 className="all__text-profile">
+        <h2 className="all__text-profile all__text-profile-bold">
           Информация о пользователе:
         </h2>
         <h2 className="all__text-profile">

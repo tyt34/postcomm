@@ -1,28 +1,24 @@
-import './CommentsList.scss'
-import Comment from './Comment/Comment'
-import * as api from '../../../utils/api.js'
 import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
+import { getComments } from '../../../utils/api.js'
+import Comment from './Comment/Comment'
+import './CommentsList.scss'
 
-function CommentsList({idPost}) {
+function CommentsList({ idPost }) {
   const infoAboutNewComment = useSelector( store => store.infoAboutNewComment)
   const [arrayComments, setArrayComments] = useState([])
 
-  //console.log(infoAboutNewComment)
-
   useEffect( () => {
-    api.getComments(idPost)
+    getComments(idPost)
     .then(
-      (arg) => {
-        //console.log(' comments: ', arg.data)
-        setArrayComments(arg.data)
+      (comments) => {
+        setArrayComments(comments.data)
       }
     )
     .catch( (err) => {
-      console.log('Err#5 ',err)
+      console.log('Err#5 ', err)
     })
   }, [infoAboutNewComment])
-
 
   return (
     <section className="comments">

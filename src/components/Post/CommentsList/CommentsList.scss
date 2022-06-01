@@ -1,20 +1,14 @@
+@import "../../../utils/scss-consts/flex-column.scss";
+@import "../../../utils/scss-consts/font-base.scss";
+
 .comments {
-  display: flex;
-  flex-direction: column;
-  margin-left: auto;
-  margin-right: auto;
+  @extend %flex-column;
+  margin: 20px auto 30px auto;
   width: 500px;
-  margin-top: 20px;
-  margin-bottom: 30px;
 }
 
 .comments__text {
+  @include font-base(22px, 18px, 500);
   text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-  font-family: Inter;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 22px;
-  line-height: 18px;
+  margin: 0 auto;
 }

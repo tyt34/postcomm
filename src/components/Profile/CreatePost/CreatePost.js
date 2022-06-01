@@ -1,33 +1,37 @@
-import './CreatePost.scss'
 import React, { useEffect, useState } from 'react'
-import * as api from '../../../utils/api.js'
-import { useDispatch, useSelector } from 'react-redux'
+import { createPost } from '../../../utils/api.js'
+import { timeForShowErr }  from '../../../utils/consts.js'
+import { useDispatch } from 'react-redux'
+import './CreatePost.scss'
 
 function CreatePost() {
   const dispatch = useDispatch()
   const [header, setHeader] = useState('')
   const [text, setText] = useState('')
   const [statusCreateMess, setStatusCreateMess] = useState('')
+  const [button, setButton] = useState(false)
+
+  useEffect( () => {
+    if ( (header === '') || (text === '') ) {
+      setButton(false)
+    } else {
+      setButton(true)
+    }
+  }, [header, text])
 
   function handeCreatePost(e) {
     e.preventDefault()
     setStatusCreateMess('Идет отправка данных...')
-    console.log(' create post ', header, text)
-    api.createPost(header, text)
+    createPost(header, text)
     .then(
-      (arg) => {
-        console.log(arg.status)
-        if (arg.status) {
-          if (arg.status === 'ok') {
+      (data) => {
+        if (data.status) {
+          if (data.status === 'ok') {
             setStatusCreateMess('Данные отправлены')
-            console.log(' M E S: ', arg.data.user)
-            dispatch({ type: 'CREATE_NEW_POST', payload: arg.data.user})
-            setTimeout(clearStatusFetch, 4000)
+            dispatch({ type: 'CREATE_NEW_POST', payload: data.data.user})
+            setTimeout(clearStatusFetch, timeForShowErr)
             setText('')
             setHeader('')
-          } else {
-            setStatusCreateMess('Скорее всего, вы не заполнили одно из полей')
-            setTimeout(clearStatusFetch, 4000)
           }
         }
       }
@@ -70,9 +74,10 @@ function CreatePost() {
       </textarea>
       <button
         id="asdasdasdasdasd"
-        className="post-form__but"
+        className={ button ? 'post-form__but' : 'post-form__but post-form__but-close'}
         type="submit"
         onClick={handeCreatePost}
+        disabled={ button ? '' : 'disabled'}
       >
         Сделать пост публичным
       </button>

@@ -8,12 +8,6 @@ import { Provider } from 'react-redux'
 
 const reducer = (store, {type, payload}) => {
   switch (type) {
-    case "CREATE_PAGE_ALL_POSTS":
-      return {...store, allPostsIdUser: payload}
-
-    case "SAVE_ID_USER":
-      return {...store, idUser: payload}
-
     case "CREATE_NEW_POST":
       return {...store, postForSlider: [...store.postForSlider, payload]}
 
@@ -29,10 +23,8 @@ const reducer = (store, {type, payload}) => {
 }
 
 const store = createStore(reducer, {
-  allPostsIdUser: '', //
-  idUser: '', //
-  postForSlider: [],
-  infoAboutNewComment: true
+  postForSlider: [], // чтобы посты сразу отображались при добавление
+  infoAboutNewComment: true // чтобы комментарии подгружались сразу при добавление
 })
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

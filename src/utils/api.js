@@ -1,3 +1,7 @@
+import {
+  getDataUTC
+}  from './consts.js'
+
 let url
 if (process.env.REACT_APP_ENV === undefined) {
   url = 'http://localhost:3001/'
@@ -13,7 +17,6 @@ function getResponseData(res) {
 }
 
 export const reg = (name, surname, pass) => {
-  console.log(' send: ', name, surname, pass)
   return fetch(url+'reg', {
     method: 'POST',
     headers: {
@@ -39,7 +42,6 @@ export const reg = (name, surname, pass) => {
 }
 
 export const log = (name, pass) => {
-  console.log(' send: ', name, pass)
   return fetch(url+'log', {
     method: 'POST',
     headers: {
@@ -58,7 +60,7 @@ export const log = (name, pass) => {
 }
 
 export const getUser = () => {
-  return fetch(url+'getUser', {
+  return fetch(url+'getuser', {
     method: 'GET',
     headers: {
       'Accept': 'application/json',
@@ -74,8 +76,7 @@ export const getUser = () => {
 }
 
 export const updateUser = (name, surname, email, phone, company, jobpost, avatar) => {
-  //console.log(' n/a ', name, '/', avatar)
-  return fetch(url+'updateUser', {
+  return fetch(url+'updateuser', {
     method: 'PATCH',
     headers: {
       authorization: 'Bearer '+localStorage.jwt,
@@ -97,7 +98,7 @@ export const updateUser = (name, surname, email, phone, company, jobpost, avatar
 }
 
 export const updateAvatar = (avatar) => {
-  return fetch(url+'updateUser', {
+  return fetch(url+'updateuser', {
     method: 'PATCH',
     headers: {
       authorization: 'Bearer '+localStorage.jwt,
@@ -112,22 +113,31 @@ export const updateAvatar = (avatar) => {
   })
 }
 
-export const createPost = (header, text) => {
-  console.log(' send: ', header, text)
-  let date = new Date();
-  let dateUTC =  Date.UTC(
-    date.getUTCFullYear(),
-    date.getUTCMonth(),
-    date.getUTCDate(),
-    date.getUTCHours(),
-    date.getUTCMinutes(),
-    date.getUTCSeconds()
+export const createComment = (comment, idPost) => {
+  let dateText = new Date(getDataUTC())
+  return fetch(url+'createcomment', {
+    method: 'POST',
+    headers: {
+      authorization: 'Bearer '+localStorage.jwt,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      idPost,
+      comment,
+      dateText: dateText.toString(),
+      dateUTC: getDataUTC(),
+    })
+  })
+  .then(
+    (res) => {
+      return res.json()
+    }
   )
-  let dateText = new Date(dateUTC);
-  console.log(' -> ', dateUTC)
-  console.log(' --> ', dateText.toString())
+}
 
-  return fetch(url+'createMes', {
+export const createPost = (header, text) => {
+  let dateText = new Date(getDataUTC())
+  return fetch(url+'createmes', {
     method: 'POST',
     headers: {
       authorization: 'Bearer '+localStorage.jwt,
@@ -137,7 +147,7 @@ export const createPost = (header, text) => {
       header,
       text,
       dateText: dateText.toString(),
-      dateUTC
+      dateUTC: getDataUTC(),
     })
   })
   .then(
@@ -164,8 +174,7 @@ export const getMesForProfile = () => {
 }
 
 export const getMesUser = (nameUser) => {
-  //console.log(url+'getMesUser/'+nameUser)
-  return fetch(url+'getMesUser/'+nameUser, {
+  return fetch(url+'getmesuser/'+nameUser, {
     method: 'GET',
     headers: {
       'Accept': 'application/json',
@@ -182,7 +191,6 @@ export const getMesUser = (nameUser) => {
 
 
 export const getAvaForPrevPost = (owner) => {
-  //console.log('link ', url+'getava/'+owner)
   return fetch(url+'getava/'+owner, {
     method: 'GET',
     headers: {
@@ -199,7 +207,6 @@ export const getAvaForPrevPost = (owner) => {
 }
 
 export const getPost = (idPost) => {
-  //console.log('link ', url+'getpost/'+idPost)
   return fetch(url+'getpost/'+idPost, {
     method: 'GET',
     headers: {
@@ -231,43 +238,7 @@ export const getAllUsers = () => {
   )
 }
 
-export const createComment = (comment, idPost) => {
-  console.log(' ---> send: ', comment, idPost)
-  let date = new Date();
-  let dateUTC =  Date.UTC(
-    date.getUTCFullYear(),
-    date.getUTCMonth(),
-    date.getUTCDate(),
-    date.getUTCHours(),
-    date.getUTCMinutes(),
-    date.getUTCSeconds()
-  )
-  let dateText = new Date(dateUTC);
-  //console.log(' -> ', dateUTC)
-  //console.log(' --> ', dateText.toString())
-
-  return fetch(url+'createComment', {
-    method: 'POST',
-    headers: {
-      authorization: 'Bearer '+localStorage.jwt,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      idPost,
-      comment,
-      dateText: dateText.toString(),
-      dateUTC
-    })
-  })
-  .then(
-    (res) => {
-      return res.json()
-    }
-  )
-}
-
 export const getComments = (idPost) => {
-  //console.log('link ', url+'getpost/'+idPost)
   return fetch(url+'getcomments/'+idPost, {
     method: 'GET',
     headers: {

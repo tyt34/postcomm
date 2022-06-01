@@ -1,23 +1,17 @@
-import './Avatar.scss'
+import React, { useEffect } from 'react'
 import def_ava from "../../../images/def_avatar.png"
-import React, { useEffect, useState } from 'react'
+import './Avatar.scss'
 
-function Avatar({setPopupOpen, avatarLink, setAvatarProfile}) {
+function Avatar({ setPopupOpen, avatarLink, setAvatarProfile }) {
   useEffect( () => {
-    //console.log(avatarLink)
     if (avatarLink === 'default') {
       setAvatarProfile(def_ava)
     } else {
       setAvatarProfile(avatarLink)
     }
-    /*
-    if (!avatarLink.includes('http')) {
-    }
-    */
   }, [avatarLink])
 
   function handleEditAvatarClick() {
-    //console.log(' click but pop ava ')
     setPopupOpen(true)
     window.addEventListener('keydown', closeOnEsc)
   }

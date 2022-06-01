@@ -1,10 +1,11 @@
-import './Post.scss'
 import React, { useEffect, useState } from 'react'
-import PopupComment from './PopupComment/PopupComment'
-import CommentsList from './CommentsList/CommentsList'
-import * as api from '../../utils/api.js'
-import def_ava from "../../images/def_avatar.png"
 import { useParams } from "react-router-dom";
+import CommentsList from './CommentsList/CommentsList'
+import PopupComment from './PopupComment/PopupComment'
+import { getPost, getAvaForPrevPost } from '../../utils/api.js'
+import { getTimeDay, getTimeClock } from '../../utils/consts.js'
+import def_ava from "../../images/def_avatar.png"
+import './Post.scss'
 
 function Post() {
   let { idPost } = useParams();
@@ -18,57 +19,51 @@ function Post() {
   const [timeClock, setTimeClock] = useState(null)
   const [owner, setOwner] = useState(null)
   const [popupOpen, setPopupOpen] = useState(false)
-  //const [comments, setComments] = useState([])
 
   useEffect(() => {
     if ((dateText !== null) && (dateText !== undefined)) {
       const d = dateText.split(' ')
-      setTimeDay(d[2]+'/'+d[1]+'/'+d[3][2]+d[3][3])
-      setTimeClock(d[4].split(':')[0]+'-'+d[4].split(':')[1])
+      setTimeDay(getTimeDay(d, 'long'))
+      setTimeClock(getTimeClock(d))
     }
   }, [dateText])
 
   useEffect( () => {
-    api.getPost(idPost)
+    getPost(idPost)
     .then(
-      (arg) => {
-        //console.log(arg)
-        setHeader(arg.data[0].header)
-        setText(arg.data[0].text)
-        setDateText(arg.data[0].dateText)
-        setOwner(arg.data[0].owner)
+      (post) => {
+        setHeader(post.data[0].header)
+        setText(post.data[0].text)
+        setDateText(post.data[0].dateText)
+        setOwner(post.data[0].owner)
       }
     )
     .catch( (err) => {
-      console.log('Err#7 ',err)
+      console.log('Err#7 ', err)
     })
   }, [])
 
   useEffect( () => {
     if (owner !== null) {
-      console.log(' get user')
-      api.getAvaForPrevPost(owner)
+      getAvaForPrevPost(owner)
       .then(
-        (arg) => {
-          //console.log(' получаю аватар ', arg)
-          setName(arg.name)
-          setSurname(arg.surname)
-          //console.log(arg.avatar)
-          if (arg.avatar === 'default') {
+        (user) => {
+          setName(user.name)
+          setSurname(user.surname)
+          if (user.avatar === 'default') {
             setAvatar(def_ava)
           } else {
-            setAvatar(arg.avatar)
+            setAvatar(user.avatar)
           }
         }
       )
       .catch( (err) => {
-        console.log('Err#8 ',err)
+        console.log('Err#8 ', err)
       })
     }
   }, [owner])
 
   function handleOpenPopapCreateComment() {
-    //console.log(' open popup')
     setPopupOpen(true)
   }
 
@@ -110,7 +105,6 @@ function Post() {
 
       <CommentsList
         idPost={idPost}
-        //comments={comments}
       />
 
       <PopupComment

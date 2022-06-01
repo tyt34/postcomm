@@ -1,64 +1,58 @@
-import './Profile.scss'
+import React, { useEffect, useState } from 'react'
+import { useNavigate} from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { getUser, getMesForProfile, updateUser } from '../../utils/api.js'
+import Avatar from './Avatar/Avatar'
+import CreatePost from './CreatePost/CreatePost'
 import Field from './Field/Field'
 import PopupAva from './PopupAva/PopupAva'
-import CreatePost from './CreatePost/CreatePost'
 import SliderPost from './SliderPost/SliderPost'
-import Avatar from './Avatar/Avatar'
-import { useNavigate} from 'react-router-dom'
-import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import * as api from '../../utils/api.js'
+import './Profile.scss'
 
 function Profile() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const [nameProfile, setNameProfile] = useState('')
-  const [surnameProfile, setSurnameProfile] = useState('')
-  const [emailProfile, setEmailProfile] = useState('')
-  const [phoneProfile, setPhoneProfile] = useState('')
-  const [companyProfile, setCompanyProfile] = useState('')
-  const [jobPostProfile, setJobPostProfile] = useState('')
+  const [nameProfile, setNameProfile] = useState('Подождите...')
+  const [surnameProfile, setSurnameProfile] = useState('Подождите...')
+  const [emailProfile, setEmailProfile] = useState('Подождите...')
+  const [phoneProfile, setPhoneProfile] = useState('Подождите...')
+  const [companyProfile, setCompanyProfile] = useState('Подождите...')
+  const [jobPostProfile, setJobPostProfile] = useState('Подождите...')
   const [avatarProfile, setAvatarProfile] = useState('')
   const [popupOpen, setPopupOpen] = useState(false)
   const [statusFetch, setStatusFetch] = useState('')
-  //const [messageForProfile, setMessageForProfile] = useState('')
-  const [ownerID, setOwnerID] = useState('')
 
   useEffect( () => {
-    api.getUser()
+    getUser()
     .then(
-      (arg) => {
-        //console.log(arg)
-        let {name, surname, email, phone, company, jobpost, avatar} = arg
+      (user) => {
+        let {name, surname, email, phone, company, jobpost, avatar} = user
         setNameProfile(name)
         setSurnameProfile(surname)
         setEmailProfile(email)
         setPhoneProfile(phone)
         setCompanyProfile(company)
         setJobPostProfile(jobpost)
-        //console.log(avatar)
         localStorage.setItem('avatar', avatar)
         setAvatarProfile(avatar)
       }
     )
     .catch( (err) => {
-      console.log('Err#11 ',err)
+      console.log('Err#11 ', err)
     })
 
-    api.getMesForProfile()
+    getMesForProfile()
     .then(
-      (arg) => {
-        if (arg.status) {
-          if (arg.status === 'ok') {
-            //console.log(' push ', arg.data)
-            //setMessageForProfile(arg.data)
-            dispatch({ type: 'CREATE_ARR_POST', payload: arg.data})
+      (data) => {
+        if (data.status) {
+          if (data.status === 'ok') {
+            dispatch({ type: 'CREATE_ARR_POST', payload: data.data})
           }
         }
       }
     )
     .catch( (err) => {
-      console.log('Err#12 ',err)
+      console.log('Err#12 ', err)
     })
   }, [])
 
@@ -88,8 +82,7 @@ function Profile() {
 
   function handeSaveDataProfile() {
     setStatusFetch('Идет отправка данных...')
-    console.log(' save ')
-    api.updateUser(
+    updateUser(
       nameProfile,
       surnameProfile,
       emailProfile,
@@ -98,12 +91,11 @@ function Profile() {
       jobPostProfile
     )
     .then(
-      (arg) => {
-        console.log(arg)
-        if (arg.status === 'bad') {
-          throw arg
-        } else if (arg.error) {
-          throw arg
+      (data) => {
+        if (data.status === 'bad') {
+          throw data
+        } else if (data.error) {
+          throw data
         } else {
           setStatusFetch('Данные изменены')
           setTimeout(clearStatusFetch, 5000)
@@ -130,7 +122,6 @@ function Profile() {
   function handelLinkAllPosts(e) {
     e.preventDefault()
     dispatch({ type: 'CREATE_PAGE_ALL_POSTS', payload: nameProfile})
-    dispatch({ type: 'SAVE_ID_USER', payload: ownerID})
     navigate('/allposts/'+nameProfile)
   }
 

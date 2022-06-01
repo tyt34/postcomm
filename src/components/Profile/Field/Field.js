@@ -1,8 +1,7 @@
 import React from 'react'
 import './Field.scss'
 
-function Field({name, value, onChange, placeHolder, mixClass}) {
-  //console.log(mixClass)
+function Field({ name, value, onChange, placeHolder, mixClass }) {
   return (
     <div
       className={

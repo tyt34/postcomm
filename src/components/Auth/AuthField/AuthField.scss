@@ -1,52 +1,28 @@
+@import "../../../utils/scss-consts/flex-column.scss";
+@import "../../../utils/scss-consts/font-base.scss";
+@import "../../../utils/scss-consts/size.scss";
+
 .field-log-reg {
-  display: flex;
-  flex-direction: column;
+  @extend %flex-column;
+  margin-top: 20px;
 }
 
 .field-log-reg__name {
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 18px;
-  line-height: 12px;
+  @include font-base(18px, 12px, 500);
   color: #A0A0A0;
   width: calc(100% - 60px);
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
 }
 
 .field-log-reg__input {
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 16px;
-  width: calc(100% - 85px);
-  margin-left: auto;
-  margin-right: auto;
-  height: 46px;
+  @include font-base(18px, 15px, 500);
+  @include size(calc(100% - 85px), 46px);
+  margin: 10px auto 0 auto;
   background: #F9F9F9;
   border-radius: 8px ;
   border: #F9F9F9;
-  padding-left: 15px;
-  padding-right: 15px;
-  margin-top: 10px;
+  padding: 0 15px;
 }
-
-.field-log-reg__error {
-  margin-top: 3px;
-  font-family: Inter;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 10px;
-  line-height: 12px;
-  color: #EE3465;
-  height: 16px;
-  width: calc(100% - 60px);
-  margin-left: auto;
-  margin-right: auto;
-}
-
 
 @media screen and (min-width: 768px) {
   .field-log-reg {
@@ -62,10 +38,6 @@
   .field-log-reg__input {
     box-sizing: border-box;
     width: 100%;
-  }
-
-  .field-log-reg__error {
-    margin-left: 0;
   }
 }
 

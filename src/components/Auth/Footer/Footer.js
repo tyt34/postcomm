@@ -1,8 +1,6 @@
 import './Footer.scss'
 
-function Footer({textIntro, handleLink, textEnter}) {
-
-
+function Footer({ textIntro, handleLink, textEnter }) {
   return (
     <p className="footer__intro">
       {textIntro}{'\u00A0'}

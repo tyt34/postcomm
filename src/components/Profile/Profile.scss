@@ -1,12 +1,13 @@
+@import "../../utils/scss-consts/flex-column.scss";
+@import "../../utils/scss-consts/font-base.scss";
+@import "../../utils/scss-consts/size.scss";
+
 .profile {
-  display: flex;
-  flex-direction: column;
+  @extend %flex-column;
 }
 
 .profile__title {
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 20px;
+  margin: 0 auto auto 0;
   width: 500px;
   text-align: center;
 }
@@ -18,30 +19,24 @@
 .profile__top {
   display: flex;
   width: 500px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
 }
 
 .profile__top-fields {
-  display: flex;
-  flex-direction: column;
+  @extend %flex-column;
   padding-bottom: 20px;
   justify-content: space-between;
 }
 
 .profile__but-save {
   display: block;
-  width: 300px;
-  height: 46px;
+  @include size(300px, 46px);
+  @include font-base(14px, 17px, 500);
   background-color: black;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 20px auto 0 auto;
   padding: 0;
-  margin-top: 20px;
   border: 0;
   border-radius: 10px;
-  font-size: 14px;
-  line-height: 17px;
   color: white;
 }
 
@@ -50,47 +45,29 @@
 }
 
 .profile__but-title {
-  font-family: Inter;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 18px;
-  line-height: 13px;
+  @include font-base(18px, 13px, 500);
 }
 
 .profile__status {
-  font-family: Inter;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 18px;
-  line-height: 13px;
-  margin-left: auto;
-  margin-right: auto;
+  @include font-base(18px, 13px, 500);
+  margin: 10px auto 0 auto;
   color: red;
   height: 20px;
   text-align: center;
-  margin-top: 10px;
 }
 
 .profile__info {
   background-color: #d1f5e6;
   padding: 20px;
   width: 500px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto 20px auto;
   border-radius: 20px;
-  margin-bottom: 20px;
 }
 
 .profile__link {
-  font-family: Inter;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 18px;
-  line-height: 13px;
+  @include font-base(18px, 13px, 500);
   text-decoration: none;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 20px;
+  margin: 0 auto 20px auto;
   background-color: rgba(#798fde, 0.66);
   padding: 7px;
   border-radius: 5px;

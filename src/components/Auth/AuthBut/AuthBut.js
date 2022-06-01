@@ -1,8 +1,6 @@
 import './AuthBut.scss'
 
-function AuthBut({button, handleReg, textInButt}) {
-
-
+function AuthBut({ button, handleReg, textInButt }) {
   return (
     <button
       id="form-send"

@@ -1,36 +1,29 @@
+@import "../../../utils/scss-consts/flex-column.scss";
+@import "../../../utils/scss-consts/font-base.scss";
+@import "../../../utils/scss-consts/size.scss";
+
 .post-form {
-  display: flex;
-  flex-direction: column;
+  @extend %flex-column;
   width: 400px;
-  margin-left: auto;
-  margin-right: auto;
-  background-color: rgba(#10addf, 0.58);
+  margin: 0 auto 20px auto;
+  background-color: rgba(#10addf, 0.34);
   padding: 20px;
-  margin-bottom: 20px;
   border-radius: 20px;
 }
 
 .post-form__input {
-  font-family: Inter;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 18px;
-  line-height: 13px;
+  @include font-base(18px, 13px, 500);
   text-align: left;
 }
 
 .post-form__but {
-  width: 300px;
-  height: 46px;
+  @include size(300px, 46px);
   background-color: black;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 20px auto 0 auto;
   padding: 0;
-  margin-top: 20px;
   border: 0;
   border-radius: 10px;
-  font-size: 14px;
-  line-height: 17px;
+  @include font-base(14px, 17px, 500);
   color: white;
 }
 
@@ -39,26 +32,20 @@
 }
 
 .post-form__area {
-  font-family: Inter;
-  font-style: normal;
-  font-weight: normal;
-  height: 80px;
-  font-size: 18px;
-  line-height: 18px;
+  @include font-base(18px, 18px, 500);
   text-align: left;
+  height: 80px;
   margin-top: 20px;
 }
 
 .post-form__status {
-  font-family: Inter;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 18px;
-  line-height: 13px;
-  margin-left: auto;
-  margin-right: auto;
+  @include font-base(18px, 13px, 500);
+  margin: 10px auto;
   color: red;
   height: 20px;
-  margin-bottom: 10px;
-  margin-top: 10px;
+}
+
+.post-form__but-close {
+  background-color: #A0A0A0;
+  color: black;
 }

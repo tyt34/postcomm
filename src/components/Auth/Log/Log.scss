@@ -1,10 +1,15 @@
-.reg {
-  display: flex;
-  flex-direction: column;
+@import "../../../utils/scss-consts/font-base.scss";
+@import "../../../utils/scss-consts/flex-column.scss";
+
+.log {
+  @extend %flex-column;
   margin-top: 25px;
 }
 
-.form-log-reg__form {
-  display: flex;
-  flex-direction: column;
+.log__err {
+  @include font-base(22px, 13px, 500);
+  color: #f63c3c;
+  margin: 10px auto 0 auto;
+  text-align: center;
+  height: 22px;
 }

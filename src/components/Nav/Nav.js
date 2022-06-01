@@ -1,5 +1,5 @@
-import './Nav.scss'
 import { useNavigate} from 'react-router-dom'
+import './Nav.scss'
 
 function Nav() {
   const navigate = useNavigate()
@@ -11,6 +11,7 @@ function Nav() {
 
   function handelLinkExit(e) {
     e.preventDefault()
+    localStorage.clear()
     navigate('/log')
   }
 

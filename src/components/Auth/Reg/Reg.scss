@@ -1,26 +1,14 @@
-.reg {
-  display: flex;
-  flex-direction: column;
-}
+@import "../../../utils/scss-consts/font-base.scss";
 
 .reg__err {
-  font-family: Inter;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 13px;
+  @include font-base(18px, 13px, 500);
   color: red;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 10px auto 0 auto;
 }
 
 .reg__title {
-  font-family: Inter;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 22px;
-  line-height: 25px;
-  width: 500px;
-  margin-left: auto;
-  margin-right: auto;
+  @include font-base(22px, 25px, 500);
+  width: 600px;
+  margin: 0 auto;
+  text-align: center;
 }

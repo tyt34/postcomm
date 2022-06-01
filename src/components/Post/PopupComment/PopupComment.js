@@ -1,10 +1,10 @@
-import './PopupComment.scss'
 import React, { useEffect, useState } from 'react'
-import * as api from '../../../utils/api.js'
-import def_ava from "../../../images/def_avatar.png"
 import { useDispatch, useSelector } from 'react-redux'
+import def_ava from "../../../images/def_avatar.png"
+import { createComment } from '../../../utils/api.js'
+import './PopupComment.scss'
 
-function PopupComment({isOpen, setPopupOpen, setAvatarProfile, idPost}) {
+function PopupComment({ isOpen, setPopupOpen, setAvatarProfile, idPost }) {
   const dispatch = useDispatch()
   const infoAboutNewComment = useSelector( state => state.check)
   const [text, setText] = useState('')
@@ -12,7 +12,6 @@ function PopupComment({isOpen, setPopupOpen, setAvatarProfile, idPost}) {
   const [button, setButton] = useState(false)
 
   useEffect( () => {
-    //console.log(avatar)
     if (text === '') {
       setButton(false)
     } else {
@@ -34,18 +33,14 @@ function PopupComment({isOpen, setPopupOpen, setAvatarProfile, idPost}) {
 
   function handeSendComment(e) {
     e.preventDefault()
-    api.createComment(text, idPost)
+    createComment(text, idPost)
     .then(
-      (arg) => {
-        //console.log(arg.status)
-        if (arg.status) {
-          if (arg.status === 'ok') {
-            //console.log(' succes send com')
+      (data) => {
+        if (data.status) {
+          if (data.status === 'ok') {
             dispatch({ type: 'CHANGE_INFO_NEW_COM', payload: infoAboutNewComment})
             setPopupOpen(false)
             setText('')
-          } else {
-
           }
         }
       }

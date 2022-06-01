@@ -1,17 +1,12 @@
+@import "../../../utils/scss-consts/size.scss";
+@import "../../../utils/scss-consts/font-base.scss";
 
 .reg__but {
-  width: 400px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 20px;
+  @include size(400px, 45px);
+  margin: 20px auto 0 auto;
   background-color: #FF6838;
   border-radius: 3px;
-  height: 45px;
-  font-family: Inter;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 15px;
+  @include font-base(18px, 15px, 500);
   text-align: center;
   color: #FFFFFF;
   padding: 0;

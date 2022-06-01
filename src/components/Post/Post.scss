@@ -1,22 +1,20 @@
-.post {
-  display: flex;
-  flex-direction: column;
-  width: 500px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 20px;
+@import "../../utils/scss-consts/flex-column.scss";
+@import "../../utils/scss-consts/size.scss";
+@import "../../utils/scss-consts/font-base.scss";
 
+.post {
+  @extend %flex-column;
+  width: 500px;
+  margin: 20px auto 0 auto;
 }
 
 .post__ava {
-  width: 100px;
-  height: 100px;
+  @include size(100px, 100px);
   border-radius: 100px;
 }
 
 .post__title {
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
 }
 
 .post__profile {
@@ -32,20 +30,12 @@
 }
 
 .post__date {
-  font-family: Inter;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 22px;
-  line-height: 15px;
+  @include font-base(22px, 15px, 500);
   margin-top: 20px;
 }
 
 .post__name {
-  font-family: Inter;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 24px;
-  line-height: 17px;
+  @include font-base(24px, 17px, 500);
   margin-top: 20px;
   width: 345px;
   word-wrap: break-word;
@@ -59,23 +49,14 @@
 }
 
 .post__header {
-  font-family: Inter;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 25px;
-  line-height: 15px;
-  margin-left: auto;
-  margin-right: auto;
+  @include font-base(25px, 15px, 500);
+  margin: 0 auto;
   text-align: center;
   text-decoration: underline;
 }
 
 .post__text {
-  font-family: Inter;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 18px;
-  line-height: 17px;
+  @include font-base(18px, 17px, 500);
   margin-top: 20px;
   width: 475px;
   word-wrap: break-word;
@@ -83,17 +64,13 @@
 
 .post__but {
   display: block;
-  width: 300px;
-  height: 46px;
+  @include size(300px, 50px);
   background-color: black;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 20px auto 0 auto;
   padding: 0;
-  margin-top: 20px;
   border: 0;
   border-radius: 10px;
-  font-size: 14px;
-  line-height: 17px;
+  @include font-base(14px, 17px, 500);
   color: white;
 }
 
@@ -102,9 +79,5 @@
 }
 
 .post__but-title {
-  font-family: Inter;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 18px;
-  line-height: 22px;
+  @include font-base(18px, 22px, 500);
 }

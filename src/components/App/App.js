@@ -1,12 +1,12 @@
-import Reg from '../Auth/Reg/Reg'
-import Log from '../Auth/Log/Log'
-import Profile from '../Profile/Profile'
+import { HashRouter, Routes, Route, Navigate, useParams} from 'react-router-dom'
 import AllPosts from '../AllPosts/AllPosts'
 import AllUsers from '../AllUsers/AllUsers'
-import Post from '../Post/Post'
+import Log from '../Auth/Log/Log'
 import Nav from '../Nav/Nav'
-import { HashRouter, Routes, Route, Navigate, useParams} from 'react-router-dom'
-//import { useDispatch, useSelector } from 'react-redux'
+import Post from '../Post/Post'
+import Profile from '../Profile/Profile'
+import Reg from '../Auth/Reg/Reg'
+
 const BASENAME = process.env.REACT_APP_BASENAME
 let base
 if (BASENAME === undefined) {
@@ -14,20 +14,12 @@ if (BASENAME === undefined) {
 } else {
   base = BASENAME
 }
-//const nowPageFromStore = 'a'
 
 function App() {
-
-  //const nowPageFromStore = useSelector( store => store.allPostsIdUser)
-
   return (
     <HashRouter basename={base}>
         <Routes>
-          <Route path="/" element={
-            <>
-              hello
-            </>
-          } />
+          <Route path="/" element={<Navigate replace to="/log" />} />
           <Route path="/reg" element={
             <>
               <Reg />
@@ -62,19 +54,10 @@ function App() {
               <Post />
             </>
           } />
+          <Route path="/*" element={<Navigate replace to="/log" />} />
         </Routes>
     </HashRouter>
   );
 }
 
 export default App;
-
-//          <Route path="/*" element={<Navigate replace to="/log" />} />
-
-/*
-<Route path={"/allposts/"+nowPageFromStore} element={
-  <>
-    <AllPosts/>
-  </>
-} />
-*/

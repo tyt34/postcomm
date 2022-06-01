@@ -1,9 +1,9 @@
-import './PrewUser.scss'
 import React, { useEffect, useState } from 'react'
 import { useNavigate} from 'react-router-dom'
 import def_ava from "../../../images/def_avatar.png"
+import './PrewUser.scss'
 
-function PrewUser({user}) {
+function PrewUser({ user }) {
   const navigate = useNavigate()
   const {name, surname, avatar} = user
   const [ava, setAva] = useState(def_ava)
@@ -13,10 +13,8 @@ function PrewUser({user}) {
       setAva(avatar)
     }
   }, [avatar])
-  //console.log(name, avatar)
 
   function handleAllPostUser() {
-    //console.log(' oopen user')
     navigate('/allposts/'+name)
   }
 
@@ -25,7 +23,7 @@ function PrewUser({user}) {
       className="user"
       onClick={handleAllPostUser}
     >
-    <img className="user__ava" src={ava}/>
+    <img alt="user ava" className="user__ava" src={ava}/>
       <section className="user__right">
         <p className="user__text">
           {name}

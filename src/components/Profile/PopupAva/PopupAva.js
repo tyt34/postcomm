@@ -1,13 +1,12 @@
-import './PopupAva.scss'
 import React, { useEffect, useState } from 'react'
-import * as api from '../../../utils/api.js'
+import './PopupAva.scss'
+import { updateAvatar } from '../../../utils/api.js'
 
-function PopupAva({isOpen, setPopupOpen, setAvatarProfile}) {
+function PopupAva({ isOpen, setPopupOpen, setAvatarProfile }) {
   const [avatar, setAvatar] = useState('')
   const [button, setButton] = useState(false)
 
   useEffect( () => {
-    console.log(avatar)
     if (avatar === '') {
       setButton(false)
     } else {
@@ -16,20 +15,16 @@ function PopupAva({isOpen, setPopupOpen, setAvatarProfile}) {
   }, [avatar])
 
   function handleClosePopup() {
-    console.log('try close popup')
     setPopupOpen(false)
   }
 
   function handeUpdateAvatar(e) {
     e.preventDefault()
-    console.log(' up ava ', avatar)
-
-    api.updateAvatar(
+    updateAvatar(
       avatar,
     )
     .then(
       (arg) => {
-        console.log(' ===> ', arg)
         setPopupOpen(false)
         setAvatarProfile(avatar)
         setAvatar('')
@@ -40,12 +35,9 @@ function PopupAva({isOpen, setPopupOpen, setAvatarProfile}) {
         console.log('Err#10 ', err)
       }
     )
-
   }
 
   function handleChangeURLAva(e) {
-    //console.log(' ==> ')
-    //e.preventDefault()
     setAvatar(e.target.value)
   }
 

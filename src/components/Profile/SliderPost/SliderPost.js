@@ -1,11 +1,11 @@
-import './SliderPost.scss'
 import React, { useEffect, useState } from 'react'
 import disableScroll from 'disable-scroll'
-import PrewPost from '../../PrewPost/PrewPost'
 import arrow from "../../../images/arrow.png"
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
+import PrewPost from '../../PrewPost/PrewPost'
+import './SliderPost.scss'
 
-function SliderPost({avatarProfile}) {
+function SliderPost({ avatarProfile }) {
   const storePosts = useSelector( store => store.postForSlider)
   const [mainNum, setMainNum] = useState(0)
   const [maxNum, setMaxNum] = useState(null)
@@ -25,11 +25,9 @@ function SliderPost({avatarProfile}) {
       setMessTop(storePosts[mainNum])
       setMessMid(storePosts[mainNum+1])
       setMessBot(storePosts[mainNum+2])
-
       setMaxNum(storePosts.length)
     }
-
-  }, [storePosts, storePosts])
+  }, [storePosts])
 
   useEffect( ()=> {
     setMessTop(storePosts[mainNum])

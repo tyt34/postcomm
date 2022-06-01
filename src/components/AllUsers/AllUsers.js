@@ -1,37 +1,29 @@
-import './AllUsers.scss'
 import React, { useEffect, useState } from 'react'
-import * as api from '../../utils/api.js'
-//import { useDispatch, useSelector } from 'react-redux'
+import { getAllUsers } from '../../utils/api.js'
 import PrewUser from './PrewUser/PrewUser'
+import './AllUsers.scss'
 
 function AllUsers() {
   const [allUsers, setAllUsers] = useState([])
 
   useEffect(() => {
-    api.getAllUsers()
+    getAllUsers()
     .then(
-      (arg) => {
-        //console.log(arg)
-        if (arg.status) {
-          setAllUsers(arg.users)
-          //console.log(arg.users[0])
+      (users) => {
+        if (users.status) {
+          setAllUsers(users.users)
         }
       }
     )
     .catch( (err) => {
-      console.log('Err#3 ',err)
+      console.log('Err#3 ', err)
     })
   }, [])
-
-  useEffect(() => {
-    //console.log(' -> ', allUsers.length)
-    //console.log(allUsers.length !== 0 ? 'равно' : 'не равно')
-  }, [allUsers])
 
   return (
     <section className="all">
       <h2 className="all__title">
-        Все пользователи этой социальной сети
+        Все пользователи этой социальной сети:
       </h2>
       <section className="all__users">
         {

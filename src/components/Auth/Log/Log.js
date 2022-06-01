@@ -1,20 +1,24 @@
+import React, { useEffect, useState } from 'react'
+import { useNavigate} from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 import AuthField from '../AuthField/AuthField'
 import AuthBut from '../AuthBut/AuthBut'
 import Footer from '../Footer/Footer'
-import React, { useEffect, useState } from 'react'
+import { log } from '../../../utils/api.js'
+import {
+  textAuthIntro,
+  textAuthDescr,
+  timeForShowErr
+}  from '../../../utils/consts.js'
 import './Log.scss'
-import * as api from '../../../utils/api.js'
-import { useNavigate} from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
 
 function Loggin() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const [name, setName] = useState('') // плохо, что такое же название как в компоненте рег
-  const [nameErr, setNameErr] = useState('')
+  const [name, setName] = useState('')
   const [pass, setPass] = useState('')
-  const [passErr, setPassErr] = useState('')
-  const [button, setButton] = React.useState(false)
+  const [button, setButton] = useState(false)
+  const [logErr, setLogErr] = useState('')
 
   function handleChangeName(e) {
     setName(e.target.value)
@@ -27,22 +31,20 @@ function Loggin() {
   useEffect( () => {
     if ( (name === '') || (pass === '') ) {
       setButton(false)
-      console.log(' but close ')
     } else {
       setButton(true)
-      console.log(' but open ')
     }
   }, [name, pass])
 
   function handleLog(e) {
     e.preventDefault()
-    api.log(name, pass)
+    log(name, pass)
     .then( (data) => {
       if (data.status !== 'ok') {
         throw data
       } else {
-        console.log(' norm ', data)
         dispatch({ type: 'SAVE_ID_USER', payload: data.userId})
+        localStorage.clear()
         localStorage.setItem('jwt', data.token)
         localStorage.setItem('name', data.user.name)
         localStorage.setItem('surname', data.user.surname)
@@ -51,9 +53,17 @@ function Loggin() {
     })
     .catch(
       (err) => {
-        console.log(' reg er: ', err)
+        console.log('Err#14 ', err)
+        if (err.message) {
+          setLogErr(err.message)
+          setTimeout(clearStatusFetch, timeForShowErr)
+        }
       }
     )
+  }
+
+  function clearStatusFetch() {
+    setLogErr('')
   }
 
   function handleLinkReg(e) {
@@ -62,11 +72,12 @@ function Loggin() {
   }
 
   return (
-    <section className="reg">
+    <section className="log">
       <p className="reg__title">
-        Это социальная сеть, где можно создавать посты,
-        комментировать. Но удалить их нельзя. Это не баг,
-        а фича.
+        {textAuthIntro}
+      </p>
+      <p className="reg__title">
+        {textAuthDescr}
       </p>
       <form
         name={'reg'}
@@ -78,7 +89,6 @@ function Loggin() {
           typeInput="name"
           value={name}
           onChange={handleChangeName}
-          textInputErr={nameErr}
         />
         <AuthField
           name="Пароль"
@@ -86,7 +96,6 @@ function Loggin() {
           typeInput="password"
           value={pass}
           onChange={handleChangePass}
-          textInputErr={passErr}
         />
       </form>
 
@@ -95,6 +104,10 @@ function Loggin() {
         handleReg={handleLog}
         textInButt="Залогиниться"
       />
+
+      <p className="log__err">
+        {logErr}
+      </p>
 
       <Footer
         textIntro="Еще не зарегистрировались? Тогда"

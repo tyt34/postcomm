@@ -1,32 +1,24 @@
+@import "../../utils/scss-consts/flex-column.scss";
+@import "../../utils/scss-consts/font-base.scss";
+
 .nav {
-  display: flex;
-  flex-direction: column;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 20px;
+  @extend %flex-column;
+  margin: 20px auto 0 auto;
 }
 
 .nav__link {
-  font-family: Inter;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 18px;
-  line-height: 13px;
+  @include font-base(18px, 13px, 500);
   text-decoration: none;
-  margin-bottom: 20px;
   background-color: rgba(#798fde, 0.66);
   padding: 7px;
   border-radius: 5px;
-  margin-right: 10px;
+  margin: 0 10px 20px 0;
 }
 
 .nav__title {
-  margin-bottom: 10px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto 10px auto;
 }
 
 .nav__footer {
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
 }

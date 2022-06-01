@@ -1,13 +1,12 @@
+@import "../../utils/scss-consts/flex-column.scss";
+@import "../../utils/scss-consts/font-base.scss";
+@import "../../utils/scss-consts/size.scss";
+
 .prew {
-  display: flex;
-  flex-direction: column;
-  height: 80px;
-  width: 320px;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  @extend %flex-column;
+  @include size(320px, 85px);
+  margin: 10px auto;
   background-color: #ebe7b6;
-  margin-left: auto;
-  margin-right: auto;
   border-radius: 5px;
 }
 
@@ -29,22 +28,15 @@
 }
 
 .prew__ava {
-  width: 40px;
-  height: 40px;
+  @include size(40px, 40px);
   border-radius: 40px;
   object-fit: cover;
-  margin-left: 5px;
-  margin-top: 5px;
+  margin: 5px 0 0 5px;
 }
 
 .prew__head {
-  font-family: Inter;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 17px;
-  line-height: 13px;
-  margin-left: 30px;
-  margin-top: 5px;
+  @include font-base(17px, 13px, 500);
+  margin: 5px 0 0 30px;
   text-overflow: ellipsis;
   width: 220px;
   white-space: nowrap;
@@ -53,54 +45,30 @@
 }
 
 .prew__time {
-  font-family: Inter;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 13px;
-  margin-top: 5px;
-  margin-bottom: 5px;
+  @include font-base(12px, 13px, 500);
+  margin: 2px 0 5px 0;
   width: 45px;
-}
-
-.prew__clock {
-  margin-left: 8px;
+  text-align: center;
 }
 
 .prew__text {
-  margin-left: 10px;
+  @include font-base(17px, 15px, 500);
   text-overflow: ellipsis;
   white-space: wrap;
   overflow: hidden;
-  width: 250px;
-  height: 46px;
-  margin-top: -15px;
-  font-family: Inter;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 17px;
-  line-height: 15px;
+  @include size(250px, 46px);
+  margin: -15px 0 0 10px;
 }
 
 .prew__full-text {
-  margin-left: 10px;
   width: 430px;
-  margin-top: -15px;
-  font-family: Inter;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 17px;
-  line-height: 15px;
+  margin: -15px 0 0 10px;
+  @include font-base(17px, 15px, 500);
   word-wrap: break-word;
 }
 
 .prew__user {
-  font-family: Inter;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 17px;
-  line-height: 15px;
-  margin-top: 10px;
-  margin-left: 10px;
+  @include font-base(17px, 15px, 500);
+  margin: 10px 0 0 10px;
   text-decoration: underline;
 }

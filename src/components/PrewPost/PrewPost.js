@@ -1,24 +1,20 @@
-import './PrewPost.scss'
-import def_ava from "../../images/def_avatar.png"
 import React, { useEffect, useState } from 'react'
-import * as api from '../../utils/api.js'
 import { useNavigate} from 'react-router-dom'
+import def_ava from "../../images/def_avatar.png"
+import { getTimeDay, getTimeClock } from '../../utils/consts.js'
+import './PrewPost.scss'
 
-function PrewPost({info, avatarProfile}) {
+function PrewPost({ info, avatarProfile }) {
   const navigate = useNavigate()
-  //console.log(info)
   const {header, text, dateText} = info
   const [avatar, setAvatar] = useState(def_ava)
   const [timeDay, setTimeDay] = useState(null)
   const [timeClock, setTimeClock] = useState(null)
 
-  //console.log(avatarProfile)
-
   useEffect(() => {
     const d = dateText.split(' ')
-    //console.log(d)
-    setTimeDay(d[2]+'/'+d[1][0]+'/'+d[3][2]+d[3][3])
-    setTimeClock(d[4].split(':')[0]+'-'+d[4].split(':')[1])
+    setTimeDay(getTimeDay(d))
+    setTimeClock(getTimeClock(d))
   }, [info])
 
   useEffect(() => {
@@ -28,7 +24,6 @@ function PrewPost({info, avatarProfile}) {
   },[avatarProfile])
 
   function handleLinkPost() {
-    console.log(' open post ', info._id)
     navigate('/post/'+info._id)
   }
 
@@ -47,10 +42,10 @@ function PrewPost({info, avatarProfile}) {
 
         <section className="prew__bot">
           <section className="prew__time">
-            <p className="prew__day">
+            <p className="prew__time">
               {timeDay}
             </p>
-            <p className="prew__clock">
+            <p className="prew__time">
               {timeClock}
             </p>
           </section>
