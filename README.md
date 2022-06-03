@@ -28,7 +28,9 @@
 </tr>
 
  [Ссылка на готовый проект. Регистрация](https://tyt34.github.io/postcomm/#/reg).
+ 
  [Ссылка на готовый проект. Авторизация](https://tyt34.github.io/postcomm/#/reg).
+ 
  [Ссылка на готовый проект. Все пользователи](https://tyt34.github.io/postcomm/#/allusers).
 
   ## Запуск приложения
