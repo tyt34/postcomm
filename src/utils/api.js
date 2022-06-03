@@ -2,13 +2,14 @@ import {
   getDataUTC
 }  from './consts.js'
 
+const BASENAME = process.env.REACT_APP_BASENAME
 let url
-if (process.env.REACT_APP_ENV === undefined) {
-  //url = 'http://localhost:3001/'
-  url = 'https://51.250.27.86:3001/'
+if (BASENAME === undefined) {
+  url = 'https://51.250.27.86/'
 } else {
-  url = process.env.REACT_APP_ENV
+  url = 'http://localhost:3001/'
 }
+
 
 function getResponseData(res) {
   if (!res.ok) {

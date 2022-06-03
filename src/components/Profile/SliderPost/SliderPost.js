@@ -99,7 +99,12 @@ function SliderPost({ avatarProfile }) {
         :
         <section className="carusel">
           <button
-            className="carusel__but carusel__but-top"
+            className={
+              storePosts.length > 3 ?
+              "carusel__but carusel__but-top carusel__but-open"
+              :
+              "carusel__but carusel__but-top"
+            }
             onClick={prevNum}
           >
             <img className="carusel__but-img" src={arrow}/>
@@ -117,7 +122,12 @@ function SliderPost({ avatarProfile }) {
             avatarProfile={avatarProfile}
           />
           <button
-            className="carusel__but carusel__but-bot"
+            className={
+              storePosts.length > 3 ?
+              "carusel__but carusel__but-bot carusel__but-open"
+              :
+              "carusel__but carusel__but-bot"
+            }
             onClick={nextNum}
           >
             <img className="carusel__but-img carusel__but-img-bot" src={arrow}/>

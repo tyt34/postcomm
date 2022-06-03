@@ -46,6 +46,11 @@
   background-color: #d1ccec;
   @include size(30px, 30px);
   margin: 8px auto;
+  visibility: hidden;
+}
+
+.carusel__but-open {
+  visibility: visible;
 }
 
 .carusel__but:hover {
