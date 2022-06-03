@@ -2,13 +2,16 @@ import {
   getDataUTC
 }  from './consts.js'
 
+/*
 const BASENAME = process.env.REACT_APP_BASENAME
-let url
+console.log(BASENAME)
 if (BASENAME === undefined) {
   url = 'https://51.250.27.86/'
 } else {
   url = 'http://localhost:3001/'
 }
+*/
+const url = 'https://postcomm.hopto.org/'
 
 
 function getResponseData(res) {
