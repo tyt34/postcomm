@@ -48,4 +48,6 @@ echo -e "REACT_APP_BASENAME=/" > .env
 ```
 npm i && echo -e "REACT_APP_BASENAME=/" > .env && npm run start
 ```
+Кроме того, для работы приложения потребуется backend часть. Она расположена по  [этой ссылке](https://github.com/tyt34/back-postcomm).
+
 
