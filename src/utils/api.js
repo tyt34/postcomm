@@ -2,17 +2,13 @@ import {
   getDataUTC
 }  from './consts.js'
 
-/*
-const BASENAME = process.env.REACT_APP_BASENAME
-console.log(BASENAME)
-if (BASENAME === undefined) {
-  url = 'https://51.250.27.86/'
-} else {
+let url
+const API_URL = process.env.REACT_APP_API
+if (API_URL === undefined) {
   url = 'http://localhost:3001/'
+} else {
+  url = API_URL
 }
-*/
-const url = 'https://postcomm.hopto.org/'
-
 
 function getResponseData(res) {
   if (!res.ok) {
@@ -20,6 +16,10 @@ function getResponseData(res) {
   }
   return res.json()
 }
+
+///////////////////////////////////////////////////////////////
+// Регистрация, авторизация и прочие взаимодействия с пользователем
+///////////////////////////////////////////////////////////////
 
 export const reg = (name, surname, pass) => {
   return fetch(url+'reg', {
@@ -64,22 +64,6 @@ export const log = (name, pass) => {
   )
 }
 
-export const getUser = () => {
-  return fetch(url+'getuser', {
-    method: 'GET',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      authorization: 'Bearer '+localStorage.jwt,
-    }
-  })
-  .then(
-    (res) => {
-      return getResponseData(res)
-    }
-  )
-}
-
 export const updateUser = (name, surname, email, phone, company, jobpost, avatar) => {
   return fetch(url+'updateuser', {
     method: 'PATCH',
@@ -118,27 +102,41 @@ export const updateAvatar = (avatar) => {
   })
 }
 
-export const createComment = (comment, idPost) => {
-  let dateText = new Date(getDataUTC())
-  return fetch(url+'createcomment', {
-    method: 'POST',
+export const getUser = () => {
+  return fetch(url+'getuser', {
+    method: 'GET',
     headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
       authorization: 'Bearer '+localStorage.jwt,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      idPost,
-      comment,
-      dateText: dateText.toString(),
-      dateUTC: getDataUTC(),
-    })
+    }
   })
   .then(
     (res) => {
-      return res.json()
+      return getResponseData(res)
     }
   )
 }
+
+export const getMesForProfile = () => {
+  return fetch(url+'getmesprof', {
+    method: 'GET',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      authorization: 'Bearer '+localStorage.jwt,
+    }
+  })
+  .then(
+    (res) => {
+      return getResponseData(res)
+    }
+  )
+}
+
+///////////////////////////////////////////////////////////////
+// Создание поста
+///////////////////////////////////////////////////////////////
 
 export const createPost = (header, text) => {
   let dateText = new Date(getDataUTC())
@@ -162,21 +160,35 @@ export const createPost = (header, text) => {
   )
 }
 
-export const getMesForProfile = () => {
-  return fetch(url+'getmesprof', {
-    method: 'GET',
+///////////////////////////////////////////////////////////////
+// Создание комментария под постом
+///////////////////////////////////////////////////////////////
+
+export const createComment = (comment, idPost) => {
+  let dateText = new Date(getDataUTC())
+  return fetch(url+'createcomment', {
+    method: 'POST',
     headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
       authorization: 'Bearer '+localStorage.jwt,
-    }
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      idPost,
+      comment,
+      dateText: dateText.toString(),
+      dateUTC: getDataUTC(),
+    })
   })
   .then(
     (res) => {
-      return getResponseData(res)
+      return res.json()
     }
   )
 }
+
+///////////////////////////////////////////////////////////////
+// Общие данные
+///////////////////////////////////////////////////////////////
 
 export const getMesUser = (nameUser) => {
   return fetch(url+'getmesuser/'+nameUser, {

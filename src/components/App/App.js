@@ -7,17 +7,9 @@ import Post from '../Post/Post'
 import Profile from '../Profile/Profile'
 import Reg from '../Auth/Reg/Reg'
 
-const BASENAME = process.env.REACT_APP_BASENAME
-let base
-if (BASENAME === undefined) {
-  base = '/postcomm'
-} else {
-  base = BASENAME
-}
-
 function App() {
   return (
-    <HashRouter basename={base}>
+    <HashRouter basename={'/'}>
         <Routes>
           <Route path="/" element={<Navigate replace to="/log" />} />
           <Route path="/reg" element={
