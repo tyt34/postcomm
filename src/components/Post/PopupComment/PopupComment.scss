@@ -101,7 +101,7 @@
 }
 
 .popup-comment__ava {
-  width: 60px;
+  @include size(60px, 60px);
   border-radius: 30px;
 }
 

@@ -5,3 +5,11 @@
   font-display: swap;
   src: url("./fonts/sfns-display.ttf")
 }
+
+@font-face {
+  font-family: 'SFNS';
+  font-style:  normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("./fonts/sfns-display-thin.ttf")
+}
