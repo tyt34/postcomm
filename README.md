@@ -36,19 +36,11 @@
   ## Запуск приложения
 В приложение используется scss v.4.14 для node v.14. Если у вас другая версия node, то обновите библиотеку scss.
 1. npm i
-2. Создайте файл .env с текстом 
-```
-REACT_APP_BASENAME=/
-```
-Для этого можно воспользоваться командой: 
-```
-echo -e "REACT_APP_BASENAME=/" > .env
-```
-3. npm run start
+2. npm run start
 
 Если вы находитесь в корне папки, то можете воспользоваться командой: 
 ```
-npm i && echo -e "REACT_APP_BASENAME=/" > .env && npm run start
+npm i && npm run start
 ```
 Кроме того, для работы приложения потребуется backend часть. Она расположена по  [этой ссылке](https://github.com/tyt34/back-postcomm).
 
