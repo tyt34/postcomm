@@ -3,6 +3,7 @@
 ![](https://shields.io/badge/-SCSS-C76494)
 ![](https://shields.io/badge/-JavaScript-yellow)
 ![](https://shields.io/badge/-React.JS-05D9FF)
+![](https://shields.io/badge/-Redux-764ABC)
 
 ## Описание
 - В данном приложение реализована социальная сеть, где основная идея это писать посты и комментарии под постами, которые невозможно удалить и редактировать после отправки.
