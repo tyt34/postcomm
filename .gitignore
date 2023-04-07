@@ -9,6 +9,7 @@
 .env.production.local
 .env
 /src/Reg
+/.vscode
 
 npm-debug.log*
 yarn-debug.log*
