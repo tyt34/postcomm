@@ -1,10 +1,9 @@
 # Социальная сеть postcomm. 
 
-![](https://shields.io/badge/-HTML-orange)
-![](https://shields.io/badge/-CSS-blue)
 ![](https://shields.io/badge/-SCSS-C76494)
 ![](https://shields.io/badge/-JavaScript-yellow)
 ![](https://shields.io/badge/-React.JS-05D9FF)
+![](https://shields.io/badge/-Redux-764ABC)
 
 ## Описание
 - В данном приложение реализована социальная сеть, где основная идея это писать посты и комментарии под постами, которые невозможно удалить и редактировать после отправки.
@@ -26,6 +25,8 @@
 <tr>
     <hr>
 </tr>
+
+### Backend выключен. Поэтому это просто страницы без содержания.
 
  [Ссылка на готовый проект. Регистрация](https://tyt34.github.io/postcomm/#/reg).
  
