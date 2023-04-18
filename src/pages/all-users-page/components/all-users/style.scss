@@ -1,0 +1,18 @@
+@import "../../../../utils/scss-consts/flex-column.scss";
+
+.all {
+  @extend %flex-column;
+  margin-bottom: 25px;
+}
+
+.all__title {
+  margin: 10px auto;
+}
+
+.all__users {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-row-gap: 25px;
+  margin: 0 auto;
+  width: 500px;
+}

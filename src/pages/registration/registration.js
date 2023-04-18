@@ -1,72 +1,72 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import Footer from "../../components/footer/footer";
-import { log } from "../../utils/api.js";
+import { reg } from "../../utils/api.js";
 import {
   textAuthIntro,
   textAuthDescr,
   timeForShowErr,
 } from "../../utils/consts.js";
+import "./style.scss";
 import { AuthBut, AuthField } from "../../components";
 
-import "./style.scss";
-
-export const Loggin = () => {
+export const Reg = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const [messageErr, setMessageErr] = useState("");
   const [name, setName] = useState("");
+  const [surname, setSurname] = useState("");
   const [pass, setPass] = useState("");
-  const [button, setButton] = useState(false);
-  const [logErr, setLogErr] = useState("");
+  const [button, setButton] = React.useState(false);
 
   function handleChangeName(e) {
     setName(e.target.value);
+  }
+
+  function handleChangeSurname(e) {
+    setSurname(e.target.value);
   }
 
   function handleChangePass(e) {
     setPass(e.target.value);
   }
 
+  function clearStatusFetch() {
+    setMessageErr("");
+  }
+
   useEffect(() => {
-    if (name === "" || pass === "") {
+    if (name === "" || surname === "" || pass === "") {
       setButton(false);
     } else {
       setButton(true);
     }
-  }, [name, pass]);
+  }, [name, surname, pass]);
 
-  function handleLog(e) {
+  function handleReg(e) {
     e.preventDefault();
-    log(name, pass)
+    reg(name, surname, pass)
       .then((data) => {
         if (data.status !== "ok") {
           throw data;
         } else {
-          dispatch({ type: "SAVE_ID_USER", payload: data.userId });
           localStorage.clear();
           localStorage.setItem("jwt", data.token);
-          localStorage.setItem("name", data.user.name);
-          localStorage.setItem("surname", data.user.surname);
+          localStorage.setItem("name", data.name);
+          localStorage.setItem("surname", data.surname);
           navigate("/profile");
         }
       })
       .catch((err) => {
-        console.log("Err#14 ", err);
         if (err.message) {
-          setLogErr(err.message);
+          setMessageErr(err.message);
           setTimeout(clearStatusFetch, timeForShowErr);
         }
       });
   }
 
-  function clearStatusFetch() {
-    setLogErr("");
-  }
-
-  function handleLinkReg(e) {
+  function handleLinkLog(e) {
     e.preventDefault();
-    navigate("/reg");
+    navigate("/log");
   }
 
   return (
@@ -82,6 +82,13 @@ export const Loggin = () => {
           onChange={handleChangeName}
         />
         <AuthField
+          name="Псевдоним"
+          idName="surname"
+          typeInput="surname"
+          value={surname}
+          onChange={handleChangeSurname}
+        />
+        <AuthField
           name="Пароль"
           idName="pass"
           typeInput="password"
@@ -92,17 +99,15 @@ export const Loggin = () => {
 
       <AuthBut
         button={button}
-        handleReg={handleLog}
-        textInButt="Залогиниться"
+        handleReg={handleReg}
+        textInButt="Зарегистрироваться"
       />
-
-      <p className="log__err">{logErr}</p>
-
+      <p className="reg__err">{messageErr}</p>
       <Footer
-        textIntro="Еще не зарегистрировались? Тогда"
-        handleLink={handleLinkReg}
-        textEnter="регистрируйтесь скорее"
-        href={"/reg"}
+        textIntro="Уже зарегистрированы? Тогда"
+        handleLink={handleLinkLog}
+        textEnter="войдите"
+        href={"/log"}
       />
     </section>
   );

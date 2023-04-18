@@ -1,0 +1,74 @@
+@import "../../../../utils/scss-consts/flex-column.scss";
+@import "../../../../utils/scss-consts/font-base.scss";
+@import "../../../../utils/scss-consts/size.scss";
+
+.profile {
+  @extend %flex-column;
+}
+
+.profile__title {
+  margin: 0 auto;
+  width: 500px;
+  text-align: center;
+}
+
+.profile__title:first-child {
+  margin-top: 20px;
+}
+
+.profile__top {
+  display: flex;
+  width: 500px;
+  margin: 0 auto;
+}
+
+.profile__top-fields {
+  @extend %flex-column;
+  padding-bottom: 20px;
+  justify-content: space-between;
+}
+
+.profile__but-save {
+  display: block;
+  @include size(300px, 46px);
+  @include font-base(14px, 17px, 500);
+  background-color: black;
+  margin: 20px auto 0 auto;
+  padding: 0;
+  border: 0;
+  border-radius: 10px;
+  color: white;
+}
+
+.profile__but-save:hover {
+  cursor: pointer;
+}
+
+.profile__but-title {
+  @include font-base(18px, 13px, 500);
+}
+
+.profile__status {
+  @include font-base(18px, 13px, 500);
+  margin: 10px auto 0 auto;
+  color: red;
+  height: 20px;
+  text-align: center;
+}
+
+.profile__info {
+  background-color: #d1f5e6;
+  padding: 20px;
+  width: 500px;
+  margin: 15px auto 20px auto;
+  border-radius: 20px;
+}
+
+.profile__link {
+  @include font-base(18px, 13px, 500);
+  text-decoration: none;
+  margin: 0 auto 20px auto;
+  background-color: rgba(#798fde, 0.66);
+  padding: 7px;
+  border-radius: 5px;
+}

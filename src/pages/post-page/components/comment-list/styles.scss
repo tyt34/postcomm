@@ -1,0 +1,14 @@
+@import "../../../../utils/scss-consts/flex-column.scss";
+@import "../../../../utils/scss-consts/font-base.scss";
+
+.comments {
+  @extend %flex-column;
+  margin: 20px auto 30px auto;
+  width: 500px;
+}
+
+.comments__text {
+  @include font-base(22px, 18px, 500);
+  text-align: center;
+  margin: 0 auto;
+}

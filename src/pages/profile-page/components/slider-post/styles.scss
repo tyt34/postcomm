@@ -1,0 +1,71 @@
+@import "../../../../utils/scss-consts/size.scss";
+@import "../../../../utils/scss-consts/flex-column.scss";
+@import "../../../../utils/scss-consts/font-base.scss";
+
+.carusel {
+  @extend %flex-column;
+  justify-content: center;
+  width: 400px;
+  margin: 0 auto 20px auto;
+  overflow-x: scroll;
+  background-color: #d1ccec;
+  border-radius: 15px;
+}
+
+.carusel__set {
+  width: 400px;
+  margin: 0 auto;
+}
+
+.carusel-big {
+  height: 410px;
+  border-radius: 20px;
+}
+
+.carusel-small {
+  display: flex;
+  height: 30px;
+  border-radius: 5px;
+}
+
+.carusel__img {
+  margin: 0 10px;
+}
+
+.carusel::-webkit-scrollbar {
+  height: 0;
+  background: transparent;
+}
+
+.carusel__text {
+  @include font-base(18px, 13px, 500);
+  margin: 9px auto 0 auto;
+}
+
+.carusel__but {
+  background-color: #d1ccec;
+  @include size(30px, 30px);
+  margin: 8px auto;
+  visibility: hidden;
+}
+
+.carusel__but-open {
+  visibility: visible;
+}
+
+.carusel__but:hover {
+  cursor: pointer;
+}
+
+.carusel__but-img {
+  @include size(30px, 30px);
+}
+
+.carusel__but-img-bot {
+  transform: rotate(180deg);
+}
+
+.carusel-one {
+  height: 100px;
+  border-radius: 10px;
+}

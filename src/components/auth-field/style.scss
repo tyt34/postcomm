@@ -1,0 +1,52 @@
+@import "../../utils/scss-consts/flex-column.scss";
+@import "../../utils/scss-consts/font-base.scss";
+@import "../../utils/scss-consts/size.scss";
+
+.field-log-reg {
+  @extend %flex-column;
+  margin-top: 20px;
+}
+
+.field-log-reg__name {
+  @include font-base(18px, 12px, 500);
+  color: #a0a0a0;
+  width: calc(100% - 60px);
+  margin: 0 auto;
+}
+
+.field-log-reg__input {
+  @include font-base(18px, 15px, 500);
+  @include size(calc(100% - 85px), 46px);
+  margin: 10px auto 0 auto;
+  background: #f9f9f9;
+  border-radius: 8px;
+  border: #f9f9f9;
+  padding: 0 15px;
+}
+
+@media screen and (min-width: 768px) {
+  .field-log-reg {
+    width: calc(100% - 372px);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .field-log-reg__name {
+    margin-left: 0;
+  }
+
+  .field-log-reg__input {
+    box-sizing: border-box;
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .field-log-reg {
+    width: calc(100% - 884px);
+  }
+
+  .field-log-reg__input {
+    width: 100%;
+  }
+}
