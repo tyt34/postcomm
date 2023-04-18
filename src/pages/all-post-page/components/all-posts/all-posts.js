@@ -1,50 +1,50 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { getMesUser, getAvaForPrevPost } from "../../../../utils/api";
-import def_ava from "../../../../images/def_avatar.png";
-import "./style.scss";
-import { PrewPost } from "../../../../components/prew-post";
+import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
+import { getMesUser, getAvaForPrevPost } from '../../../../utils/api'
+import def_ava from '../../../../images/def_avatar.png'
+import './style.scss'
+import { PrewPost } from '../../../../components/prew-post'
 
 export const AllPosts = () => {
-  let { nameUser } = useParams();
-  const [messageForProfile, setMessageForProfile] = useState("");
-  const [avatarProfile, setAvatarProfile] = useState(def_ava);
-  const [surnameProfile, setSurnameProfile] = useState("");
-  const [emailProfile, setEmailProfile] = useState("");
-  const [phoneProfile, setPhoneProfile] = useState("");
-  const [companyProfile, setCompanyProfile] = useState("");
-  const [jobpostProfile, setJobpostProfile] = useState("");
+  let { nameUser } = useParams()
+  const [messageForProfile, setMessageForProfile] = useState('')
+  const [avatarProfile, setAvatarProfile] = useState(def_ava)
+  const [surnameProfile, setSurnameProfile] = useState('')
+  const [emailProfile, setEmailProfile] = useState('')
+  const [phoneProfile, setPhoneProfile] = useState('')
+  const [companyProfile, setCompanyProfile] = useState('')
+  const [jobpostProfile, setJobpostProfile] = useState('')
 
   useEffect(() => {
     getMesUser(nameUser)
       .then((data) => {
         if (data.status) {
-          if (data.status === "ok") {
-            setMessageForProfile(data.data);
+          if (data.status === 'ok') {
+            setMessageForProfile(data.data)
           }
         }
       })
       .catch((err) => {
-        console.log("Err#1 ", err);
-      });
-  }, []);
+        console.log('Err#1 ', err)
+      })
+  }, [])
 
   useEffect(() => {
     if (messageForProfile[0]) {
       getAvaForPrevPost(messageForProfile[0].owner)
         .then((user) => {
-          setAvatarProfile(user.avatar);
-          setSurnameProfile(user.surname);
-          setEmailProfile(user.email);
-          setPhoneProfile(user.phone);
-          setCompanyProfile(user.company);
-          setJobpostProfile(user.jobpost);
+          setAvatarProfile(user.avatar)
+          setSurnameProfile(user.surname)
+          setEmailProfile(user.email)
+          setPhoneProfile(user.phone)
+          setCompanyProfile(user.company)
+          setJobpostProfile(user.jobpost)
         })
         .catch((err) => {
-          console.log("Err#2 ", err);
-        });
+          console.log('Err#2 ', err)
+        })
     }
-  }, [messageForProfile]);
+  }, [messageForProfile])
 
   return (
     <section className="all">
@@ -81,5 +81,5 @@ export const AllPosts = () => {
         )}
       </section>
     </section>
-  );
-};
+  )
+}

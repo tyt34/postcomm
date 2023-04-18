@@ -1,88 +1,88 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 import {
   getUser,
   getMesForProfile,
-  updateUser,
-} from "../../../../utils/api.js";
-import { Avatar } from "../avatar/avatar.js";
-import "./styles.scss";
-import Field from "../field/field.js";
-import SliderPost from "../slider-post/slider-post.js";
-import { CreatePost } from "../create-post/create-post.js";
-import PopupAva from "../popup-ava/popup-ava.js";
+  updateUser
+} from '../../../../utils/api.js'
+import { Avatar } from '../avatar/avatar.js'
+import './styles.scss'
+import Field from '../field/field.js'
+import SliderPost from '../slider-post/slider-post.js'
+import { CreatePost } from '../create-post/create-post.js'
+import PopupAva from '../popup-ava/popup-ava.js'
 
 export const Profile = () => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const [nameProfile, setNameProfile] = useState("Подождите...");
-  const [surnameProfile, setSurnameProfile] = useState("Подождите...");
-  const [emailProfile, setEmailProfile] = useState("Подождите...");
-  const [phoneProfile, setPhoneProfile] = useState("Подождите...");
-  const [companyProfile, setCompanyProfile] = useState("Подождите...");
-  const [jobPostProfile, setJobPostProfile] = useState("Подождите...");
-  const [avatarProfile, setAvatarProfile] = useState("");
-  const [popupOpen, setPopupOpen] = useState(false);
-  const [statusFetch, setStatusFetch] = useState("");
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const [nameProfile, setNameProfile] = useState('Подождите...')
+  const [surnameProfile, setSurnameProfile] = useState('Подождите...')
+  const [emailProfile, setEmailProfile] = useState('Подождите...')
+  const [phoneProfile, setPhoneProfile] = useState('Подождите...')
+  const [companyProfile, setCompanyProfile] = useState('Подождите...')
+  const [jobPostProfile, setJobPostProfile] = useState('Подождите...')
+  const [avatarProfile, setAvatarProfile] = useState('')
+  const [popupOpen, setPopupOpen] = useState(false)
+  const [statusFetch, setStatusFetch] = useState('')
 
   useEffect(() => {
     getUser()
       .then((user) => {
         let { name, surname, email, phone, company, jobpost, avatar } =
-          user;
-        setNameProfile(name);
-        setSurnameProfile(surname);
-        setEmailProfile(email);
-        setPhoneProfile(phone);
-        setCompanyProfile(company);
-        setJobPostProfile(jobpost);
-        localStorage.setItem("avatar", avatar);
-        setAvatarProfile(avatar);
+          user
+        setNameProfile(name)
+        setSurnameProfile(surname)
+        setEmailProfile(email)
+        setPhoneProfile(phone)
+        setCompanyProfile(company)
+        setJobPostProfile(jobpost)
+        localStorage.setItem('avatar', avatar)
+        setAvatarProfile(avatar)
       })
       .catch((err) => {
-        console.log("Err#11 ", err);
-      });
+        console.log('Err#11 ', err)
+      })
 
     getMesForProfile()
       .then((data) => {
         if (data.status) {
-          if (data.status === "ok") {
-            dispatch({ type: "CREATE_ARR_POST", payload: data.data });
+          if (data.status === 'ok') {
+            dispatch({ type: 'CREATE_ARR_POST', payload: data.data })
           }
         }
       })
       .catch((err) => {
-        console.log("Err#12 ", err);
-      });
-  }, []);
+        console.log('Err#12 ', err)
+      })
+  }, [])
 
   function handleChangeName(e) {
-    setNameProfile(e.target.value);
+    setNameProfile(e.target.value)
   }
 
   function handleChangeSurname(e) {
-    setSurnameProfile(e.target.value);
+    setSurnameProfile(e.target.value)
   }
 
   function handleChangeEmail(e) {
-    setEmailProfile(e.target.value);
+    setEmailProfile(e.target.value)
   }
 
   function handleChangePhone(e) {
-    setPhoneProfile(e.target.value);
+    setPhoneProfile(e.target.value)
   }
 
   function handleChangeСompany(e) {
-    setCompanyProfile(e.target.value);
+    setCompanyProfile(e.target.value)
   }
 
   function handleChangePost(e) {
-    setJobPostProfile(e.target.value);
+    setJobPostProfile(e.target.value)
   }
 
   function handeSaveDataProfile() {
-    setStatusFetch("Идет отправка данных...");
+    setStatusFetch('Идет отправка данных...')
     updateUser(
       nameProfile,
       surnameProfile,
@@ -92,34 +92,34 @@ export const Profile = () => {
       jobPostProfile
     )
       .then((data) => {
-        if (data.status === "bad") {
-          throw data;
+        if (data.status === 'bad') {
+          throw data
         } else if (data.error) {
-          throw data;
+          throw data
         } else {
-          setStatusFetch("Данные изменены");
-          setTimeout(clearStatusFetch, 5000);
-          localStorage.setItem("name", nameProfile);
-          localStorage.setItem("surname", surnameProfile);
+          setStatusFetch('Данные изменены')
+          setTimeout(clearStatusFetch, 5000)
+          localStorage.setItem('name', nameProfile)
+          localStorage.setItem('surname', surnameProfile)
         }
       })
       .catch((err) => {
-        console.log("Err#13 ", err);
+        console.log('Err#13 ', err)
         if (err.message) {
-          setStatusFetch(err.message);
-          setTimeout(clearStatusFetch, 5000);
+          setStatusFetch(err.message)
+          setTimeout(clearStatusFetch, 5000)
         }
-      });
+      })
   }
 
   function clearStatusFetch() {
-    setStatusFetch("");
+    setStatusFetch('')
   }
 
   function handelLinkAllPosts(e) {
-    e.preventDefault();
-    dispatch({ type: "CREATE_PAGE_ALL_POSTS", payload: nameProfile });
-    navigate("/allposts/" + nameProfile);
+    e.preventDefault()
+    dispatch({ type: 'CREATE_PAGE_ALL_POSTS', payload: nameProfile })
+    navigate('/allposts/' + nameProfile)
   }
 
   return (
@@ -141,7 +141,7 @@ export const Profile = () => {
               value={nameProfile}
               setValue={setNameProfile}
               onChange={handleChangeName}
-              placeHolder={"Имя пользователя"}
+              placeHolder={'Имя пользователя'}
               mixClass="top"
             />
             <Field
@@ -149,7 +149,7 @@ export const Profile = () => {
               value={surnameProfile}
               setValue={setSurnameProfile}
               onChange={handleChangeSurname}
-              placeHolder={"Псевдоним пользователя"}
+              placeHolder={'Псевдоним пользователя'}
               mixClass="top"
             />
           </section>
@@ -159,28 +159,28 @@ export const Profile = () => {
           value={emailProfile}
           setValue={setEmailProfile}
           onChange={handleChangeEmail}
-          placeHolder={"Email пользователя"}
+          placeHolder={'Email пользователя'}
         />
         <Field
           name="Телефонный номер"
           value={phoneProfile}
           setValue={setPhoneProfile}
           onChange={handleChangePhone}
-          placeHolder={"Номер пользователя"}
+          placeHolder={'Номер пользователя'}
         />
         <Field
           name="Компания"
           value={companyProfile}
           setValue={setCompanyProfile}
           onChange={handleChangeСompany}
-          placeHolder={"Компания пользователя"}
+          placeHolder={'Компания пользователя'}
         />
         <Field
           name="Должность"
           value={jobPostProfile}
           setValue={setJobPostProfile}
           onChange={handleChangePost}
-          placeHolder={"Должность пользователя"}
+          placeHolder={'Должность пользователя'}
         />
         <button
           className="profile__but-save"
@@ -196,7 +196,7 @@ export const Profile = () => {
 
       <a
         className="profile__link"
-        href={"#/allposts/" + nameProfile}
+        href={'#/allposts/' + nameProfile}
         onClick={handelLinkAllPosts}
       >
         Перейти на страницу всех постов
@@ -204,7 +204,7 @@ export const Profile = () => {
 
       <SliderPost avatarProfile={avatarProfile} />
       <h2 className="profile__title">
-        {" "}
+        {' '}
         Форма для создания нового поста
       </h2>
       <CreatePost />
@@ -214,5 +214,5 @@ export const Profile = () => {
         setAvatarProfile={setAvatarProfile}
       />
     </section>
-  );
-};
+  )
+}

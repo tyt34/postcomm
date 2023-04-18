@@ -1,79 +1,79 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import Footer from "../../components/footer/footer";
-import { reg } from "../../utils/api.js";
+import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import Footer from '../../components/footer/footer'
+import { reg } from '../../utils/api.js'
 import {
   textAuthIntro,
   textAuthDescr,
-  timeForShowErr,
-} from "../../utils/consts.js";
-import "./style.scss";
-import { AuthBut, AuthField } from "../../components";
+  timeForShowErr
+} from '../../utils/consts.js'
+import './style.scss'
+import { AuthBut, AuthField } from '../../components'
 
 export const Reg = () => {
-  const navigate = useNavigate();
-  const [messageErr, setMessageErr] = useState("");
-  const [name, setName] = useState("");
-  const [surname, setSurname] = useState("");
-  const [pass, setPass] = useState("");
-  const [button, setButton] = React.useState(false);
+  const navigate = useNavigate()
+  const [messageErr, setMessageErr] = useState('')
+  const [name, setName] = useState('')
+  const [surname, setSurname] = useState('')
+  const [pass, setPass] = useState('')
+  const [button, setButton] = React.useState(false)
 
   function handleChangeName(e) {
-    setName(e.target.value);
+    setName(e.target.value)
   }
 
   function handleChangeSurname(e) {
-    setSurname(e.target.value);
+    setSurname(e.target.value)
   }
 
   function handleChangePass(e) {
-    setPass(e.target.value);
+    setPass(e.target.value)
   }
 
   function clearStatusFetch() {
-    setMessageErr("");
+    setMessageErr('')
   }
 
   useEffect(() => {
-    if (name === "" || surname === "" || pass === "") {
-      setButton(false);
+    if (name === '' || surname === '' || pass === '') {
+      setButton(false)
     } else {
-      setButton(true);
+      setButton(true)
     }
-  }, [name, surname, pass]);
+  }, [name, surname, pass])
 
   function handleReg(e) {
-    e.preventDefault();
+    e.preventDefault()
     reg(name, surname, pass)
       .then((data) => {
-        if (data.status !== "ok") {
-          throw data;
+        if (data.status !== 'ok') {
+          throw data
         } else {
-          localStorage.clear();
-          localStorage.setItem("jwt", data.token);
-          localStorage.setItem("name", data.name);
-          localStorage.setItem("surname", data.surname);
-          navigate("/profile");
+          localStorage.clear()
+          localStorage.setItem('jwt', data.token)
+          localStorage.setItem('name', data.name)
+          localStorage.setItem('surname', data.surname)
+          navigate('/profile')
         }
       })
       .catch((err) => {
         if (err.message) {
-          setMessageErr(err.message);
-          setTimeout(clearStatusFetch, timeForShowErr);
+          setMessageErr(err.message)
+          setTimeout(clearStatusFetch, timeForShowErr)
         }
-      });
+      })
   }
 
   function handleLinkLog(e) {
-    e.preventDefault();
-    navigate("/log");
+    e.preventDefault()
+    navigate('/log')
   }
 
   return (
     <section className="log">
       <p className="reg__title">{textAuthIntro}</p>
       <p className="reg__title">{textAuthDescr}</p>
-      <form name={"reg"} className="reg">
+      <form name={'reg'} className="reg">
         <AuthField
           name="Имя"
           idName="name"
@@ -107,8 +107,8 @@ export const Reg = () => {
         textIntro="Уже зарегистрированы? Тогда"
         handleLink={handleLinkLog}
         textEnter="войдите"
-        href={"/log"}
+        href={'/log'}
       />
     </section>
-  );
-};
+  )
+}

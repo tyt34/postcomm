@@ -1,11 +1,11 @@
-import "./style.scss";
+import './style.scss'
 
 export const AuthField = ({
   name,
   idName,
   typeInput,
   value,
-  onChange,
+  onChange
 }) => {
   return (
     <>
@@ -24,5 +24,5 @@ export const AuthField = ({
         />
       </div>
     </>
-  );
-};
+  )
+}

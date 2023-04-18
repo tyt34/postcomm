@@ -1,62 +1,62 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import def_ava from "../../../../images/def_avatar.png";
-import { createComment } from "../../../../utils/api.js";
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import def_ava from '../../../../images/def_avatar.png'
+import { createComment } from '../../../../utils/api.js'
 
-import "./styles.scss";
+import './styles.scss'
 
 export const PopupComment = ({ isOpen, setPopupOpen, idPost }) => {
-  const dispatch = useDispatch();
-  const infoAboutNewComment = useSelector((state) => state.check);
-  const [text, setText] = useState("");
-  const [avatar, setAvatar] = useState("");
-  const [button, setButton] = useState(false);
+  const dispatch = useDispatch()
+  const infoAboutNewComment = useSelector((state) => state.check)
+  const [text, setText] = useState('')
+  const [avatar, setAvatar] = useState('')
+  const [button, setButton] = useState(false)
 
   useEffect(() => {
-    if (text === "") {
-      setButton(false);
+    if (text === '') {
+      setButton(false)
     } else {
-      setButton(true);
+      setButton(true)
     }
-  }, [text]);
+  }, [text])
 
   useEffect(() => {
-    if (localStorage.avatar === "default") {
-      setAvatar(def_ava);
+    if (localStorage.avatar === 'default') {
+      setAvatar(def_ava)
     } else {
-      setAvatar(localStorage.avatar);
+      setAvatar(localStorage.avatar)
     }
-  }, [localStorage.avatar]);
+  }, [localStorage.avatar])
 
   function handleClosePopup() {
-    setPopupOpen(false);
+    setPopupOpen(false)
   }
 
   function handeSendComment(e) {
-    e.preventDefault();
+    e.preventDefault()
     createComment(text, idPost)
       .then((data) => {
         if (data.status) {
-          if (data.status === "ok") {
+          if (data.status === 'ok') {
             dispatch({
-              type: "CHANGE_INFO_NEW_COM",
-              payload: infoAboutNewComment,
-            });
-            setPopupOpen(false);
-            setText("");
+              type: 'CHANGE_INFO_NEW_COM',
+              payload: infoAboutNewComment
+            })
+            setPopupOpen(false)
+            setText('')
           }
         }
       })
       .catch((err) => {
-        console.log("Err#6 ", err);
-      });
+        console.log('Err#6 ', err)
+      })
   }
 
   return (
     <div
       id="popup-comment"
       className={
-        isOpen ? "popup-comment popup-comment_open" : "popup-comment"
+        isOpen ? 'popup-comment popup-comment_open' : 'popup-comment'
       }
     >
       <div className="popup-comment__container">
@@ -90,7 +90,7 @@ export const PopupComment = ({ isOpen, setPopupOpen, idPost }) => {
             placeholder="Поле для ввода комментария"
             value={text}
             onChange={(e) => {
-              setText(e.target.value);
+              setText(e.target.value)
             }}
           ></textarea>
 
@@ -98,11 +98,11 @@ export const PopupComment = ({ isOpen, setPopupOpen, idPost }) => {
             id="popup-comment__save"
             className={
               button
-                ? "popup-comment__save"
-                : "popup-comment__save popup-comment__save-close"
+                ? 'popup-comment__save'
+                : 'popup-comment__save popup-comment__save-close'
             }
             type="submit"
-            disabled={button ? "" : "disabled"}
+            disabled={button ? '' : 'disabled'}
             onClick={handeSendComment}
           >
             Отправить
@@ -110,5 +110,5 @@ export const PopupComment = ({ isOpen, setPopupOpen, idPost }) => {
         </form>
       </div>
     </div>
-  );
-};
+  )
+}

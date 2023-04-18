@@ -1,34 +1,34 @@
-import React, { useEffect, useState } from "react";
-import def_ava from "../../../../images/def_avatar.png";
-import { getTimeDay, getTimeClock } from "../../../../utils/consts.js";
-import { getAvaForPrevPost } from "../../../../utils/api.js";
+import React, { useEffect, useState } from 'react'
+import def_ava from '../../../../images/def_avatar.png'
+import { getTimeDay, getTimeClock } from '../../../../utils/consts.js'
+import { getAvaForPrevPost } from '../../../../utils/api.js'
 
 export const OneComment = ({ comment }) => {
-  const [timeDay, setTimeDay] = useState(null);
-  const [timeClock, setTimeClock] = useState(null);
-  const [name, setName] = useState(null);
-  const [surname, setSurname] = useState(null);
-  const [avatar, setAvatar] = useState(def_ava);
+  const [timeDay, setTimeDay] = useState(null)
+  const [timeClock, setTimeClock] = useState(null)
+  const [name, setName] = useState(null)
+  const [surname, setSurname] = useState(null)
+  const [avatar, setAvatar] = useState(def_ava)
 
   useEffect(() => {
-    const d = comment.dateText.split(" ");
-    setTimeDay(getTimeDay(d));
-    setTimeClock(getTimeClock(d));
+    const d = comment.dateText.split(' ')
+    setTimeDay(getTimeDay(d))
+    setTimeClock(getTimeClock(d))
 
     getAvaForPrevPost(comment.owner)
       .then((user) => {
-        setName(user.name);
-        setSurname(user.surname);
-        if (user.avatar === "default") {
-          setAvatar(def_ava);
+        setName(user.name)
+        setSurname(user.surname)
+        if (user.avatar === 'default') {
+          setAvatar(def_ava)
         } else {
-          setAvatar(user.avatar);
+          setAvatar(user.avatar)
         }
       })
       .catch((err) => {
-        console.log("Err#4 ", err);
-      });
-  }, [comment]);
+        console.log('Err#4 ', err)
+      })
+  }, [comment])
 
   return (
     <section className="prew prew-comment">
@@ -48,5 +48,5 @@ export const OneComment = ({ comment }) => {
         <p className="prew__full-text">{comment.comment}</p>
       </section>
     </section>
-  );
-};
+  )
+}

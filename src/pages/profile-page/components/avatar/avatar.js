@@ -1,30 +1,30 @@
-import React, { useEffect } from "react";
-import def_ava from "../../../../images/def_avatar.png";
-import "./styles.scss";
+import React, { useEffect } from 'react'
+import def_ava from '../../../../images/def_avatar.png'
+import './styles.scss'
 
 export const Avatar = ({
   setPopupOpen,
   avatarLink,
-  setAvatarProfile,
+  setAvatarProfile
 }) => {
   useEffect(() => {
-    if (avatarLink === "default") {
-      setAvatarProfile(def_ava);
+    if (avatarLink === 'default') {
+      setAvatarProfile(def_ava)
     } else {
-      setAvatarProfile(avatarLink);
+      setAvatarProfile(avatarLink)
     }
-  }, [avatarLink]);
+  }, [avatarLink])
 
   function handleEditAvatarClick() {
-    setPopupOpen(true);
-    window.addEventListener("keydown", closeOnEsc);
+    setPopupOpen(true)
+    window.addEventListener('keydown', closeOnEsc)
   }
 
   const closeOnEsc = (e) => {
     if (e.keyCode === 27) {
-      setPopupOpen(false);
+      setPopupOpen(false)
     }
-  };
+  }
 
   return (
     <div className="avatar">
@@ -37,5 +37,5 @@ export const Avatar = ({
         <button className="avatar__edit" type="button"></button>
       </div>
     </div>
-  );
-};
+  )
+}

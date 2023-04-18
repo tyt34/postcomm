@@ -1,30 +1,30 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import def_ava from "../../images/def_avatar.png";
-import { getTimeDay, getTimeClock } from "../../utils/consts.js";
-import "./style.scss";
+import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import def_ava from '../../images/def_avatar.png'
+import { getTimeDay, getTimeClock } from '../../utils/consts.js'
+import './style.scss'
 
 export const PrewPost = ({ info, avatarProfile }) => {
-  const navigate = useNavigate();
-  const { header, text, dateText } = info;
-  const [avatar, setAvatar] = useState(def_ava);
-  const [timeDay, setTimeDay] = useState(null);
-  const [timeClock, setTimeClock] = useState(null);
+  const navigate = useNavigate()
+  const { header, text, dateText } = info
+  const [avatar, setAvatar] = useState(def_ava)
+  const [timeDay, setTimeDay] = useState(null)
+  const [timeClock, setTimeClock] = useState(null)
 
   useEffect(() => {
-    const d = dateText.split(" ");
-    setTimeDay(getTimeDay(d));
-    setTimeClock(getTimeClock(d));
-  }, [info, dateText]);
+    const d = dateText.split(' ')
+    setTimeDay(getTimeDay(d))
+    setTimeClock(getTimeClock(d))
+  }, [info, dateText])
 
   useEffect(() => {
-    if (avatarProfile !== "default") {
-      setAvatar(avatarProfile);
+    if (avatarProfile !== 'default') {
+      setAvatar(avatarProfile)
     }
-  }, [avatarProfile]);
+  }, [avatarProfile])
 
   function handleLinkPost() {
-    navigate("/post/" + info._id);
+    navigate('/post/' + info._id)
   }
 
   return (
@@ -45,5 +45,5 @@ export const PrewPost = ({ info, avatarProfile }) => {
         </section>
       </section>
     </>
-  );
-};
+  )
+}

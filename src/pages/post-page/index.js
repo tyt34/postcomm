@@ -1,1 +1,1 @@
-export * from "./post-page.js";
+export * from './post-page.js'

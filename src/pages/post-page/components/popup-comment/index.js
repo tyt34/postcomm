@@ -1,1 +1,1 @@
-export * from "./popup-comment";
+export * from './popup-comment'

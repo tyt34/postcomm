@@ -1,1 +1,1 @@
-export * from "./prew-post";
+export * from './prew-post'

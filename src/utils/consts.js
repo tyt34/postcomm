@@ -5,21 +5,22 @@ const textAuthDescr = `Тут можно создавать и комменти�
 
 function getTimeDay(arr, len) {
   if (len === 'long') {
-    return arr[2]+'/'+arr[1]+'/'+arr[3][2]+arr[3][3]
-  } else { // short
-    return arr[2]+'/'+arr[1][0]+'/'+arr[3][2]+arr[3][3]
+    return arr[2] + '/' + arr[1] + '/' + arr[3][2] + arr[3][3]
+  } else {
+    // short
+    return arr[2] + '/' + arr[1][0] + '/' + arr[3][2] + arr[3][3]
   }
 }
 
 function getTimeClock(arr) {
-  return arr[4].split(':')[0]+'-'+arr[4].split(':')[1]
+  return arr[4].split(':')[0] + '-' + arr[4].split(':')[1]
 }
 
 const timeForShowErr = 4145
 
 function getDataUTC() {
-  let date = new Date();
-  let dateUTC =  Date.UTC(
+  let date = new Date()
+  let dateUTC = Date.UTC(
     date.getUTCFullYear(),
     date.getUTCMonth(),
     date.getUTCDate(),

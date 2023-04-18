@@ -1,1 +1,1 @@
-export * from "./prew-user";
+export * from './prew-user'

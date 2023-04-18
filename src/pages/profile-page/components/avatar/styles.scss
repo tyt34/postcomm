@@ -1,4 +1,4 @@
-@import "../../../../utils/scss-consts/size.scss";
+@import '../../../../utils/scss-consts/size.scss';
 
 .avatar {
   display: flex;
@@ -41,7 +41,7 @@
 }
 
 .avatar__edit {
-  background: url("../../../../images/edit-img-profile.svg") 100% 100%
+  background: url('../../../../images/edit-img-profile.svg') 100% 100%
     no-repeat;
   position: absolute;
   top: 50%;

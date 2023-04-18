@@ -1,15 +1,15 @@
-import React from "react";
-import "./styles.scss";
+import React from 'react'
+import './styles.scss'
 
 export const Field = ({
   name,
   value,
   onChange,
   placeHolder,
-  mixClass,
+  mixClass
 }) => {
   return (
-    <div className={mixClass ? "field field-top" : "field"}>
+    <div className={mixClass ? 'field field-top' : 'field'}>
       <p className="field__name">{name}</p>
       <input
         value={value}
@@ -24,13 +24,13 @@ export const Field = ({
         required
       />
     </div>
-  );
-};
+  )
+}
 
 export default React.memo(Field, (prev, next) => {
   if (prev.value !== next.value) {
-    return false;
+    return false
   } else {
-    return true;
+    return true
   }
-});
+})

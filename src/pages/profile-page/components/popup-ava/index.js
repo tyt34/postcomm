@@ -1,1 +1,1 @@
-export * from "./popup-ava";
+export * from './popup-ava'

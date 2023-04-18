@@ -1,1 +1,1 @@
-export * from "./auth-but";
+export * from './auth-but'

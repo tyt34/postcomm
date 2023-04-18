@@ -1,66 +1,66 @@
-import React, { useEffect, useState } from "react";
-import disableScroll from "disable-scroll";
-import arrow from "../../../../images/arrow.png";
-import { useSelector } from "react-redux";
-import { PrewPost } from "../../../../components";
+import React, { useEffect, useState } from 'react'
+import disableScroll from 'disable-scroll'
+import arrow from '../../../../images/arrow.png'
+import { useSelector } from 'react-redux'
+import { PrewPost } from '../../../../components'
 
-import "./styles.scss";
+import './styles.scss'
 
 function SliderPost({ avatarProfile }) {
-  const storePosts = useSelector((store) => store.postForSlider);
-  const [mainNum, setMainNum] = useState(0);
-  const [maxNum, setMaxNum] = useState(null);
-  const [messTop, setMessTop] = useState(null);
-  const [messMid, setMessMid] = useState(null);
-  const [messBot, setMessBot] = useState(null);
-  const [items, setItems] = useState([]);
+  const storePosts = useSelector((store) => store.postForSlider)
+  const [mainNum, setMainNum] = useState(0)
+  const [maxNum, setMaxNum] = useState(null)
+  const [messTop, setMessTop] = useState(null)
+  const [messMid, setMessMid] = useState(null)
+  const [messBot, setMessBot] = useState(null)
+  const [items, setItems] = useState([])
 
   useEffect(() => {
-    setItems(storePosts);
+    setItems(storePosts)
     if (storePosts.length === 1) {
-      setMessTop(storePosts[0]);
+      setMessTop(storePosts[0])
     } else if (storePosts.length === 2) {
-      setMessTop(storePosts[0]);
-      setMessMid(storePosts[1]);
+      setMessTop(storePosts[0])
+      setMessMid(storePosts[1])
     } else if (storePosts.length !== 0) {
-      setMessTop(storePosts[mainNum]);
-      setMessMid(storePosts[mainNum + 1]);
-      setMessBot(storePosts[mainNum + 2]);
-      setMaxNum(storePosts.length);
+      setMessTop(storePosts[mainNum])
+      setMessMid(storePosts[mainNum + 1])
+      setMessBot(storePosts[mainNum + 2])
+      setMaxNum(storePosts.length)
     }
-  }, [storePosts]);
+  }, [storePosts])
 
   useEffect(() => {
-    setMessTop(storePosts[mainNum]);
-    setMessMid(storePosts[mainNum + 1]);
-    setMessBot(storePosts[mainNum + 2]);
-  }, [mainNum, maxNum]);
+    setMessTop(storePosts[mainNum])
+    setMessMid(storePosts[mainNum + 1])
+    setMessBot(storePosts[mainNum + 2])
+  }, [mainNum, maxNum])
 
   function prevNum() {
     if (mainNum === 0) {
-      setMainNum(maxNum - 3);
+      setMainNum(maxNum - 3)
     } else {
-      setMainNum(mainNum - 1);
+      setMainNum(mainNum - 1)
     }
   }
 
   function nextNum() {
     if (mainNum + 3 === maxNum) {
-      setMainNum(0);
+      setMainNum(0)
     } else {
-      setMainNum(mainNum + 1);
+      setMainNum(mainNum + 1)
     }
   }
 
   const handleWheel = (e) => {
     if (storePosts.length > 3) {
       if (e.deltaY > 0) {
-        nextNum();
+        nextNum()
       } else {
-        prevNum();
+        prevNum()
       }
     }
-  };
+  }
 
   return (
     <section
@@ -68,13 +68,13 @@ function SliderPost({ avatarProfile }) {
       tabIndex="0"
       onWheel={handleWheel}
       onMouseEnter={(e) => {
-        disableScroll.on();
+        disableScroll.on()
       }} // чтобы страница не прокручивалась при наведение на компонент карусель
       onMouseLeave={(e) => {
-        disableScroll.off();
+        disableScroll.off()
       }} // чтобы страница не прокручивалась при наведение на компонент карусель
       onClick={(e) => {
-        disableScroll.off();
+        disableScroll.off()
       }} // чтобы при клике на сообщение в слайдере не отключалась колесо мыши
     >
       {items.length === 0 ? (
@@ -97,8 +97,8 @@ function SliderPost({ avatarProfile }) {
           <button
             className={
               storePosts.length > 3
-                ? "carusel__but carusel__but-top carusel__but-open"
-                : "carusel__but carusel__but-top"
+                ? 'carusel__but carusel__but-top carusel__but-open'
+                : 'carusel__but carusel__but-top'
             }
             onClick={prevNum}
           >
@@ -110,8 +110,8 @@ function SliderPost({ avatarProfile }) {
           <button
             className={
               storePosts.length > 3
-                ? "carusel__but carusel__but-bot carusel__but-open"
-                : "carusel__but carusel__but-bot"
+                ? 'carusel__but carusel__but-bot carusel__but-open'
+                : 'carusel__but carusel__but-bot'
             }
             onClick={nextNum}
           >
@@ -123,7 +123,7 @@ function SliderPost({ avatarProfile }) {
         </section>
       )}
     </section>
-  );
+  )
 }
 
-export default SliderPost;
+export default SliderPost
