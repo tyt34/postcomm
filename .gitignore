@@ -8,7 +8,6 @@
 .env.test.local
 .env.production.local
 .env
-/src/Reg
 
 npm-debug.log*
 yarn-debug.log*
