@@ -3,10 +3,9 @@ import disableScroll from 'disable-scroll'
 import arrow from '../../../../images/arrow.png'
 import { useSelector } from 'react-redux'
 import { PrewPost } from '../../../../components'
-
 import './styles.scss'
 
-function SliderPost({ avatarProfile }) {
+export const SliderPost = ({ avatarProfile }) => {
   const storePosts = useSelector((store) => store.postForSlider)
   const [mainNum, setMainNum] = useState(0)
   const [maxNum, setMaxNum] = useState(null)
@@ -36,7 +35,7 @@ function SliderPost({ avatarProfile }) {
     setMessBot(storePosts[mainNum + 2])
   }, [mainNum, maxNum])
 
-  function prevNum() {
+  const prevNum = () => {
     if (mainNum === 0) {
       setMainNum(maxNum - 3)
     } else {
@@ -44,7 +43,7 @@ function SliderPost({ avatarProfile }) {
     }
   }
 
-  function nextNum() {
+  const nextNum = () => {
     if (mainNum + 3 === maxNum) {
       setMainNum(0)
     } else {
@@ -118,6 +117,7 @@ function SliderPost({ avatarProfile }) {
             <img
               className="carusel__but-img carusel__but-img-bot"
               src={arrow}
+              alt="icon carusel button"
             />
           </button>
         </section>
@@ -125,5 +125,3 @@ function SliderPost({ avatarProfile }) {
     </section>
   )
 }
-
-export default SliderPost

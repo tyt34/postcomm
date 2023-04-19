@@ -1,4 +1,4 @@
-import { getDataUTC } from './consts.js'
+import { getDataUTC } from '../utils'
 
 let url
 const API_URL = process.env.REACT_APP_API

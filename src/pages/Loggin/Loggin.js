@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import Footer from '../../components/footer/footer'
-import { log } from '../../utils/api.js'
+import { AuthBut, AuthField, Footer } from '../../components'
+import { log } from '../../utils'
 import {
-  textAuthIntro,
+  routerConfig,
   textAuthDescr,
+  textAuthIntro,
   timeForShowErr
-} from '../../utils/consts.js'
-import { AuthBut, AuthField } from '../../components'
-
+} from '../../constants'
 import './style.scss'
 
 export const Loggin = () => {
@@ -20,11 +19,11 @@ export const Loggin = () => {
   const [button, setButton] = useState(false)
   const [logErr, setLogErr] = useState('')
 
-  function handleChangeName(e) {
+  const handleChangeName = (e) => {
     setName(e.target.value)
   }
 
-  function handleChangePass(e) {
+  const handleChangePass = (e) => {
     setPass(e.target.value)
   }
 
@@ -36,7 +35,7 @@ export const Loggin = () => {
     }
   }, [name, pass])
 
-  function handleLog(e) {
+  const handleLog = (e) => {
     e.preventDefault()
     log(name, pass)
       .then((data) => {
@@ -48,7 +47,7 @@ export const Loggin = () => {
           localStorage.setItem('jwt', data.token)
           localStorage.setItem('name', data.user.name)
           localStorage.setItem('surname', data.user.surname)
-          navigate('/profile')
+          navigate(routerConfig.profile.url)
         }
       })
       .catch((err) => {
@@ -60,13 +59,13 @@ export const Loggin = () => {
       })
   }
 
-  function clearStatusFetch() {
+  const clearStatusFetch = () => {
     setLogErr('')
   }
 
-  function handleLinkReg(e) {
+  const handleLinkReg = (e) => {
     e.preventDefault()
-    navigate('/reg')
+    navigate(routerConfig.reg.url)
   }
 
   return (

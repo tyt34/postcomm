@@ -1,13 +1,7 @@
-import React from 'react'
+import React, { memo } from 'react'
 import './styles.scss'
 
-export const Field = ({
-  name,
-  value,
-  onChange,
-  placeHolder,
-  mixClass
-}) => {
+const Field = ({ name, value, onChange, placeHolder, mixClass }) => {
   return (
     <div className={mixClass ? 'field field-top' : 'field'}>
       <p className="field__name">{name}</p>
@@ -27,7 +21,7 @@ export const Field = ({
   )
 }
 
-export default React.memo(Field, (prev, next) => {
+export default memo(Field, (prev, next) => {
   if (prev.value !== next.value) {
     return false
   } else {

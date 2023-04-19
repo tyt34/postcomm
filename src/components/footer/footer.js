@@ -1,6 +1,6 @@
 import './style.scss'
 
-function Footer({ textIntro, handleLink, textEnter, href }) {
+export const Footer = ({ textIntro, handleLink, textEnter, href }) => {
   return (
     <p className="footer__intro">
       {textIntro}
@@ -11,5 +11,3 @@ function Footer({ textIntro, handleLink, textEnter, href }) {
     </p>
   )
 }
-
-export default Footer

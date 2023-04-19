@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { createComment } from '../../../../utils'
 import def_ava from '../../../../images/def_avatar.png'
-import { createComment } from '../../../../utils/api.js'
-
 import './styles.scss'
 
 export const PopupComment = ({ isOpen, setPopupOpen, idPost }) => {
@@ -28,11 +27,11 @@ export const PopupComment = ({ isOpen, setPopupOpen, idPost }) => {
     }
   }, [localStorage.avatar])
 
-  function handleClosePopup() {
+  const handleClosePopup = () => {
     setPopupOpen(false)
   }
 
-  function handeSendComment(e) {
+  const handeSendComment = (e) => {
     e.preventDefault()
     createComment(text, idPost)
       .then((data) => {

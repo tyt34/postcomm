@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import def_ava from '../../images/def_avatar.png'
-import { getTimeDay, getTimeClock } from '../../utils/consts.js'
+import { getTimeClock, getTimeDay } from '../../utils'
+import { routerConfig } from '../../constants'
 import './style.scss'
 
 export const PrewPost = ({ info, avatarProfile }) => {
@@ -23,8 +24,8 @@ export const PrewPost = ({ info, avatarProfile }) => {
     }
   }, [avatarProfile])
 
-  function handleLinkPost() {
-    navigate('/post/' + info._id)
+  const handleLinkPost = () => {
+    navigate(`${routerConfig.post.url}${info._id}`)
   }
 
   return (

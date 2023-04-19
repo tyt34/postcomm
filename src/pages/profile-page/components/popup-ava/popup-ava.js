@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import './styles.scss'
 import { updateAvatar } from '../../../../utils/api'
+import './styles.scss'
 
 export const PopupAva = ({
   isOpen,
@@ -18,11 +18,11 @@ export const PopupAva = ({
     }
   }, [avatar])
 
-  function handleClosePopup() {
+  const handleClosePopup = () => {
     setPopupOpen(false)
   }
 
-  function handeUpdateAvatar(e) {
+  const handeUpdateAvatar = (e) => {
     e.preventDefault()
     updateAvatar(avatar)
       .then((arg) => {
@@ -35,7 +35,7 @@ export const PopupAva = ({
       })
   }
 
-  function handleChangeURLAva(e) {
+  const handleChangeURLAva = (e) => {
     setAvatar(e.target.value)
   }
 

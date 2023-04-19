@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { getComments } from '../../../../utils/api.js'
 import { OneComment } from '../one-comment/one-comment.js'
-
+import { getComments } from '../../../../utils/index.js'
 import './styles.scss'
 
 export const CommentsList = ({ idPost }) => {

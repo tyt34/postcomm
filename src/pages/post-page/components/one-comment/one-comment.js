@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import def_ava from '../../../../images/def_avatar.png'
-import { getTimeDay, getTimeClock } from '../../../../utils/consts.js'
-import { getAvaForPrevPost } from '../../../../utils/api.js'
+import {
+  getAvaForPrevPost,
+  getTimeClock,
+  getTimeDay
+} from '../../../../utils'
 
 export const OneComment = ({ comment }) => {
   const [timeDay, setTimeDay] = useState(null)

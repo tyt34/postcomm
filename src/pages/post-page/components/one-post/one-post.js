@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { getPost, getAvaForPrevPost } from '../../../../utils/api.js'
-import { getTimeDay, getTimeClock } from '../../../../utils/consts.js'
-import def_ava from '../../../../images/def_avatar.png'
 import { CommentsList } from '../comment-list'
 import { PopupComment } from '../popup-comment'
-
+import def_ava from '../../../../images/def_avatar.png'
+import {
+  getAvaForPrevPost,
+  getPost,
+  getTimeClock,
+  getTimeDay
+} from '../../../../utils'
 import './styles.scss'
 
 export const OnePost = () => {
@@ -60,7 +63,7 @@ export const OnePost = () => {
     }
   }, [owner])
 
-  function handleOpenPopapCreateComment() {
+  const handleOpenPopapCreateComment = () => {
     setPopupOpen(true)
   }
 

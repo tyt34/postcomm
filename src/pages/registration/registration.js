@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import Footer from '../../components/footer/footer'
-import { reg } from '../../utils/api.js'
+import { AuthBut, AuthField, Footer } from '../../components'
+import { reg } from '../../utils'
 import {
-  textAuthIntro,
+  routerConfig,
   textAuthDescr,
+  textAuthIntro,
   timeForShowErr
-} from '../../utils/consts.js'
+} from '../../constants'
 import './style.scss'
-import { AuthBut, AuthField } from '../../components'
 
 export const Reg = () => {
   const navigate = useNavigate()
@@ -16,23 +16,7 @@ export const Reg = () => {
   const [name, setName] = useState('')
   const [surname, setSurname] = useState('')
   const [pass, setPass] = useState('')
-  const [button, setButton] = React.useState(false)
-
-  function handleChangeName(e) {
-    setName(e.target.value)
-  }
-
-  function handleChangeSurname(e) {
-    setSurname(e.target.value)
-  }
-
-  function handleChangePass(e) {
-    setPass(e.target.value)
-  }
-
-  function clearStatusFetch() {
-    setMessageErr('')
-  }
+  const [button, setButton] = useState(false)
 
   useEffect(() => {
     if (name === '' || surname === '' || pass === '') {
@@ -42,7 +26,23 @@ export const Reg = () => {
     }
   }, [name, surname, pass])
 
-  function handleReg(e) {
+  const handleChangeName = (e) => {
+    setName(e.target.value)
+  }
+
+  const handleChangeSurname = (e) => {
+    setSurname(e.target.value)
+  }
+
+  const handleChangePass = (e) => {
+    setPass(e.target.value)
+  }
+
+  const clearStatusFetch = () => {
+    setMessageErr('')
+  }
+
+  const handleReg = (e) => {
     e.preventDefault()
     reg(name, surname, pass)
       .then((data) => {
@@ -53,7 +53,7 @@ export const Reg = () => {
           localStorage.setItem('jwt', data.token)
           localStorage.setItem('name', data.name)
           localStorage.setItem('surname', data.surname)
-          navigate('/profile')
+          navigate(routerConfig.profile.url)
         }
       })
       .catch((err) => {
@@ -64,9 +64,9 @@ export const Reg = () => {
       })
   }
 
-  function handleLinkLog(e) {
+  const handleLinkLog = (e) => {
     e.preventDefault()
-    navigate('/log')
+    navigate(routerConfig.log.url)
   }
 
   return (
@@ -107,7 +107,7 @@ export const Reg = () => {
         textIntro="Уже зарегистрированы? Тогда"
         handleLink={handleLinkLog}
         textEnter="войдите"
-        href={'/log'}
+        href={routerConfig.log.url}
       />
     </section>
   )

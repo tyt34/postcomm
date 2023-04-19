@@ -1,4 +1,4 @@
-@import '../../utils/scss-consts/font-base.scss';
+@import '/src/constants/';
 
 .footer__intro {
   @include font-base(18px, 13px, 500);

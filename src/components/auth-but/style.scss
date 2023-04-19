@@ -1,5 +1,4 @@
-@import '../../utils/scss-consts/size.scss';
-@import '../../utils/scss-consts/font-base.scss';
+@import '/src/constants/';
 
 .reg__but {
   @include size(400px, 45px);

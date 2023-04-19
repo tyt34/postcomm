@@ -1,27 +1,30 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import {
-  getUser,
-  getMesForProfile,
-  updateUser
-} from '../../../../utils/api.js'
-import { Avatar } from '../avatar/avatar.js'
-import './styles.scss'
-import Field from '../field/field.js'
-import SliderPost from '../slider-post/slider-post.js'
 import { CreatePost } from '../create-post/create-post.js'
+import { Avatar } from '../avatar/avatar.js'
 import PopupAva from '../popup-ava/popup-ava.js'
+import Field from '../field/field.js'
+import { SliderPost } from '../slider-post/slider-post.js'
+import {
+  getMesForProfile,
+  getUser,
+  updateUser
+} from '../../../../utils/index.js'
+import { routerConfig } from '../../../../constants/index.js'
+import './styles.scss'
+
+const wait = 'Подождите...'
 
 export const Profile = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const [nameProfile, setNameProfile] = useState('Подождите...')
-  const [surnameProfile, setSurnameProfile] = useState('Подождите...')
-  const [emailProfile, setEmailProfile] = useState('Подождите...')
-  const [phoneProfile, setPhoneProfile] = useState('Подождите...')
-  const [companyProfile, setCompanyProfile] = useState('Подождите...')
-  const [jobPostProfile, setJobPostProfile] = useState('Подождите...')
+  const [nameProfile, setNameProfile] = useState(wait)
+  const [surnameProfile, setSurnameProfile] = useState(wait)
+  const [emailProfile, setEmailProfile] = useState(wait)
+  const [phoneProfile, setPhoneProfile] = useState(wait)
+  const [companyProfile, setCompanyProfile] = useState(wait)
+  const [jobPostProfile, setJobPostProfile] = useState(wait)
   const [avatarProfile, setAvatarProfile] = useState('')
   const [popupOpen, setPopupOpen] = useState(false)
   const [statusFetch, setStatusFetch] = useState('')
@@ -57,31 +60,31 @@ export const Profile = () => {
       })
   }, [])
 
-  function handleChangeName(e) {
+  const handleChangeName = (e) => {
     setNameProfile(e.target.value)
   }
 
-  function handleChangeSurname(e) {
+  const handleChangeSurname = (e) => {
     setSurnameProfile(e.target.value)
   }
 
-  function handleChangeEmail(e) {
+  const handleChangeEmail = (e) => {
     setEmailProfile(e.target.value)
   }
 
-  function handleChangePhone(e) {
+  const handleChangePhone = (e) => {
     setPhoneProfile(e.target.value)
   }
 
-  function handleChangeСompany(e) {
+  const handleChangeСompany = (e) => {
     setCompanyProfile(e.target.value)
   }
 
-  function handleChangePost(e) {
+  const handleChangePost = (e) => {
     setJobPostProfile(e.target.value)
   }
 
-  function handeSaveDataProfile() {
+  const handeSaveDataProfile = () => {
     setStatusFetch('Идет отправка данных...')
     updateUser(
       nameProfile,
@@ -112,14 +115,14 @@ export const Profile = () => {
       })
   }
 
-  function clearStatusFetch() {
+  const clearStatusFetch = () => {
     setStatusFetch('')
   }
 
-  function handelLinkAllPosts(e) {
+  const handelLinkAllPosts = (e) => {
     e.preventDefault()
     dispatch({ type: 'CREATE_PAGE_ALL_POSTS', payload: nameProfile })
-    navigate('/allposts/' + nameProfile)
+    navigate(`${routerConfig.allposts.href}${nameProfile}`)
   }
 
   return (
@@ -196,7 +199,7 @@ export const Profile = () => {
 
       <a
         className="profile__link"
-        href={'#/allposts/' + nameProfile}
+        href={`${routerConfig.allposts.href}${nameProfile}`}
         onClick={handelLinkAllPosts}
       >
         Перейти на страницу всех постов

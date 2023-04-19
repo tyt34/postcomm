@@ -1,23 +1,24 @@
 import { useNavigate } from 'react-router-dom'
+import { routerConfig } from '../../constants/router'
 import './style.scss'
 
 export const Navigation = () => {
   const navigate = useNavigate()
 
-  function handelLinkAllUsers(e) {
+  const handelLinkAllUsers = (e) => {
     e.preventDefault()
-    navigate('/allusers')
+    navigate(routerConfig.allusers.url)
   }
 
-  function handelLinkExit(e) {
+  const handelLinkExit = (e) => {
     e.preventDefault()
     localStorage.clear()
-    navigate('/log')
+    navigate(routerConfig.log.url)
   }
 
-  function handelLinkProfile(e) {
+  const handelLinkProfile = (e) => {
     e.preventDefault()
-    navigate('/profile')
+    navigate(routerConfig.profile)
   }
 
   return (
@@ -26,21 +27,21 @@ export const Navigation = () => {
       <section className="nav__footer">
         <a
           className="nav__link"
-          href={'#/allusers'}
+          href={routerConfig.allusers.href}
           onClick={handelLinkAllUsers}
         >
           Все пользователи
         </a>
         <a
           className="nav__link"
-          href={'#/profile'}
+          href={routerConfig.profile.href}
           onClick={handelLinkProfile}
         >
           Профиль
         </a>
         <a
           className="nav__link"
-          href={'#/exit'}
+          href={routerConfig.log.href}
           onClick={handelLinkExit}
         >
           Выход

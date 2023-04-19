@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { getMesUser, getAvaForPrevPost } from '../../../../utils/api'
+import { PrewPost } from '../../../../components/prew-post'
 import def_ava from '../../../../images/def_avatar.png'
 import './style.scss'
-import { PrewPost } from '../../../../components/prew-post'
 
 export const AllPosts = () => {
   let { nameUser } = useParams()
@@ -68,17 +68,15 @@ export const AllPosts = () => {
 
       <h2 className="all__title">Все посты в виде превью</h2>
       <section className="all__posts">
-        {messageForProfile.length > 0 ? (
-          messageForProfile.map((post) => (
-            <PrewPost
-              key={post._id}
-              info={post}
-              avatarProfile={avatarProfile}
-            />
-          ))
-        ) : (
-          <></>
-        )}
+        {messageForProfile.length > 0
+          ? messageForProfile.map((post) => (
+              <PrewPost
+                key={post._id}
+                info={post}
+                avatarProfile={avatarProfile}
+              />
+            ))
+          : null}
       </section>
     </section>
   )

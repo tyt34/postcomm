@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { routerConfig } from '../../../../constants/router'
 import def_ava from '../../../../images/def_avatar.png'
-
 import './style.scss'
 
 export const PrewUser = ({ user }) => {
@@ -15,8 +15,8 @@ export const PrewUser = ({ user }) => {
     }
   }, [avatar])
 
-  function handleAllPostUser() {
-    navigate('/allposts/' + name)
+  const handleAllPostUser = () => {
+    navigate(`${routerConfig.allposts.href}${name}`)
   }
 
   return (

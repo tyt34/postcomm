@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { getAllUsers } from '../../../../utils/api'
 import { PrewUser } from '../prew-user/prew-user'
-
 import './style.scss'
 
 export const AllUsers = () => {

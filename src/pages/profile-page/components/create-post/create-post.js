@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { createPost } from '../../../../utils/api.js'
-import { timeForShowErr } from '../../../../utils/consts.js'
 import { useDispatch } from 'react-redux'
+import { createPost } from '../../../../utils'
+import { timeForShowErr } from '../../../../constants'
 import './styles.scss'
 
 export const CreatePost = () => {
@@ -19,7 +19,7 @@ export const CreatePost = () => {
     }
   }, [header, text])
 
-  function handeCreatePost(e) {
+  const handeCreatePost = (e) => {
     e.preventDefault()
     setStatusCreateMess('Идет отправка данных...')
     createPost(header, text)
@@ -42,7 +42,7 @@ export const CreatePost = () => {
       })
   }
 
-  function clearStatusFetch() {
+  const clearStatusFetch = () => {
     setStatusCreateMess('')
   }
 

@@ -15,7 +15,7 @@ export const Avatar = ({
     }
   }, [avatarLink])
 
-  function handleEditAvatarClick() {
+  const handleEditAvatarClick = () => {
     setPopupOpen(true)
     window.addEventListener('keydown', closeOnEsc)
   }
