@@ -1,4 +1,4 @@
-export * from './all-post-page'
+export * from './all-posts-page'
 export * from './all-users-page'
 export * from './loggin'
 export * from './post-page'

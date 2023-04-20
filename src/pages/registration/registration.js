@@ -10,7 +10,7 @@ import {
 } from '../../constants'
 import './style.scss'
 
-export const Reg = () => {
+export const Registration = () => {
   const navigate = useNavigate()
   const [messageErr, setMessageErr] = useState('')
   const [name, setName] = useState('')

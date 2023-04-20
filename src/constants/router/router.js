@@ -12,11 +12,13 @@ export const routerConfig = {
     href: '#/profile'
   },
   post: {
-    url: '/post/'
+    url: '/post/',
+    parametrUrl: '/post/:idPost'
   },
   allposts: {
     url: '/allposts',
-    href: '#/allposts/'
+    href: '#/allposts/',
+    parametrUrl: '/allposts/:nameUser'
   },
   reg: {
     url: '/reg'

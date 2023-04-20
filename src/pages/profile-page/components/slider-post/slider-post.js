@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import disableScroll from 'disable-scroll'
-import arrow from '../../../../images/arrow.png'
 import { useSelector } from 'react-redux'
+import disableScroll from 'disable-scroll'
 import { PrewPost } from '../../../../components'
+import arrow from '../../../../images/arrow.png'
 import './styles.scss'
 
 export const SliderPost = ({ avatarProfile }) => {
@@ -81,11 +81,9 @@ export const SliderPost = ({ avatarProfile }) => {
           <p className="carusel__text">Постов нет.</p>
         </section>
       ) : items.length === 1 ? (
-        <>
-          <section className="carusel carusel-one">
-            <PrewPost info={messTop} avatarProfile={avatarProfile} />
-          </section>
-        </>
+        <section className="carusel carusel-one">
+          <PrewPost info={messTop} avatarProfile={avatarProfile} />
+        </section>
       ) : items.length === 2 ? (
         <section className="carusel">
           <PrewPost info={messTop} avatarProfile={avatarProfile} />

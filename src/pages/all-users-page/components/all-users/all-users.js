@@ -5,6 +5,7 @@ import './style.scss'
 
 export const AllUsers = () => {
   const [allUsers, setAllUsers] = useState([])
+  console.log(' --> ')
 
   useEffect(() => {
     getAllUsers()
@@ -24,13 +25,11 @@ export const AllUsers = () => {
         Все пользователи этой социальной сети:
       </h2>
       <section className="all__users">
-        {allUsers.length !== 0 ? (
-          allUsers.map((user) => (
-            <PrewUser key={user._id} user={user} />
-          ))
-        ) : (
-          <></>
-        )}
+        {allUsers.length !== 0
+          ? allUsers.map((user) => (
+              <PrewUser key={user._id} user={user} />
+            ))
+          : null}
       </section>
     </section>
   )

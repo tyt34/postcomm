@@ -18,7 +18,7 @@ export const Navigation = () => {
 
   const handelLinkProfile = (e) => {
     e.preventDefault()
-    navigate(routerConfig.profile)
+    navigate(routerConfig.profile.url)
   }
 
   return (
