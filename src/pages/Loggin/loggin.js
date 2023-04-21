@@ -101,7 +101,7 @@ export const Loggin = () => {
         textIntro="Еще не зарегистрировались? Тогда"
         handleLink={handleLinkReg}
         textEnter="регистрируйтесь скорее"
-        href={'/reg'}
+        href={routerConfig.reg.url}
       />
     </section>
   )
