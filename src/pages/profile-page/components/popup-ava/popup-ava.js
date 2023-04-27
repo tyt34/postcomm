@@ -40,7 +40,10 @@ export const PopupAva = ({
   }
 
   return (
-    <div id="popup" className={isOpen ? 'popup popup_open' : 'popup'}>
+    <div
+      id="popup"
+      className={isOpen ? 'popup popup_open' : 'popup'}
+    >
       <div className="popup__container">
         <button
           id="popup__close"
@@ -49,7 +52,10 @@ export const PopupAva = ({
           type="button"
         ></button>
         <p className="popup__title">Изменить аватар</p>
-        <form name="ava" className="popup__form">
+        <form
+          name="ava"
+          className="popup__form"
+        >
           <input
             id="popup-avatar-link"
             className="popup__input"

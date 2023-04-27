@@ -47,7 +47,10 @@ export const CreatePost = () => {
   }
 
   return (
-    <form name="ava" className="post-form">
+    <form
+      name="ava"
+      className="post-form"
+    >
       <input
         id="popup-avatar-link"
         className="post-form__input"

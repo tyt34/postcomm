@@ -36,7 +36,11 @@ export const OneComment = ({ comment }) => {
   return (
     <section className="prew prew-comment">
       <section className="prew__top">
-        <img alt="ava" className="prew__ava" src={avatar} />
+        <img
+          alt="ava"
+          className="prew__ava"
+          src={avatar}
+        />
         <p className="prew__user">
           {name} - {surname}
         </p>

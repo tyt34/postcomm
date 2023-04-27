@@ -1,11 +1,6 @@
-@import '/src/constants/';
+@import './font-base.scss';
 
-.log {
-  @extend %flex-column;
-  margin-top: 25px;
-}
-
-.log__err {
+%log-reg-err {
   @include font-base(22px, 13px, 500);
   color: #f63c3c;
   margin: 10px auto 0 auto;

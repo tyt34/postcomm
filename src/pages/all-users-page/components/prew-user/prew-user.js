@@ -20,8 +20,15 @@ export const PrewUser = ({ user }) => {
   }
 
   return (
-    <section className="user" onClick={handleAllPostUser}>
-      <img alt="user ava" className="user__ava" src={ava} />
+    <section
+      className="user"
+      onClick={handleAllPostUser}
+    >
+      <img
+        alt="user ava"
+        className="user__ava"
+        src={ava}
+      />
       <section className="user__right">
         <p className="user__text">{name}</p>
         <p className="user__text">{surname}</p>

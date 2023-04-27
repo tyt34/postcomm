@@ -1,0 +1,15 @@
+@import '/src/constants/';
+@import '/src/constants/scss-consts/log-reg-err.scss';
+@import '/src/constants/scss-consts/log-reg-title.scss';
+
+.main {
+  @extend %log-reg-main;
+}
+
+.title {
+  @extend %log-reg-title;
+}
+
+.err {
+  @extend %log-reg-err;
+}

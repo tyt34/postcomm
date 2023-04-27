@@ -82,12 +82,21 @@ export const SliderPost = ({ avatarProfile }) => {
         </section>
       ) : items.length === 1 ? (
         <section className="carusel carusel-one">
-          <PrewPost info={messTop} avatarProfile={avatarProfile} />
+          <PrewPost
+            info={messTop}
+            avatarProfile={avatarProfile}
+          />
         </section>
       ) : items.length === 2 ? (
         <section className="carusel">
-          <PrewPost info={messTop} avatarProfile={avatarProfile} />
-          <PrewPost info={messMid} avatarProfile={avatarProfile} />
+          <PrewPost
+            info={messTop}
+            avatarProfile={avatarProfile}
+          />
+          <PrewPost
+            info={messMid}
+            avatarProfile={avatarProfile}
+          />
         </section>
       ) : (
         <section className="carusel">
@@ -99,11 +108,23 @@ export const SliderPost = ({ avatarProfile }) => {
             }
             onClick={prevNum}
           >
-            <img className="carusel__but-img" src={arrow} />
+            <img
+              className="carusel__but-img"
+              src={arrow}
+            />
           </button>
-          <PrewPost info={messTop} avatarProfile={avatarProfile} />
-          <PrewPost info={messMid} avatarProfile={avatarProfile} />
-          <PrewPost info={messBot} avatarProfile={avatarProfile} />
+          <PrewPost
+            info={messTop}
+            avatarProfile={avatarProfile}
+          />
+          <PrewPost
+            info={messMid}
+            avatarProfile={avatarProfile}
+          />
+          <PrewPost
+            info={messBot}
+            avatarProfile={avatarProfile}
+          />
           <button
             className={
               storePosts.length > 3

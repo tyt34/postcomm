@@ -82,7 +82,10 @@ export const PopupComment = ({ isOpen, setPopupOpen, idPost }) => {
           </p>
         </section>
 
-        <form name="ava" className="popup-comment__form">
+        <form
+          name="ava"
+          className="popup-comment__form"
+        >
           <textarea
             className="popup-comment__area"
             name="inputText"

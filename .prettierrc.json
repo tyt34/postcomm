@@ -7,5 +7,8 @@
   "bracketSpacing": true,
   "useTabs": false,
   "quoteProps": "as-needed",
-  "arrowParens": "always"
+  "arrowParens": "always",
+  "proseWrap": "always",
+  "htmlWhitespaceSensitivity": "ignore",
+  "singleAttributePerLine": true
 }

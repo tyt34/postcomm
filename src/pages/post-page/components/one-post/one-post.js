@@ -71,7 +71,11 @@ export const OnePost = () => {
     <section className="post">
       <h2 className="post__title">Пост №{idPost}</h2>
       <section className="post__profile">
-        <img alt="user ava" className="post__ava" src={avatar} />
+        <img
+          alt="user ava"
+          className="post__ava"
+          src={avatar}
+        />
         <section className="post__profile-text">
           <p className="post__date">
             Дата поста: {timeClock} - {timeDay}

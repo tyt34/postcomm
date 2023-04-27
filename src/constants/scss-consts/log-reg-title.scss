@@ -1,0 +1,8 @@
+@import './font-base.scss';
+
+%log-reg-title {
+  @include font-base(22px, 25px, 500);
+  width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}

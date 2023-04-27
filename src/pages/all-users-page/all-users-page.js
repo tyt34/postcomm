@@ -1,9 +1,11 @@
 import { Navigation } from '../../components'
 import { AllUsers } from './components/all-users/all-users'
 
-export const AllUserPage = () => (
+const AllUserPage = () => (
   <>
     <Navigation />
     <AllUsers />
   </>
 )
+
+export default AllUserPage

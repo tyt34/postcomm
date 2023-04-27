@@ -27,7 +27,10 @@ export const AllUsers = () => {
       <section className="all__users">
         {allUsers.length !== 0
           ? allUsers.map((user) => (
-              <PrewUser key={user._id} user={user} />
+              <PrewUser
+                key={user._id}
+                user={user}
+              />
             ))
           : null}
       </section>

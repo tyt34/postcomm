@@ -33,8 +33,14 @@ export const Avatar = ({
         alt="Изображение профиля"
         src={avatarLink}
       />
-      <div onClick={handleEditAvatarClick} className="avatar__overlay">
-        <button className="avatar__edit" type="button"></button>
+      <div
+        onClick={handleEditAvatarClick}
+        className="avatar__overlay"
+      >
+        <button
+          className="avatar__edit"
+          type="button"
+        ></button>
       </div>
     </div>
   )

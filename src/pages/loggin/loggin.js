@@ -9,9 +9,9 @@ import {
   textAuthIntro,
   timeForShowErr
 } from '../../constants'
-import './style.scss'
+import styles from './loggin.module.scss'
 
-export const Loggin = () => {
+const Loggin = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const [name, setName] = useState('')
@@ -69,10 +69,13 @@ export const Loggin = () => {
   }
 
   return (
-    <section className="log">
-      <p className="reg__title">{textAuthIntro}</p>
-      <p className="reg__title">{textAuthDescr}</p>
-      <form name={'reg'} className="reg">
+    <section className={styles.main}>
+      <p className={styles.title}>{textAuthIntro}</p>
+      <p className={styles.title}>{textAuthDescr}</p>
+      <form
+        name={'reg'}
+        className="reg"
+      >
         <AuthField
           name="Имя"
           idName="name"
@@ -95,7 +98,7 @@ export const Loggin = () => {
         textInButt="Залогиниться"
       />
 
-      <p className="log__err">{logErr}</p>
+      <p className={styles.err}>{logErr}</p>
 
       <Footer
         textIntro="Еще не зарегистрировались? Тогда"
@@ -106,3 +109,5 @@ export const Loggin = () => {
     </section>
   )
 }
+
+export default Loggin

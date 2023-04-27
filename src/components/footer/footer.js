@@ -5,7 +5,11 @@ export const Footer = ({ textIntro, handleLink, textEnter, href }) => {
     <p className="footer__intro">
       {textIntro}
       {'\u00A0'}
-      <a href={href} className="footer__link" onClick={handleLink}>
+      <a
+        href={href}
+        className="footer__link"
+        onClick={handleLink}
+      >
         {textEnter}
       </a>
     </p>

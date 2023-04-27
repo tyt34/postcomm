@@ -8,9 +8,9 @@ import {
   textAuthIntro,
   timeForShowErr
 } from '../../constants'
-import './style.scss'
+import styles from './registration.module.scss'
 
-export const Registration = () => {
+const Registration = () => {
   const navigate = useNavigate()
   const [messageErr, setMessageErr] = useState('')
   const [name, setName] = useState('')
@@ -70,10 +70,10 @@ export const Registration = () => {
   }
 
   return (
-    <section className="log">
-      <p className="reg__title">{textAuthIntro}</p>
-      <p className="reg__title">{textAuthDescr}</p>
-      <form name={'reg'} className="reg">
+    <section className={styles.main}>
+      <p className={styles.title}>{textAuthIntro}</p>
+      <p className={styles.title}>{textAuthDescr}</p>
+      <form name={'reg'}>
         <AuthField
           name="Имя"
           idName="name"
@@ -102,7 +102,7 @@ export const Registration = () => {
         handleReg={handleReg}
         textInButt="Зарегистрироваться"
       />
-      <p className="reg__err">{messageErr}</p>
+      <p className={styles.err}>{messageErr}</p>
       <Footer
         textIntro="Уже зарегистрированы? Тогда"
         handleLink={handleLinkLog}
@@ -112,3 +112,5 @@ export const Registration = () => {
     </section>
   )
 }
+
+export default Registration

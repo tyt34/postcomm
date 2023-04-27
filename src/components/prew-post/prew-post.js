@@ -29,9 +29,16 @@ export const PrewPost = ({ info, avatarProfile }) => {
   }
 
   return (
-    <section className="prew prew-link" onClick={handleLinkPost}>
+    <section
+      className="prew prew-link"
+      onClick={handleLinkPost}
+    >
       <section className="prew__top">
-        <img className="prew__ava" src={avatar} alt="user avatar" />
+        <img
+          className="prew__ava"
+          src={avatar}
+          alt="user avatar"
+        />
         <p className="prew__head">{header}</p>
       </section>
 

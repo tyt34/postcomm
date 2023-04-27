@@ -29,7 +29,10 @@ export const CommentsList = ({ idPost }) => {
       ) : (
         <>
           {arrayComments.map((comment) => (
-            <OneComment key={comment._id} comment={comment} />
+            <OneComment
+              key={comment._id}
+              comment={comment}
+            />
           ))}
         </>
       )}
