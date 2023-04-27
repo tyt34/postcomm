@@ -2,14 +2,6 @@ import { Suspense, lazy } from 'react'
 import { HashRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { routerConfig } from './constants'
 import { Loading } from './components'
-/* import {
-  // LazyAllPostsPage,
-  LazyAllUserPage,
-  LazyLogginPage,
-  LazyPostPage,
-  LazyProfilePage,
-  LazyRegistrationPage
-} from './pages' */
 
 const LazyAllPostsPage = lazy(() =>
   import('./pages/all-posts-page/all-posts-page.js')

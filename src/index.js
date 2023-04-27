@@ -27,7 +27,7 @@ const reducer = (store, { type, payload }) => {
   }
 }
 
-const store = createStore(reducer, {
+export const store = createStore(reducer, {
   postForSlider: [], // чтобы посты сразу отображались при добавление
   infoAboutNewComment: true // чтобы комментарии подгружались сразу при добавление
 })
