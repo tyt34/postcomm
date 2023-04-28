@@ -1,6 +1,6 @@
 @import '/src/constants/';
 
-.post-form {
+.form {
   @extend %flex-column;
   width: 400px;
   margin: 10px auto 20px auto;
@@ -9,12 +9,12 @@
   border-radius: 20px;
 }
 
-.post-form__input {
+.form__input {
   @include font-base(18px, 13px, 500);
   text-align: left;
 }
 
-.post-form__but {
+.form__but {
   @include size(300px, 46px);
   background-color: black;
   margin: 20px auto 0 auto;
@@ -25,25 +25,25 @@
   color: white;
 }
 
-.post-form__but:hover {
+.form__but:hover {
   cursor: pointer;
 }
 
-.post-form__area {
+.form__area {
   @include font-base(18px, 18px, 500);
   text-align: left;
   height: 80px;
   margin-top: 20px;
 }
 
-.post-form__status {
+.form__status {
   @include font-base(18px, 13px, 500);
   margin: 10px auto;
   color: red;
   height: 20px;
 }
 
-.post-form__but-close {
+.form__but-close {
   background-color: #a0a0a0;
   color: black;
 }

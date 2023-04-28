@@ -16,7 +16,7 @@ export const PrewUser = ({ user }) => {
   }, [avatar])
 
   const handleAllPostUser = () => {
-    navigate(`${routerConfig.allposts.href}${name}`)
+    navigate(`${routerConfig.allposts.url}/${name}`)
   }
 
   return (

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import def_ava from '../../../../images/def_avatar.png'
-import './styles.scss'
+import styles from './avatar.module.scss'
 
 export const Avatar = ({
   setPopupOpen,
@@ -27,18 +27,18 @@ export const Avatar = ({
   }
 
   return (
-    <div className="avatar">
+    <div className={styles.main}>
       <img
-        className="avatar__img"
+        className={styles.img}
         alt="Изображение профиля"
         src={avatarLink}
       />
       <div
         onClick={handleEditAvatarClick}
-        className="avatar__overlay"
+        className={styles.overlay}
       >
         <button
-          className="avatar__edit"
+          className={styles.edit}
           type="button"
         ></button>
       </div>

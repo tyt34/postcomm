@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { createPost } from '../../../../utils'
 import { timeForShowErr } from '../../../../constants'
-import './styles.scss'
+import styles from './create-post.module.scss'
 
 export const CreatePost = () => {
   const dispatch = useDispatch()
@@ -49,11 +49,11 @@ export const CreatePost = () => {
   return (
     <form
       name="ava"
-      className="post-form"
+      className={styles.form}
     >
       <input
         id="popup-avatar-link"
-        className="post-form__input"
+        className={styles.form__input}
         onChange={(e) => {
           setHeader(e.target.value)
         }}
@@ -64,7 +64,7 @@ export const CreatePost = () => {
         required
       />
       <textarea
-        className="post-form__area"
+        className={styles.form__area}
         name="inputText"
         placeholder="Поле для ввода текста"
         value={text}
@@ -85,7 +85,7 @@ export const CreatePost = () => {
       >
         Сделать пост публичным
       </button>
-      <p className="post-form__status">{statusCreateMess}</p>
+      <p className={styles.form__status}>{statusCreateMess}</p>
     </form>
   )
 }

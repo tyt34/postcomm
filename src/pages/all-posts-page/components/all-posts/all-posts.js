@@ -6,7 +6,7 @@ import def_ava from '../../../../images/def_avatar.png'
 import './style.scss'
 
 export const AllPosts = () => {
-  let { nameUser } = useParams()
+  const { nameUser } = useParams()
   const [messageForProfile, setMessageForProfile] = useState('')
   const [avatarProfile, setAvatarProfile] = useState(def_ava)
   const [surnameProfile, setSurnameProfile] = useState('')
@@ -33,6 +33,7 @@ export const AllPosts = () => {
     if (messageForProfile[0]) {
       getAvaForPrevPost(messageForProfile[0].owner)
         .then((user) => {
+          console.log({ user })
           setAvatarProfile(user.avatar)
           setSurnameProfile(user.surname)
           setEmailProfile(user.email)
@@ -41,7 +42,7 @@ export const AllPosts = () => {
           setJobpostProfile(user.jobpost)
         })
         .catch((err) => {
-          console.log('Err#2 ', err)
+          console.log('Err#2: not work - getava:', err)
         })
     }
   }, [messageForProfile])

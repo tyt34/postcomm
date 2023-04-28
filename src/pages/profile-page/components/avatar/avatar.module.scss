@@ -1,6 +1,6 @@
 @import '/src/constants/';
 
-.avatar {
+.main {
   display: flex;
   text-align: center;
   align-items: center;
@@ -8,18 +8,18 @@
   border-radius: 100px;
 }
 
-.avatar:hover .avatar__overlay {
+.main:hover .overlay {
   opacity: 0.8;
 }
 
-.avatar__img {
+.img {
   @include size(120px, 120px);
   border-radius: 100px;
   object-fit: cover;
   margin-right: 20px;
 }
 
-.avatar__overlay {
+.overlay {
   @include size(120px, 120px);
   position: absolute;
   border-radius: 100px;
@@ -32,15 +32,15 @@
   margin-left: -20px;
 }
 
-.avatar__overlay:hover {
+.overlay:hover {
   cursor: pointer;
 }
 
-.avatar__edit:hover {
+.edit:hover {
   cursor: pointer;
 }
 
-.avatar__edit {
+.edit {
   background: url('../../../../images/edit-img-profile.svg') 100% 100%
     no-repeat;
   position: absolute;

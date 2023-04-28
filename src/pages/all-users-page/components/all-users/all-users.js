@@ -5,7 +5,6 @@ import './style.scss'
 
 export const AllUsers = () => {
   const [allUsers, setAllUsers] = useState([])
-  console.log(' --> ')
 
   useEffect(() => {
     getAllUsers()
