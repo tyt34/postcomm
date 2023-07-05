@@ -1,15 +1,19 @@
 import React, { memo } from 'react'
-import './styles.scss'
+import styles from './field.module.scss'
 
 const Field = ({ name, value, onChange, placeHolder, mixClass }) => {
   return (
-    <div className={mixClass ? 'field field-top' : 'field'}>
-      <p className="field__name">{name}</p>
+    <div
+      className={
+        mixClass ? `${styles.main} ${styles.top}` : `${styles.main}`
+      }
+    >
+      <p className={styles.name}>{name}</p>
       <input
         value={value}
         onChange={onChange}
         id="profile-name"
-        className="field__input"
+        className={styles.input}
         name="name"
         type="text"
         placeholder={placeHolder}

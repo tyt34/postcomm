@@ -1,22 +1,22 @@
 @import '/src/constants/';
 
-.field {
+.main {
   display: flex;
   width: 400px;
   margin: 20px auto 0 auto;
   justify-content: space-between;
 }
 
-.field-top {
+.top {
   width: 315px;
 }
 
-.field__name {
+.name {
   @include font-base(18px, 13px, 500);
   margin: 5px 0 0 0;
 }
 
-.field__input {
+.input {
   @include font-base(18px, 13px, 500);
   text-align: right;
   border: 0;

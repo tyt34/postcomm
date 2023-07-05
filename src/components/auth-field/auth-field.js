@@ -1,4 +1,4 @@
-import './style.scss'
+import styles from './auth-field.module.scss'
 
 export const AuthField = ({
   name,
@@ -8,11 +8,11 @@ export const AuthField = ({
   onChange
 }) => {
   return (
-    <div className="field-log-reg">
-      <p className="field-log-reg__name">{name}</p>
+    <div className={styles.main}>
+      <p className={styles.name}>{name}</p>
       <input
         id={`field-log-reg-${idName}`}
-        className="field-log-reg__input"
+        className={styles.input}
         name="name"
         minLength="2"
         maxLength="30"

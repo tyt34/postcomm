@@ -1,18 +1,18 @@
 @import '/src/constants/';
 
-.field-log-reg {
+.main {
   @extend %flex-column;
   margin-top: 20px;
 }
 
-.field-log-reg__name {
+.name {
   @include font-base(18px, 12px, 500);
   color: #a0a0a0;
   width: calc(100% - 60px);
   margin: 0 auto;
 }
 
-.field-log-reg__input {
+.input {
   @include font-base(18px, 15px, 500);
   @include size(calc(100% - 85px), 46px);
   margin: 10px auto 0 auto;
@@ -23,28 +23,28 @@
 }
 
 @media screen and (min-width: 768px) {
-  .field-log-reg {
+  .main {
     width: calc(100% - 372px);
     margin-left: auto;
     margin-right: auto;
   }
 
-  .field-log-reg__name {
+  .name {
     margin-left: 0;
   }
 
-  .field-log-reg__input {
+  .input {
     box-sizing: border-box;
     width: 100%;
   }
 }
 
 @media screen and (min-width: 1280px) {
-  .field-log-reg {
+  .main {
     width: calc(100% - 884px);
   }
 
-  .field-log-reg__input {
+  .input {
     width: 100%;
   }
 }

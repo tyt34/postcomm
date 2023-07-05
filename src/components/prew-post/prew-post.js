@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import def_ava from '../../images/def_avatar.png'
 import { getTimeClock, getTimeDay } from '../../utils'
 import { routerConfig } from '../../constants'
-import './style.scss'
+import styles from './prew-post.module.scss'
 
 export const PrewPost = ({ info, avatarProfile }) => {
   const navigate = useNavigate()
@@ -30,25 +30,25 @@ export const PrewPost = ({ info, avatarProfile }) => {
 
   return (
     <section
-      className="prew prew-link"
+      className={`${styles.main} ${styles.link}`}
       onClick={handleLinkPost}
     >
-      <section className="prew__top">
+      <section className={styles.top}>
         <img
-          className="prew__ava"
+          className={styles.ava}
           src={avatar}
           alt="user avatar"
         />
-        <p className="prew__head">{header}</p>
+        <p className={styles.head}>{header}</p>
       </section>
 
-      <section className="prew__bot">
-        <section className="prew__time">
-          <p className="prew__time">{timeDay}</p>
-          <p className="prew__time">{timeClock}</p>
+      <section className={styles.bot}>
+        <section className={styles.time}>
+          <p className={styles.time}>{timeDay}</p>
+          <p className={styles.time}>{timeClock}</p>
         </section>
 
-        <p className="prew__text">{text}</p>
+        <p className={styles.text}>{text}</p>
       </section>
     </section>
   )

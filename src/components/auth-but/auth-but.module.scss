@@ -1,6 +1,6 @@
 @import '/src/constants/';
 
-.reg__but {
+.but {
   @include size(400px, 45px);
   margin: 20px auto 0 auto;
   background-color: #ff6838;
@@ -11,14 +11,14 @@
   padding: 0;
 }
 
-.reg__but:hover {
+.but:hover {
   cursor: pointer;
 }
 
-.reg__but-close {
+.close {
   background-color: #958884;
 }
 
-.reg__but-close:hover {
+.close:hover {
   cursor: default;
 }

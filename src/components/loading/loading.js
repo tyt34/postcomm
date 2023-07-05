@@ -1,9 +1,9 @@
-import './style.scss'
+import styles from './style.scss'
 
 export const Loading = () => {
   return (
-    <div className="center">
-      <div className="lds-dual-ring"></div>
+    <div className={styles.center}>
+      <div className={styles.main}></div>
     </div>
   )
 }
